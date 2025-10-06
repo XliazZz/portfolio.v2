@@ -1,0 +1,69 @@
+---
+import LucideFolder from "./icons/LucideFolder.astro";
+import LucideMessageSquareShare from "./icons/LucideMessageSquareShare.astro";
+import LucideUser from "./icons/LucideUser.astro";
+
+const icons = [
+  { href: "/", icon: LucideFolder, title: "Proyectos" },
+  { href: "/about", icon: LucideMessageSquareShare, title: "Sobre Mí" },
+  { href: "/contact", icon: LucideUser, title: "Contacto" },
+];
+---
+
+<div
+  class="flex
+      w-[8%]
+      p-2
+      bg-gray-800 bg-opacity-50
+      rounded-2xl
+      shadow-lg
+      fixed bottom-12 left-1/2 -translate-x-1/2 backdrop-blur-md justify-center items-center"
+>
+  <ul
+    class="flex
+      text-white font-semibold
+      justify-center items-center gap-4"
+  >
+    {
+      icons.map(({ href, icon: Icon, title }) => (
+        <li
+          class="
+            relative group
+          "
+        >
+          <a
+            href={href}
+            class="
+                flex
+                w-11 h-11 p-3
+                text-indigo-50
+                bg-gray-900
+                rounded-full
+                transition-colors
+                justify-center items-center hover:bg-indigo-500 hover:text-white
+              "
+            aria-label={title}
+          >
+            <Icon />
+          </a>
+
+          <span
+            class="
+              absolute bottom-14 left-1/2 -translate-x-1/2
+              whitespace-nowrap
+              text-sm text-white bg-gray-900 bg-opacity-80
+              px-3 py-1 rounded-md
+              backdrop-blur-md
+              shadow-md
+              opacity-0 group-hover:opacity-100
+              transition-opacity duration-200
+              pointer-events-none
+            "
+          >
+            {title}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</div>
