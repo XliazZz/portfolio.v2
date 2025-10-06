@@ -1,0 +1,28 @@
+---
+export interface Props {
+  className?: string;
+  size?: "sm" | "md" | "lg" | "xl";
+}
+
+const { className = "", size = "md" } = Astro.props;
+
+const sizeClasses = {
+  sm: "w-5 h-5",
+  md: "w-7 h-7",
+  lg: "w-9 h-9",
+  xl: "w-12 h-12",
+};
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class={`block ${sizeClasses[size]} ${className}`}
+>
+  <slot />
+</svg>
