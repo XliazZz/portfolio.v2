@@ -1,0 +1,81 @@
+---
+import GradientBackground from "./GradientBackground.astro";
+---
+
+<section
+  class="py-0 flex items-center justify-center bg-indigo-50 relative w-full overflow-hidden h-full"
+>
+  <GradientBackground client:load/>
+
+  <div
+    class="absolute inset-0 flex items-center justify-center z-10 text-center mx-auto max-w-4xl xl:max-w-6xl w-full"
+  >
+    <div class="px-4 bg-black/50 rounded-2xl py-6 w-full">
+      <p class="text-2xl font-medium leading-8 text-indigo-100 font-heading ">
+        Hola, soy <span class="font-semibold">Elías Martínez</span>
+      </p>
+
+      <div class="min-h-[60px] flex items-center mt-3 ml-[20%]">
+        <h1
+          class="text-[3.5rem] font-bold font-heading leading-[4rem] tracking-tight text-white"
+        >
+          Programador
+          <span
+            id="typewriter"
+            class="relative inline-block bg-gradient-to-r from-indigo-500 to-pink-400 bg-clip-text text-transparent"
+          >
+            <span class="text"></span>
+            <span class="cursor"></span>
+          </span>
+        </h1>
+      </div>
+
+      <p
+        class="mt-9 text-xl leading-relaxed text-slate-300 font-body max-w-4xl mx-auto"
+      >
+        Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
+        diseño limpio. Trabajo con tecnologías modernas como
+        <span class="font-medium text-white">
+          JavaScript, Python, Astro, React y Node.js
+        </span>
+        para transformar ideas en productos digitales.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { typewriterEffect } from "../scripts/typewriter";
+  document.addEventListener("DOMContentLoaded", typewriterEffect);
+</script>
+
+<style>
+  #typewriter {
+    position: relative;
+    display: inline-block;
+  }
+
+  #typewriter .text {
+    display: inline-block;
+  }
+
+  #typewriter .cursor {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #ffffff;
+    animation: blink-caret 0.8s step-end infinite;
+  }
+
+  @keyframes blink-caret {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>
