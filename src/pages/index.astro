@@ -3,10 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import FloatBar from "../components/FloatBar.astro";
 import Hero from "../components/Hero.astro";
 import NavBar from "../components/NavBar.astro";
+import Skills from "../components/Skills.astro";
 ---
 
 <Layout>
-  <NavBar />
-  <Hero />
-  <FloatBar />
+  <NavBar client:load/>
+  <Hero client:load/>
+  <Skills client:load/>
+  <FloatBar client:idle/>
 </Layout>
