@@ -4,11 +4,13 @@ import FloatBar from "../components/FloatBar.astro";
 import Hero from "../components/Hero.astro";
 import NavBar from "../components/NavBar.astro";
 import Skills from "../components/Skills.astro";
+import About from "../components/About.astro";
 ---
 
 <Layout>
-  <NavBar client:load/>
-  <Hero client:load/>
-  <Skills client:load/>
-  <FloatBar client:idle/>
+  <NavBar client:load />
+  <Hero client:load />
+  <Skills client:load />
+  <About client:load />
+  <FloatBar client:idle />
 </Layout>
