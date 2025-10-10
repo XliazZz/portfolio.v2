@@ -1,0 +1,100 @@
+---
+const listItems = [
+  {
+    title: "Diseño Responsive:",
+    text: "Experiencias optimizadas para todos los dispositivos.",
+  },
+  {
+    title: "Rendimiento:",
+    text: "Aplicaciones rápidas y eficientes que mejoran la experiencia.",
+  },
+  {
+    title: "Código Limpio:",
+    text: "Desarrollo mantenible y escalable usando mejores prácticas.",
+  },
+  {
+    title: "Comunicación Clara:",
+    text: "Trabajo colaborativo y transparencia en cada proyecto.",
+  },
+];
+---
+
+<section
+  class="pt-10 overflow-hidden bg-gray-50 dark:bg-gray-800 md:pt-0 sm:pt-16 2xl:pt-16"
+>
+  <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-[90rem]">
+    <div class="grid items-center grid-cols-1 md:grid-cols-2">
+      <div class="relative">
+        <div
+          class="absolute left-[40%] -top-6 md:-left-16 lg:top-14 md:top-6 rotate-0 md:rotate-[-90deg] text-sm tracking-widest"
+        >
+          <div class="flex items-center justify-center gap-2">
+            <div class="w-10 h-[2px] bg-indigo-600"></div>
+            <p class="font-body uppercase">Sobre Mí</p>
+          </div>
+        </div>
+
+        <h2
+          class="text-3xl md:text-5xl font-bold leading-tight mb-4 pl-10 font-heading"
+        >
+          Creando Experiencias <br /> Digitales Excepcionales
+        </h2>
+
+        <div class="lg:ml-6 lg:col-start-2 lg:max-w-2xl mt-20">
+          <p
+            class="text-base font-semibold leading-6 text-indigo-500 uppercase"
+          >
+            Desarrollo Centrado en el Usuario
+          </p>
+          <h4
+            class="mt-2 text-2xl font-extrabold leading-8 text-gray-900 sm:text-3xl sm:leading-9 font-heading"
+          >
+            Soluciones que Marcan la Diferencia
+          </h4>
+
+          <ul class="mt-8 space-y-3 font-medium">
+            {
+              listItems.map((item) => (
+                <li class="flex items-start lg:col-span-1">
+                  <div class="flex-shrink-0">
+                    <svg
+                      class="w-5 h-5 text-indigo-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <p class="ml-3 leading-5 text-gray-600">
+                    <strong class="font-heading">{item.title}</strong>{" "}
+                    {item.text}
+                  </p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative">
+        <img
+          class="absolute inset-x-0 bottom-0 -mb-48 -translate-x-1/2 left-1/2"
+          src="https://cdn.rareblocks.xyz/collection/celebration/images/team/1/blob-shape.svg"
+          alt=""
+        />
+
+        <img
+          class="relative w-full xl:max-w-lg xl:mx-auto 2xl:origin-bottom 2xl:scale-110"
+          src="https://cdn.rareblocks.xyz/collection/celebration/images/team/1/business-woman.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style></style>
