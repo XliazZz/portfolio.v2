@@ -1,0 +1,124 @@
+---
+const services = [
+  {
+    title: "Desarrollo Full Stack",
+    text: "Aplicaciones web completas desde frontend hasta backend y bases de datos",
+    id: "codeIcon",
+  },
+  {
+    title: "Portfolios Personales",
+    text: "Sitios web profesionales que destacan tu marca personal y proyectos",
+    id: "userIcon",
+  },
+  {
+    title: "E-commerce & Tiendas",
+    text: "Plataformas de venta seguras, escalables y optimizadas para conversión",
+    id: "storeIcon",
+  },
+  {
+    title: "Integración de APIs",
+    text: "Conexión de sistemas y services externos para funcionalidades avanzadas",
+    id: "apiIcon",
+  },
+  {
+    title: "Diseño UI/UX",
+    text: "Interfaces intuitivas y experiencias de usuario",
+    id: "paletteIcon",
+  },
+  {
+    title: "Optimización SEO",
+    text: "Mejora de posicionamiento en buscadores y visibilidad",
+    id: "trendingUpIcon",
+  },
+  {
+    title: "Performance Optimization",
+    text: "Aceleración de sitios web para mejor experiencia",
+    id: "rocketIcon",
+  },
+  {
+    title: "Modernización Web",
+    text: "Actualización de sitios existentes con tecnologías modernas",
+    id: "updateIcon",
+  },
+];
+---
+
+<section
+  class="py-12 bg-white sm:py-16 lg:py-20"
+  aria-labelledby="services-heading"
+>
+  <div class="px-4 mx-auto sm:px-6 lg:px-0 xl:max-w-6xl max-w-4xl">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <div
+          class="w-20 h-[2px] bg-gradient-to-r from-transparent to-indigo-600"
+        >
+        </div>
+        <span
+          class="text-sm font-semibold text-indigo-600 uppercase tracking-widest"
+          >Mis Servicios</span
+        >
+        <div
+          class="w-20 h-[2px] bg-gradient-to-l from-transparent to-indigo-600"
+        >
+        </div>
+      </div>
+
+      <h2
+        id="services-heading"
+        class="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl xl:text-5xl font-heading mb-3"
+      >
+        Tu Visión, Mi Código,
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
+        >
+          Resultados Excepcionales
+        </span>
+      </h2>
+
+      <p class="text-lg leading-8 text-gray-600 font-body max-w-2xl mx-auto">
+        Creo aplicaciones web que combinan <strong>diseño excepcional</strong> con
+        <strong>tecnología robusta</strong>, diseñadas específicamente para
+        impulsar el crecimiento de tu negocio
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 gap-y-12 md:grid-cols-3 md:gap-0 lg:grid-cols-4 lg:gap-5 xl:mt-12"
+      role="list"
+    >
+      {
+        services.map((service, index) => (
+          <div
+            class={`
+            md:p-3 md:py-4 
+          `}
+            role="listitem"
+            aria-labelledby={`service-${index}-title`}
+          >
+            <svg
+              class="mx-auto text-indigo-600"
+              width="40"
+              height="40"
+              viewBox="0 0 46 46"
+              fill="none"
+              aria-hidden="true"
+            >
+              <use href={`/featuresSprite.svg#${service.id}`} />
+            </svg>
+            <h3
+              id={`service-${index}-title`}
+              class="mt-6 text-xl font-bold text-gray-900 font-heading"
+            >
+              {service.title}
+            </h3>
+            <p class="mt-4 text-base text-gray-600 font-body px-3">
+              {service.text}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<style></style>
