@@ -1,0 +1,5 @@
+-Añadir animación o transición a los hover de los iconos en cardproject y a los tooltip card
+
+-añadir efecto opaco al hacer hover sobre la imagen con un texto de ver más o algo para ver detalles
+
+-añaidr skeletoncard

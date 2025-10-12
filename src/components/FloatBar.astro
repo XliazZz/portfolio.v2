@@ -2,6 +2,7 @@
 import LucideFolder from "./icons/LucideFolder.astro";
 import LucideMessageSquareShare from "./icons/LucideMessageSquareShare.astro";
 import LucideUser from "./icons/LucideUser.astro";
+import Tooltip from "./ui/Tooltip.astro";
 
 const icons = [
   { href: "/", icon: LucideFolder, title: "Proyectos" },
@@ -50,21 +51,7 @@ const icons = [
             <Icon />
           </a>
 
-          <span
-            class="
-              absolute bottom-14 left-1/2 -translate-x-1/2
-              whitespace-nowrap
-              text-sm text-white bg-gray-900 bg-opacity-80
-              px-3 py-1 rounded-md
-              backdrop-blur-md
-              shadow-md
-              opacity-0 group-hover:opacity-100
-              transition-opacity duration-200
-              pointer-events-none
-            "
-          >
-            {title}
-          </span>
+          <Tooltip text={title} />
         </li>
       ))
     }

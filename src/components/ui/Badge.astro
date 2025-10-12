@@ -1,0 +1,32 @@
+---
+interface Props {
+  text: string;
+  type?: "role" | "category" | "default";
+  roleType?: "Full-Stack" | "Front-End" | "Back-End";
+}
+
+const { text, type = "default", roleType } = Astro.props;
+
+const baseClasses = "px-2 py-1 text-xs font-medium rounded-full";
+
+const getVariantClasses = () => {
+  if (type === "role") {
+    switch (roleType) {
+      case "Full-Stack":
+        return "bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700";
+      case "Front-End":
+        return "bg-gradient-to-r from-green-100 to-teal-100 text-green-800";
+      case "Back-End":
+        return "bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-400";
+      default:
+        return "bg-gray-100 text-gray-700";
+    }
+  }
+  
+  return "bg-gray-100 text-gray-700";
+};
+---
+
+<div class={`${baseClasses} ${getVariantClasses()}`}>
+  {text}
+</div>
