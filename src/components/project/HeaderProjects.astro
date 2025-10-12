@@ -1,0 +1,114 @@
+---
+const history = [
+  { metric: "+10", type: "Proyectos" },
+  { metric: "+2", type: "Años de experiencia" },
+  { metric: "+25", type: "Tecnologías" },
+  { metric: "+8", type: "Colaboraciones" },
+];
+---
+
+<header
+  class="overflow-hidden
+      p-8 mb-12
+      bg-gradient-to-br from-white to-indigo-50
+      rounded-2xl border border-indigo-100
+      shadow-xl
+      relative"
+>
+  <div
+    class="w-32 h-32
+      bg-gradient-to-br from-indigo-500/10 to-purple-600/10
+      rounded-full
+      absolute top-0 right-0 -translate-y-16 translate-x-16"
+  >
+  </div>
+  <div
+    class="w-40 h-40
+      bg-gradient-to-tr from-indigo-500/5 to-purple-600/5
+      rounded-full
+      absolute bottom-0 left-0 -translate-x-20 translate-y-20"
+  >
+  </div>
+
+  <div class="flex flex-col
+      relative gap-8 items-center
+      lg:flex-row">
+    <div class="flex-1">
+      <span
+        class="inline-flex
+          mb-4 px-3 py-1
+          text-sm font-medium text-indigo-600 tracking-widest
+          bg-indigo-100
+          rounded-full
+          items-center gap-2 uppercase"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="m12 2l3.104 6.728l7.358.873l-5.44 5.03l1.444 7.268L12 18.28L5.534 21.9l1.444-7.268L1.538 9.6l7.359-.873z"
+          ></path>
+        </svg>
+        Experiencia Comprobada
+      </span>
+
+      <h2
+        class="mb-4
+          text-4xl font-bold font-heading text-gray-900 leading-tight
+          lg:text-5xl"
+      >
+        Desarrollo
+        <span
+          class="text-transparent
+            bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
+        >
+          Profesional
+        </span>
+      </h2>
+
+      <p class="max-w-lg
+          text-gray-600 font-body">
+        Soluciones tecnológicas innovadoras respaldadas por años de experiencia
+        y proyectos exitosos.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2
+        gap-6">
+      {
+        history.map((item) => (
+          <div
+            class="
+              p-4
+              bg-white
+              rounded-xl border border-gray-100
+              shadow-sm transition-all
+              hover:shadow-md hover:-translate-y-1
+            "
+          >
+            <h3
+              class="
+                text-3xl font-bold text-indigo-600 font-heading
+              "
+            >
+              {item.metric}
+            </h3>
+            <p
+              class="
+                text-sm text-gray-500 font-body
+              "
+            >
+              {item.type}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</header>
+
+<style></style>
