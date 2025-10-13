@@ -1,0 +1,47 @@
+{
+  "contactMethods": [
+    {
+      "type": "Teléfono",
+      "value": "+54 (11) 4888-4304",
+      "href": "tel:+541148884304",
+      "icon": "contactIcon"
+    },
+    {
+      "type": "Email",
+      "value": "eliasdev1912@gmail.com",
+      "href": "mailto:eliasdev1912@gmail.com",
+      "icon": "mailIcon"
+    },
+    {
+      "type": "Ubicación",
+      "value": "Villa Crespo, Ciudad de Buenos Aires, Argentina",
+      "icon": "locationIcon"
+    }
+  ],
+  "socialMedia": [
+    {
+      "type": "LinkedIn",
+      "value": "linkedin.com/in/xliazzz/",
+      "href": "https://www.linkedin.com/in/xliazzz/",
+      "icon": "meteor-icons:linkedin"
+    },
+    {
+      "type": "GitHub",
+      "value": "github.com/XliazZz",
+      "href": "https://github.com/XliazZz",
+      "icon": "fa:github"
+    },
+    {
+      "type": "Instagram",
+      "value": "instagram.com/eliasx.2",
+      "href": "https://www.instagram.com/eliasx.2",
+      "icon": "lucide:instagram"
+    },
+    {
+      "type": "WhatsApp",
+      "value": "+54 (11) 4888-4304",
+      "href": "https://wa.me/5491148884304",
+      "icon": "whatsappIcon"
+    }
+  ]
+}

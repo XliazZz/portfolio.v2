@@ -1,0 +1,44 @@
+---
+interface Props {
+  type?: "button" | "submit" | "reset";
+  text?: string;
+  href?: string;
+  icon?: string;
+  iconStyle?: string;
+  classStyle?: string;
+}
+
+const {
+  type = "button",
+  text,
+  href,
+  icon,
+  classStyle,
+  iconStyle,
+} = Astro.props;
+
+const Element = href ? "a" : "button";
+const commonProps = {
+  class: `inline-flex flex-1 px-4 py-2.5 align-middle font-semibold text-center rounded-lg select-none transition-colors shadow-sm items-center justify-center duration-200 ease-in hover:shadow-md cursor-pointer
+    ${classStyle ? classStyle : "hover:bg-indigo-700 text-white bg-indigo-600"}`,
+  ...(href ? { href, target: "_blank" } : { type }),
+};
+---
+
+<Element {...commonProps}>
+  {
+    icon && (
+      <svg
+        class={`mr-2 ${iconStyle ? iconStyle : "w-4 h-4"}`}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <use href={`/techsSprite.svg#${icon}`} />
+      </svg>
+    )
+  }
+  {text}
+</Element>
+
+<style></style>

@@ -1,0 +1,33 @@
+---
+interface Props {
+  icon: string;
+  href?: string;
+  name?: string;
+}
+
+const { icon, href, name } = Astro.props;
+---
+
+<a
+  href={href}
+
+  aria-label={name}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex-shrink-0 w-10 h-10 bg-white border border-indigo-200 rounded-lg flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 hover:bg-indigo-50 group"
+>
+  <div
+      class="text-indigo-600 hover:text-indigo-700 transition-colors"
+  >
+    <svg
+      class="w-5 h-5 flex-shrink-0"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <use href={`/techsSprite.svg#${icon}`}></use>
+    </svg>
+  </div>
+</a>

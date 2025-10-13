@@ -2,4 +2,8 @@
 
 -añadir efecto opaco al hacer hover sobre la imagen con un texto de ver más o algo para ver detalles
 
+--agregar minidescripcion en las capsulas de front.back, etc explicando el rol
+
 -añaidr skeletoncard
+
+--mejorar los select/options para que el seleccionado resalta mas que los que no estan seleccionados
