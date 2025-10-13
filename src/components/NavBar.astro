@@ -1,4 +1,6 @@
 ---
+import Button from "./ui/Button.astro";
+
 const sections = [
   { name: "Proyectos", href: "#" },
   { name: "Sobre mí", href: "#" },
@@ -60,12 +62,13 @@ const sections = [
             gap-x-2
             lg:flex lg:items-center"
         >
-          <a
+          <Button
+            text="Contacto"
             href="/contacto"
-            class="px-6 py-2 text-lg bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-emerald-900 transition duration-500 shadow-lg hover:shadow-xl"
-          >
-            Contacto
-          </a>
+            icon="contactIcon"
+            iconStyle="w-5 h-5"
+            classStyle="text-white bg-gradient-to-r from-emerald-500 to-green-600 hover:from-green-600 hover:to-emerald-900 transition duration-500 px-6 py-2 text-lg rounded-xl font-semibold shadow-lg hover:shadow-xl"
+          />
         </div>
       </div>
 

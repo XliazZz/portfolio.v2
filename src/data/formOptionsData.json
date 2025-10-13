@@ -1,0 +1,28 @@
+{
+  "projectOptions": [
+    { "value": "landing-page", "text": "Landing Page" },
+    { "value": "website-corporativo", "text": "Sitio Web Corporativo" },
+    { "value": "ecommerce", "text": "Tienda Online / E-commerce" },
+    { "value": "rediseño", "text": "Rediseño de Sitio Existente" },
+    { "value": "sistema-gestion", "text": "Sistema de Gestión" },
+    { "value": "api-backend", "text": "API / Desarrollo Backend" },
+    { "value": "aplicacion-web", "text": "Aplicación Web Completa" },
+    { "value": "mantenimiento", "text": "Mantenimiento / Soporte" },
+    { "value": "consultoria", "text": "Consultoría Técnica" },
+    { "value": "otro", "text": "Otro tipo de proyecto" }
+  ],
+  "budgetOptions": [
+    { "value": "", "text": "Todavía no lo sé" },
+    { "value": "70.000-100.000", "text": "$70.000 - $100.000 ARS" },
+    { "value": "100.000-150.000", "text": "$100.000 - $150.000 ARS" },
+    { "value": "150.000-200.000", "text": "$150.000 - $200.000 ARS" },
+    { "value": "200.000+", "text": "Más de $200.000 ARS" }
+  ],
+  "deliveryTimeOptions": [
+    { "value": "", "text": "Flexible / A definir" },
+    { "value": "urgente-3-5-dias", "text": "Urgente (3-5 dias) - Landing Page" },
+    { "value": "7-dias", "text": "7 dias" },
+    { "value": "1-2-semanas", "text": "1-2 semanas" },
+    { "value": "1-2-meses", "text": "1-2 meses" }
+  ]
+}
