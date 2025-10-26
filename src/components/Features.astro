@@ -44,10 +44,10 @@ const services = [
 ---
 
 <section
-  class="py-12 bg-white sm:py-16 lg:py-20"
+  class="py-12 bg-white sm:py-16 lg:py-28"
   aria-labelledby="services-heading"
 >
-  <div class="px-4 mx-auto sm:px-6 lg:px-0 xl:max-w-6xl max-w-4xl">
+  <div class="px-4 mx-auto sm:px-6 lg:px-0 xl:max-w-7xl max-w-4xl">
     <div class="text-center max-w-3xl mx-auto">
       <div class="flex items-center justify-center gap-4 mb-6">
         <div
@@ -84,14 +84,14 @@ const services = [
     </div>
 
     <div
-      class="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 gap-y-12 md:grid-cols-3 md:gap-0 lg:grid-cols-4 lg:gap-5 xl:mt-12"
+      class="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 gap-y-12 md:grid-cols-3 md:gap-0 lg:grid-cols-4 lg:gap-5 xl:mt-20"
       role="list"
     >
       {
         services.map((service, index) => (
           <div
             class={`
-            md:p-3 md:py-4 
+            md:py-4 
           `}
             role="listitem"
             aria-labelledby={`service-${index}-title`}

@@ -1,21 +1,21 @@
 ---
-import GradientBackground from "./ui/GradientBackground.astro"
+import GradientBackground from "./ui/GradientBackground.astro";
 ---
 
 <section
-  class="py-0 flex items-center justify-center bg-indigo-50 relative w-full overflow-hidden h-full"
+  class="py-0 flex items-center justify-center bg-indigo-50 relative w-full overflow-hidden h-[40vh]" 
 >
-  <GradientBackground client:load/>
+  <div class="h-full w-full"> 
+    <GradientBackground client:load />
+  </div>
 
-  <div
-    class="absolute inset-0 flex items-center justify-center z-10 text-center mx-auto max-w-4xl xl:max-w-6xl w-full"
-  >
+  <div class="absolute inset-0 flex items-center justify-center z-10 text-center mx-auto xl:max-w-7xl max-w-4xl w-full">
     <div class="px-4 bg-black/50 rounded-2xl py-6 w-full">
-      <p class="text-2xl font-medium leading-8 text-indigo-100 font-heading ">
+      <p class="text-2xl font-medium leading-8 text-indigo-100 font-heading">
         Hola, soy <span class="font-semibold">Elías Martínez</span>
       </p>
 
-      <div class="min-h-[60px] flex items-center mt-3 ml-[20%]">
+      <div class="min-h-[60px] flex items-center mt-3 ml-[23%]">
         <h1
           class="text-[3.5rem] font-bold font-heading leading-[4rem] tracking-tight text-white"
         >
@@ -40,7 +40,6 @@ import GradientBackground from "./ui/GradientBackground.astro"
         </span>
         para transformar ideas en productos digitales.
       </p>
-
     </div>
   </div>
 </section>
