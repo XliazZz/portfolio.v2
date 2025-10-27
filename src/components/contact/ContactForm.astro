@@ -6,9 +6,14 @@ import Input from "../ui/Input.astro";
 import Button from "../ui/Button.astro";
 ---
 
-<form id="contactForm" action="#" method="POST" class="w-full py-12 lg:pl-8">
+<form
+  id="contactForm"
+  action="#"
+  method="POST"
+  class="w-full lg:py-12 lg:pl-8 px-6"
+>
   <div class="w-full">
-    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+    <div class="grid grid-cols-2 gap-x-4 lg:gap-x-8 gap-y-6">
       <div>
         <Label for="name" text="Nombre completo" />
         <div class="mt-1">
@@ -60,7 +65,7 @@ import Button from "../ui/Button.astro";
         </div>
       </div>
 
-      <div class="sm:col-span-2">
+      <div class="col-span-2">
         <Label for="delivery_time" text="Tiempo de entrega esperado" />
         <div class="mt-1">
           <Select
@@ -71,12 +76,12 @@ import Button from "../ui/Button.astro";
         </div>
       </div>
 
-      <div class="sm:col-span-2">
+      <div class="col-span-2">
         <Label for="message" text="Cuéntame sobre tu proyecto *" />
         <textarea
           name="message"
           id="message"
-          rows="5"
+          rows="4"
           required
           placeholder="Describe tu proyecto, objetivos, funcionalidades necesarias, público objetivo, etc."
           class="block w-full rounded-lg border-0 bg-gray-50 px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 font-body transition duration-200 hover:bg-white lg:text-base"
