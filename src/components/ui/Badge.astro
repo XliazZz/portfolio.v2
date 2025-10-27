@@ -7,7 +7,7 @@ interface Props {
 
 const { text, type = "default", roleType } = Astro.props;
 
-const baseClasses = "px-2 py-1 text-xs font-medium rounded-full";
+const baseClasses = "px-2 py-1 text-xs font-medium rounded-lg lg:rounded-full";
 
 const getVariantClasses = () => {
   if (type === "role") {
@@ -22,11 +22,19 @@ const getVariantClasses = () => {
         return "bg-gray-100 text-gray-700";
     }
   }
-  
+
   return "bg-gray-100 text-gray-700";
 };
 ---
 
-<div class={`${baseClasses} ${getVariantClasses()}`}>
+<div class={`${baseClasses} ${getVariantClasses()} ocultar-en-movil`}>
   {text}
 </div>
+
+<style>
+  @media (max-width: 768px) {
+    .ocultar-en-movil {
+      display: none;
+    }
+  }
+</style>

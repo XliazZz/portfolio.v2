@@ -9,10 +9,10 @@ const history = [
 
 <header
   class="overflow-hidden
-      p-8 mb-12
+      p-8 lg:mb-12
       bg-gradient-to-br from-white to-indigo-50
       rounded-2xl border border-indigo-100
-      shadow-xl
+      lg:shadow-xl shadow-lg
       relative"
 >
   <div
@@ -30,9 +30,11 @@ const history = [
   >
   </div>
 
-  <div class="flex flex-col
-      relative gap-8 items-center
-      lg:flex-row">
+  <div
+    class="flex flex-col
+      relative lg:gap-8 items-center
+      lg:flex-row"
+  >
     <div class="flex-1">
       <span
         class="inline-flex
@@ -40,7 +42,8 @@ const history = [
           text-sm font-medium text-indigo-600 tracking-widest
           bg-indigo-100
           rounded-full
-          items-center gap-2 uppercase"
+          items-center gap-2 uppercase
+          ocultar-en-movil"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +61,7 @@ const history = [
 
       <h2
         class="mb-4
-          text-4xl font-bold font-heading text-gray-900 leading-tight
+          text-2xl md:text-4xl font-bold font-heading text-gray-900 leading-tight
           lg:text-5xl"
       >
         Desarrollo
@@ -71,7 +74,7 @@ const history = [
       </h2>
 
       <p class="max-w-lg
-          text-gray-600 font-body">
+          text-gray-600 font-body ocultar-en-movil">
         Soluciones tecnológicas innovadoras respaldadas por años de experiencia
         y proyectos exitosos.
       </p>
@@ -82,17 +85,17 @@ const history = [
       {
         history.map((item) => (
           <div
-            class="
-              p-4
+            class="p-1 py-auto
+              lg:p-4
               bg-white
               rounded-xl border border-gray-100
               shadow-sm transition-all
-              hover:shadow-md hover:-translate-y-1
+              hover:shadow-md hover:-translate-y-1 text-center lg:text-left
             "
           >
             <h3
               class="
-                text-3xl font-bold text-indigo-600 font-heading
+                text-2xl lg:text-3xl font-bold text-indigo-600 font-heading
               "
             >
               {item.metric}
@@ -111,4 +114,10 @@ const history = [
   </div>
 </header>
 
-<style></style>
+<style>
+  @media (max-width: 768px) {
+    .ocultar-en-movil {
+      display: none;
+    }
+  }
+</style>
