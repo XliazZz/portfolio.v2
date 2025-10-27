@@ -1,53 +1,52 @@
----
-
----
-
 <footer
-  class="relative bg-gradient-to-tr from-white to-indigo-50 text-black overflow-hidden pt-56 pb-28"
+  class="relative bg-gradient-to-tr from-white to-indigo-50 text-black overflow-hidden pt-32 pb-16 md:pt-56 md:pb-28"
 >
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
     <div
-      class="absolute top-20 left-10 w-32 h-32 bg-indigo-500/80 rounded-full filter blur-3xl animate-float1"
+      class="absolute top-10 left-4 w-20 h-20 md:top-20 md:left-10 md:w-32 md:h-32 bg-indigo-500/80 rounded-full filter blur-2xl md:blur-3xl animate-float1"
     >
     </div>
     <div
-      class="absolute top-40 right-20 w-40 h-40 bg-purple-500/80 rounded-full filter blur-3xl animate-float2"
+      class="absolute top-20 right-4 w-24 h-24 md:top-40 md:right-20 md:w-40 md:h-40 bg-purple-500/80 rounded-full filter blur-2xl md:blur-3xl animate-float2"
     >
     </div>
     <div
-      class="absolute bottom-10 left-1/2 w-48 h-48 bg-purple-800/80 rounded-full filter blur-3xl animate-float3"
+      class="absolute bottom-4 left-1/2 -translate-x-1/2 w-28 h-28 md:bottom-10 md:w-48 md:h-48 bg-purple-800/80 rounded-full filter blur-2xl md:blur-3xl animate-float3"
     >
     </div>
   </div>
 
-  <div class="relative  xl:max-w-7xl max-w-4xl mx-auto px-6 lg:px-8">
+  <div class="relative xl:max-w-7xl max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div
-      class="flex flex-col md:flex-row justify-between items-center border-b border-indigo-300/30 pb-12 mb-8"
+      class="flex flex-col md:flex-row justify-between items-center border-b border-indigo-300/30 pb-8 md:pb-12 mb-6 md:mb-8 space-y-8 md:space-y-0"
     >
       <div
-        class="flex flex-col items-center md:items-start text-center md:text-left mb-8 md:mb-0"
+        class="flex flex-col items-center md:items-start text-center md:text-left"
       >
-        <div class="flex items-center space-x-3 mb-4">
+        <div class="flex items-center space-x-2 md:space-x-3 mb-3 md:mb-4">
           <div
-            class="w-10 h-10 border border-indigo-500 rounded-lg flex items-center justify-center bg-white"
+            class="w-8 h-8 md:w-10 md:h-10 border border-indigo-500 rounded-lg flex items-center justify-center bg-white"
           >
-            <span class="text-xl font-bold text-indigo-500 font-heading"
+            <span
+              class="text-lg md:text-xl font-bold text-indigo-500 font-heading"
               >EM</span
             >
           </div>
-          <h2 class="text-2xl font-bold text-black tracking-tight font-heading">
+          <h2
+            class="text-xl md:text-2xl font-bold text-black tracking-tight font-heading"
+          >
             Elias Martinez
           </h2>
         </div>
-        <p class="text-sm text-gray-500 font-body">
+        <p class="text-xs md:text-sm text-gray-500 font-body">
           Diseñador UX/UI & Desarrollador Fullstack
         </p>
       </div>
 
-      <div class="text-center mb-8 md:mb-0">
+      <div class="text-center order-first md:order-none">
         <a
           href="/contacto"
-          class="inline-block text-5xl font-bold text-black hover:scale-105 hover:text-indigo-500 transition-all duration-300 tracking-tight group font-heading"
+          class="inline-block text-4xl md:text-5xl font-bold text-black hover:scale-105 hover:text-indigo-500 transition-all duration-300 tracking-tight group font-heading"
         >
           <span
             class="text-indigo-600 group-hover:text-black transition-colors duration-300 font-heading"
@@ -59,16 +58,16 @@
           >
         </a>
         <p
-          class="text-gray-500 mt-2 text-sm font-body group-hover:text-gray-300 transition-colors duration-300"
+          class="text-gray-500 mt-1 md:mt-2 text-sm md:text-md font-body group-hover:text-gray-300 transition-colors duration-300"
         >
           Conversemos sobre tu próximo proyecto
         </p>
       </div>
 
-      <div class="text-center lg:text-right">
+      <div class="text-center md:text-right">
         <a
           href="#"
-          class="inline-flex items-center px-5 py-2.5 border border-indigo-600 text-sm font-medium rounded-full text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300 group"
+          class="inline-flex items-center px-4 py-2 md:px-5 md:py-2.5 border border-indigo-600 text-xs md:text-sm font-medium rounded-full text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-300 group"
         >
           <span
             class="group-hover:translate-x-1 transition-transform duration-300 font-heading"
@@ -79,22 +78,16 @@
       </div>
     </div>
 
-    <div class="items-center text-center text-xs pt-6 font-body mx-auto w-full">
+    <div
+      class="items-center text-center text-xs pt-4 md:pt-6 font-body mx-auto w-full"
+    >
       <p class="text-gray-500 mb-3 md:mb-0 mx-auto w-full">
         &copy; <span id="year" class="text-indigo-400"></span> Elias Martinez. Todos
         los derechos reservados.
       </p>
     </div>
   </div>
-
-  <div
-    class="orb absolute w-40 h-40 rounded-full bg-gradient-to-r from-indigo-500/5 to-purple-500/5 filter blur-3xl pointer-events-none"
-  >
-  </div>
 </footer>
-
-<style>
-</style>
 
 <script>
   import currentDate from "../utils/currentDate";
