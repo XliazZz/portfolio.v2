@@ -3,21 +3,25 @@ import GradientBackground from "./ui/GradientBackground.astro";
 ---
 
 <section
-  class="py-0 flex items-center justify-center bg-indigo-50 relative w-full overflow-hidden h-[40vh]" 
+  class="py-0 flex items-center justify-center bg-indigo-50 relative w-full overflow-hidden lg:h-[45vh] h-[32vh]"
 >
-  <div class="h-full w-full"> 
+  <div class="h-full w-full">
     <GradientBackground client:load />
   </div>
 
-  <div class="absolute inset-0 flex items-center justify-center z-10 text-center mx-auto xl:max-w-7xl max-w-4xl w-full">
+  <div
+    class="absolute inset-0 flex items-center justify-center z-10 text-center mx-auto xl:max-w-7xl max-w-4xl w-full px-5 lg:px-0"
+  >
     <div class="px-4 bg-black/50 rounded-2xl py-6 w-full">
-      <p class="text-2xl font-medium leading-8 text-indigo-100 font-heading">
+      <p
+        class="text-lg lg:text-2xl font-medium leading-8 text-indigo-100 font-heading"
+      >
         Hola, soy <span class="font-semibold">Elías Martínez</span>
       </p>
 
-      <div class="min-h-[60px] flex items-center mt-3 ml-[23%]">
+      <div class="min-h-[60px] flex items-center lg:mt-3 lg:ml-[23%]">
         <h1
-          class="text-[3.5rem] font-bold font-heading leading-[4rem] tracking-tight text-white"
+          class="text-[1.8rem] lg:text-[3.5rem] font-bold font-heading leading-[4rem] tracking-tight text-white"
         >
           Programador
           <span
@@ -31,14 +35,18 @@ import GradientBackground from "./ui/GradientBackground.astro";
       </div>
 
       <p
-        class="mt-9 text-xl leading-relaxed text-slate-300 font-body max-w-4xl mx-auto"
+        class="mt-2 lg:mt-9 lg:text-xl leading-relaxed text-slate-300 font-body max-w-4xl mx-auto"
       >
         Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
-        diseño limpio. Trabajo con tecnologías modernas como
-        <span class="font-medium text-white">
-          JavaScript, Python, Astro, React y Node.js
+        diseño limpio.
+
+        <span class="ocultar-en-movil">
+          Trabajo con tecnologías modernas como
+          <span class="font-medium text-white">
+            JavaScript, Python, Astro, React y Node.js
+          </span>
+          para transformar ideas en productos digitales.
         </span>
-        para transformar ideas en productos digitales.
       </p>
     </div>
   </div>
@@ -63,9 +71,28 @@ import GradientBackground from "./ui/GradientBackground.astro";
     position: absolute;
     top: 0;
     width: 2px;
-    height: 100%;
     background-color: #ffffff;
     animation: blink-caret 0.8s step-end infinite;
+
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    #typewriter .cursor {
+      height: 70%;
+      top: 15%;
+    }
+
+    .ocultar-en-movil {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #typewriter .cursor {
+      height: 60%;
+      top: 20%;
+    }
   }
 
   @keyframes blink-caret {
