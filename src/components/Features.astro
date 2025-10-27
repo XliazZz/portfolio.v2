@@ -1,50 +1,9 @@
 ---
-const services = [
-  {
-    title: "Desarrollo Full Stack",
-    text: "Aplicaciones web completas desde frontend hasta backend y bases de datos",
-    id: "codeIcon",
-  },
-  {
-    title: "Portfolios Personales",
-    text: "Sitios web profesionales que destacan tu marca personal y proyectos",
-    id: "userIcon",
-  },
-  {
-    title: "E-commerce & Tiendas",
-    text: "Plataformas de venta seguras, escalables y optimizadas para conversión",
-    id: "storeIcon",
-  },
-  {
-    title: "Integración de APIs",
-    text: "Conexión de sistemas y services externos para funcionalidades avanzadas",
-    id: "apiIcon",
-  },
-  {
-    title: "Diseño UI/UX",
-    text: "Interfaces intuitivas y experiencias de usuario",
-    id: "paletteIcon",
-  },
-  {
-    title: "Optimización SEO",
-    text: "Mejora de posicionamiento en buscadores y visibilidad",
-    id: "trendingUpIcon",
-  },
-  {
-    title: "Performance Optimization",
-    text: "Aceleración de sitios web para mejor experiencia",
-    id: "rocketIcon",
-  },
-  {
-    title: "Modernización Web",
-    text: "Actualización de sitios existentes con tecnologías modernas",
-    id: "updateIcon",
-  },
-];
+import services from "../data/featuresData.json";
 ---
 
 <section
-  class="py-12 bg-white sm:py-16 lg:py-28"
+  class="py-14 bg-white sm:py-16 lg:py-28"
   aria-labelledby="services-heading"
 >
   <div class="px-4 mx-auto sm:px-6 lg:px-0 xl:max-w-7xl max-w-4xl">
@@ -66,7 +25,7 @@ const services = [
 
       <h2
         id="services-heading"
-        class="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl xl:text-5xl font-heading mb-3"
+        class="text-2xl lg:text-4xl font-bold leading-tight text-gray-900 sm:text-5xl xl:text-5xl font-heading mb-3"
       >
         Tu Visión, Mi Código,
         <span
@@ -76,30 +35,29 @@ const services = [
         </span>
       </h2>
 
-      <p class="text-lg leading-8 text-gray-600 font-body max-w-2xl mx-auto">
+      <p
+        class="text-base lg:text-lg leading-8 text-gray-600 font-body max-w-2xl mx-auto lg:mt-0 mt-3"
+      >
         Creo aplicaciones web que combinan <strong>diseño excepcional</strong> con
-        <strong>tecnología robusta</strong>, diseñadas específicamente para
-        impulsar el crecimiento de tu negocio
+        <strong>tecnología robusta</strong>. <span class="ocultar-en-movil">
+          Diseñadas específicamente para impulsar el crecimiento de tu negocio</span
+        >
       </p>
     </div>
 
     <div
-      class="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 gap-y-12 md:grid-cols-3 md:gap-0 lg:grid-cols-4 lg:gap-5 xl:mt-20"
+      class="grid grid-cols-2 mt-8 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 lg:gap-y-12 gap-x-5 px-2 lg:px-0 gap-y-8 md:grid-cols-3 md:gap-0 lg:grid-cols-4 lg:gap-5 xl:mt-20"
       role="list"
     >
       {
         services.map((service, index) => (
           <div
-            class={`
-            md:py-4 
-          `}
+            class="md:py-4"
             role="listitem"
             aria-labelledby={`service-${index}-title`}
           >
             <svg
-              class="mx-auto text-indigo-600"
-              width="40"
-              height="40"
+              class="mx-auto text-indigo-600 w-8 h-8 lg:w-10 lg:h-10"
               viewBox="0 0 46 46"
               fill="none"
               aria-hidden="true"
@@ -108,11 +66,11 @@ const services = [
             </svg>
             <h3
               id={`service-${index}-title`}
-              class="mt-6 text-xl font-bold text-gray-900 font-heading"
+              class="lg:mt-6 mt-2 text-md lg:text-xl  lg:font-bold text-gray-900 font-heading"
             >
               {service.title}
             </h3>
-            <p class="mt-4 text-base text-gray-600 font-body px-3">
+            <p class="mt-1 lg:mt-4 text-sm lg:text-base text-gray-600 font-body px-3 w-[80%] text-center mx-auto ocultar-en-movil">
               {service.text}
             </p>
           </div>
@@ -121,4 +79,11 @@ const services = [
     </div>
   </div>
 </section>
-<style></style>
+
+<style>
+  @media (max-width: 768px) {
+    .ocultar-en-movil {
+      display: none;
+    }
+  }
+</style>
