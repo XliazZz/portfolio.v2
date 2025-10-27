@@ -20,13 +20,13 @@ const listItems = [
 ---
 
 <section
-  class="pt-10 overflow-hidden bg-gray-50 dark:bg-gray-800 md:pt-0 sm:pt-16 2xl:pt-40"
+  class="py-14 lg:py-28 overflow-hidden bg-gray-50 dark:bg-gray-800 md:pt-0 sm:pt-16 2xl:pt-40 px-3 lg:px-0"
 >
   <div class="px-0 mx-auto sm:px-6 lg:px-8 max-w-[90rem]">
     <div class="grid items-center grid-cols-1 md:grid-cols-2">
       <div class="relative">
         <div
-          class="absolute left-[40%] -top-6 md:-left-16 lg:top-14 md:top-6 rotate-0 md:rotate-[-90deg] text-sm tracking-widest"
+          class="absolute left-[40%] -top-6 md:-left-16 lg:top-14 md:top-6 rotate-0 md:rotate-[-90deg] text-sm tracking-widest ocultar-en-movil"
         >
           <div class="flex items-center justify-center gap-2">
             <div class="w-10 h-[2px] bg-indigo-600"></div>
@@ -35,27 +35,27 @@ const listItems = [
         </div>
 
         <h2
-          class="text-3xl md:text-5xl font-bold leading-tight mb-4 pl-10 font-heading"
+          class="text-2xl md:text-5xl font-bold leading-tight lg:mb-4 lg:pl-10 font-heading mx-auto text-center lg:text-left"
         >
           Creando Experiencias <br /> Digitales Excepcionales
         </h2>
 
-        <div class="lg:ml-6 lg:col-start-2 lg:max-w-2xl mt-20">
+        <div class="lg:ml-6 lg:col-start-2 lg:max-w-2xl lg:mt-20 my-5">
           <p
-            class="text-base font-semibold leading-6 text-indigo-500 uppercase"
+            class="text-base font-semibold leading-6 text-indigo-500 uppercase text-center lg:text-left"
           >
             Desarrollo Centrado en el Usuario
           </p>
           <h4
-            class="mt-2 text-2xl font-extrabold leading-8 text-gray-900 sm:text-3xl sm:leading-9 font-heading"
+            class="mt-4 text-2xl font-extrabold leading-8 text-gray-900 sm:text-3xl sm:leading-9 font-heading ocultar-en-movil"
           >
             Soluciones que Marcan la Diferencia
           </h4>
 
-          <ul class="mt-8 space-y-3 font-medium">
+          <ul class="mt-5 lg:mt-8 space-y-3 font-medium">
             {
               listItems.map((item) => (
-                <li class="flex items-start lg:col-span-1">
+                <li class="flex items-start lg:col-span-1 my-3 lg:my-0">
                   <div class="flex-shrink-0">
                     <svg
                       class="w-5 h-5 text-indigo-600"
@@ -69,7 +69,7 @@ const listItems = [
                       />
                     </svg>
                   </div>
-                  <p class="ml-3 leading-5 text-gray-600">
+                  <p class="ml-3 leading-5 text-gray-600 text-sm lg:text-base">
                     <strong class="font-heading">{item.title}</strong>{" "}
                     {item.text}
                   </p>
@@ -80,9 +80,9 @@ const listItems = [
         </div>
       </div>
 
-      <div class="relative">
+      <div class="relative mt-5 lg:mt-0 ocultar-en-movil">
         <img
-          class="absolute inset-x-0 bottom-0 -mb-48 -translate-x-1/2 left-1/2"
+          class="absolute inset-x-0 lg:bottom-0 bottom-30 -mb-48 -translate-x-1/2 left-1/2"
           src="https://cdn.rareblocks.xyz/collection/celebration/images/team/1/blob-shape.svg"
           alt=""
         />
@@ -97,4 +97,10 @@ const listItems = [
   </div>
 </section>
 
-<style></style>
+<style>
+  @media (max-width: 768px) {
+    .ocultar-en-movil {
+      display: none;
+    }
+  }
+</style>
