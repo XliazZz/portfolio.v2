@@ -14,7 +14,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.14",
-    "astro": "^5.14.1",
+    "astro": "^5.15.3",
     "dotenv": "^17.2.3",
     "sweetalert2": "^11.26.2",
     "tailwindcss": "^4.1.14"
