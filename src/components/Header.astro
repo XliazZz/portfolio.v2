@@ -22,48 +22,52 @@ import GradientBackground from "./ui/GradientBackground.astro";
       mx-auto px-5
       text-center
       absolute inset-0 items-center justify-center
-      lg:px-0
-      xl:max-w-7xl
-      sm:px-10"
+      sm:px-10
+      lg:px-0 lg:max-w-3xl
+      xl:max-w-7xl"
   >
     <div
       class="w-full
         px-4 py-6
+        bg-black/50
+        rounded-2xl
         sm:pt-7
         md:h-[83%] md:pb-0 md:pt-12
-        bg-black/50
-        rounded-2xl"
+        lg:h-[75%] lg:p-0 lg:m-0 lg:py-10
+         flex flex-col justify-center"
     >
       <p
         class="text-lg font-medium leading-8 text-indigo-100 font-heading
           sm:text-xl
-          md:mt-2 md:text-2xl
-          lg:text-2xl"
+          md:text-2xl
+          lg:text-lg"
       >
         Hola, soy <span class="font-semibold">Elías Martínez</span>
       </p>
 
       <div
         class="flex
-          min-h-[60px]
-          items-center
-          lg:mt-3 lg:ml-[23%]
-          md:mt-4 md:ml-[11%]
-          sm:ml-[9%]"
+          min-h-[60px] w-full
+          justify-center items-center"
       >
         <h1
-          class="text-[1.8rem] font-bold font-heading leading-[4rem] tracking-tight text-white
-            sm:text-[2.3rem]
-            md:text-[2.7rem]
-            lg:text-[3.5rem]"
+          class="overflow-hidden
+            w-[23rem]
+            font-bold font-heading leading-[4rem] tracking-tight text-white text-[1.8rem] text-left
+            sm:w-[28rem] sm:text-[2.3rem]
+            md:w-[35rem] md:text-[2.7rem]
+            lg:w-[32rem] lg:text-[2.5rem]"
         >
-          Programador
+          <span class="whitespace-nowrap">Programador</span>
+
           <span
             id="typewriter"
             class="inline-block
-                text-transparent
+                ml-2
+                align-top text-transparent
                 bg-gradient-to-r from-indigo-500 to-pink-400 bg-clip-text
-                relative"
+                relative
+                lg:ml-3"
           >
             <span class="text"></span>
             <span class="cursor"></span>
@@ -75,9 +79,9 @@ import GradientBackground from "./ui/GradientBackground.astro";
         class="max-w-4xl
           mt-2 mx-auto
           leading-relaxed text-slate-300 font-body
-          sm:text-lg sm:w-[80%]
-          md:mt-6 md:w-[90%]
-          lg:mt-9 lg:text-xl"
+          sm:w-[80%] sm:text-lg
+          md:w-[90%] md:mt-6
+          lg:w-[80%] lg:mt-3 lg:text-base"
       >
         Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
         diseño limpio.
