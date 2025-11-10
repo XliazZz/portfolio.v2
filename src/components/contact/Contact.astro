@@ -77,8 +77,8 @@ import contactAndSocial from "../../data/contactAndSocial.json";
                   class="mb-6
                     text-3xl font-bold font-heading tracking-tight text-gray-900 leading-tight
                     relative drop-shadow-[0_4px_12px_rgba(99,102,241,0.3)]
-                    sm:text-4xl
-                    md:text-5xl"
+                     lg:text-5xl md:text-4xl
+                    sm:text-3xl xl:text-6xl"
                 >
                   Transformemos tu idea
                   <span
@@ -146,7 +146,7 @@ import contactAndSocial from "../../data/contactAndSocial.json";
                     lg:mt-12">
                   <span
                     class="flex
-                      items-center ocultar-en-movil"
+                      items-center ocultar-en-movil ocultar-en-tablet"
                   >
                     <span
                       class="flex-1
@@ -210,6 +210,7 @@ import contactAndSocial from "../../data/contactAndSocial.json";
             w-full h-full
             pt-20
             items-center justify-center
+            md:pt-12
             lg:py-40"
         >
           <ContactForm client:load />
@@ -222,6 +223,12 @@ import contactAndSocial from "../../data/contactAndSocial.json";
 <style>
   @media (max-width: 768px) {
     .ocultar-en-movil {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1028px) {
+    .ocultar-en-tablet {
       display: none;
     }
   }

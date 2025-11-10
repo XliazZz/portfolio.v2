@@ -1,7 +1,7 @@
 ---
 const history = [
   { metric: "+10", type: "Proyectos" },
-  { metric: "+2", type: "Años de experiencia" },
+  { metric: "+2", type: "Años Exp." },
   { metric: "+25", type: "Tecnologías" },
   { metric: "+8", type: "Colaboraciones" },
 ];
@@ -62,9 +62,10 @@ const history = [
       <h2
         class="mb-4
           text-2xl font-bold font-heading text-gray-900 leading-tight
-          sm:mb-6
-          md:text-4xl
-          lg:text-5xl"
+          sm:mb-6 sm:text-3xl
+          md:mb-3 md:text-4xl
+          lg:text-5xl
+          xl:text-6xl"
       >
         Desarrollo
         <span
@@ -85,9 +86,12 @@ const history = [
       </p>
     </div>
 
-    <div class="grid grid-cols-2
-    sm:gap-8
-        gap-6">
+    <div
+      class="grid grid-cols-2
+        gap-6
+        sm:gap-8
+        md:mt-6 md:grid-rows-1 md:grid-cols-4"
+    >
       {
         history.map((item) => (
           <div

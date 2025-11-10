@@ -25,7 +25,7 @@ const listItems = [
       bg-gray-50
       dark:bg-gray-800
       sm:py-16
-      md:pt-0
+      md:pt-24 md:px-7 md:pb-0
       lg:py-28 lg:px-0
       2xl:pt-40"
 >
@@ -36,18 +36,18 @@ const listItems = [
       sm:px-1
       lg:px-8"
   >
-    <div class="grid grid-cols-1
-        items-center
-        md:grid-cols-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-4 md:items-stretch">
       <div class="relative">
         <div
           class="text-sm tracking-widest
             absolute left-[40%] -top-6 rotate-0 ocultar-en-movil
-            md:-left-16 md:top-6 md:rotate-[-90deg]
+            md:-left-16 md:top-16 md:rotate-[-90deg]
             lg:top-14"
         >
-          <div class="flex
-              items-center justify-center gap-2">
+          <div
+            class="flex
+              items-center justify-center gap-2 ocultar-en-tablet"
+          >
             <div class="w-10 h-[2px]
                 bg-indigo-600"></div>
             <p class="font-body
@@ -58,8 +58,8 @@ const listItems = [
         <h2
           class="mx-auto
             text-2xl font-bold leading-tight font-heading text-center
-            md:text-5xl
             sm:text-3xl
+            md:text-3xl
             lg:mb-4 lg:pl-10 lg:text-left"
         >
           Creando Experiencias <br /> Digitales Excepcionales
@@ -80,7 +80,8 @@ const listItems = [
             class="mt-4
               text-2xl font-extrabold leading-8 text-gray-900 font-heading
               ocultar-en-movil
-              sm:text-3xl sm:leading-9"
+              sm:text-3xl sm:leading-9
+              md:text-xl md:text-gray-700 md:mb-6"
           >
             Soluciones que Marcan la Diferencia
           </h4>
@@ -88,6 +89,7 @@ const listItems = [
           <ul
             class="mt-5 space-y-3
               font-medium
+              md:mt-0
               lg:mt-8"
           >
             {
@@ -98,6 +100,7 @@ const listItems = [
                     my-3
                     items-start
                     sm:my-4
+                    md:my-5
                     lg:my-0 lg:col-span-1
                   "
                 >
@@ -126,6 +129,7 @@ const listItems = [
                       ml-3
                       leading-5 text-gray-600 text-sm
                       sm:text-[16px]
+                      md:text-base
                       lg:text-base
                     "
                   >
@@ -145,21 +149,21 @@ const listItems = [
         </div>
       </div>
 
-      <div class="mt-5
-          relative ocultar-en-movil
-          lg:mt-0">
+      <div
+        class="mt-5 relative ocultar-en-movil lg:mt-0
+            md:relative md:min-h-[28rem] md:flex md:items-end md:justify-center md:overflow-hidden"
+      >
         <img
-          class="absolute inset-x-0 bottom-30 -mb-48 -translate-x-1/2 left-1/2
-            lg:bottom-0"
+          class="hidden md:block md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2
+           md:w-[90%] md:mb-0"
           src="https://cdn.rareblocks.xyz/collection/celebration/images/team/1/blob-shape.svg"
           alt=""
         />
 
         <img
-          class="w-full
-            relative
-            xl:max-w-lg xl:mx-auto
-            2xl:origin-bottom 2xl:scale-110"
+          class="w-full relative xl:max-w-lg xl:mx-auto
+           md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2
+           md:mb-0 md:h-auto"
           src="https://res.cloudinary.com/do5ubt5g0/image/upload/v1761519022/Untitled_Project_2_ywtagj.png"
           alt=""
         />
@@ -171,6 +175,12 @@ const listItems = [
 <style>
   @media (max-width: 768px) {
     .ocultar-en-movil {
+      display: none;
+    }
+  }
+
+  @media (max-width: 870px) {
+    .ocultar-en-tablet {
       display: none;
     }
   }
