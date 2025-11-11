@@ -1,42 +1,42 @@
 [
   {
     "title": "Desarrollo Full Stack",
-    "text": "Aplicaciones web completas desde frontend hasta backend y bases de datos",
+    "text": "Apps completas: front-end, back-end y bases de datos.",
     "id": "codeIcon"
   },
   {
     "title": "Portfolios Personales",
-    "text": "Sitios web profesionales que destacan tu marca personal y proyectos",
+    "text": "Sitios profesionales que resaltan tu marca y proyectos.",
     "id": "userIcon"
   },
   {
     "title": "E-commerce & Tiendas",
-    "text": "Plataformas de venta seguras, escalables y optimizadas para conversión",
+    "text": "Plataformas de venta seguras y escalables para conversión.",
     "id": "storeIcon"
   },
   {
     "title": "Integración de APIs",
-    "text": "Conexión de sistemas y services externos para funcionalidades avanzadas",
+    "text": "Conexión de sistemas externos para aplicaciones avanzadas.",
     "id": "apiIcon"
   },
   {
     "title": "Diseño UI/UX",
-    "text": "Interfaces intuitivas y experiencias de usuario",
+    "text": "Diseño centrado en el usuario, interfaces intuitivas y eficaces.",
     "id": "paletteIcon"
   },
   {
     "title": "Optimización SEO",
-    "text": "Mejora de posicionamiento en buscadores y visibilidad",
+    "text": "Mejora de posicionamiento en buscadores para mayor visibilidad.",
     "id": "trendingUpIcon"
   },
   {
-    "title": "Performance Optimization",
-    "text": "Aceleración de sitios web para mejor experiencia",
+    "title": "Rendimiento Óptimo",
+    "text": "Sitios rápidos y optimizados para la mejor experiencia de carga.",
     "id": "rocketIcon"
   },
   {
     "title": "Modernización Web",
-    "text": "Actualización de sitios existentes con tecnologías modernas",
+    "text": "Actualización de sitios existentes a tecnologías modernas.",
     "id": "updateIcon"
   }
 ]
