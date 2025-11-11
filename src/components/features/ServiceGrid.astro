@@ -1,0 +1,80 @@
+---
+interface Service {
+  id: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<div
+  class="grid grid-cols-2
+    mt-8 px-2
+    text-center
+    gap-x-5 gap-y-8
+    sm:grid-cols-2 sm:mt-10 sm:gap-x-0
+    md:grid-cols-3 md:gap-0
+    lg:grid-cols-4 lg:px-0 lg:gap-y-2 lg:gap-5
+    xl:mt-20 xl:gap-y-12"
+  role="list"
+>
+  {
+    services.map((service, index) => (
+      <dl
+        class="
+          md:py-4
+        "
+      >
+        <svg
+          class="
+            w-8 h-8
+            mx-auto
+            text-indigo-600
+            lg:w-10 lg:h-10
+          "
+          viewBox="0 0 46 46"
+          fill="none"
+          aria-hidden="true"
+        >
+          <use href={`/featuresSprite.svg#${service.id}`} />
+        </svg>
+
+        <dt
+          id={`service-${index}-title`}
+          class="
+            mt-2
+            text-[0.95rem] text-gray-900 font-heading
+            sm:text-[1rem]
+            md:text-[1.05rem]
+            xl:mt-6 lg:mt-4 lg:text-base lg:font-bold
+            xl:text-[1.35rem]
+            2xl:text-[1.45rem]
+          "
+        >
+          {service.title}
+        </dt>
+
+        <dd
+          class="
+            w-[80%]
+            mt-1 px-3 mx-auto
+            text-[0.8rem] text-gray-600 font-body text-center
+            ocultar-en-movil
+            sm:text-[0.85rem]
+            md:text-[0.9rem]
+            xl:mt-4 lg:mt-3 lg:text-sm lg:px-0
+            xl:text-[1.05rem]
+            2xl:text-[1.1rem]
+          "
+        >
+          {service.text}
+        </dd>
+      </dl>
+    ))
+  }
+</div>

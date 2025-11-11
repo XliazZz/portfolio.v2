@@ -1,171 +1,65 @@
 ---
-import AstroIcon from "./icons/skills/AstroIcon.Astro";
-import Bootstrap from "./icons/skills/Bootstrap.Astro";
-import Css from "./icons/skills/Css.Astro";
-import Discord from "./icons/skills/Discord.Astro";
-import Express from "./icons/skills/Express.Astro";
-import Figma from "./icons/skills/Figma.Astro";
-import Framer from "./icons/skills/Framer.Astro";
-import Git from "./icons/skills/Git.Astro";
-import Html from "./icons/skills/Html.Astro";
-import Javascript from "./icons/skills/Javascript.Astro";
-import Mongo from "./icons/skills/Mongo.Astro";
-import Nodejs from "./icons/skills/Node.Astro";
-import Postgres from "./icons/skills/Postgres.Astro";
-import Postman from "./icons/skills/Postman.Astro";
-import Python from "./icons/skills/Python.Astro";
-import React from "./icons/skills/React.Astro";
-import Redux from "./icons/skills/Redux.Astro";
-import Slack from "./icons/skills/Slack.Astro";
-import Tailwind from "./icons/skills/Tailwind.Astro";
-import Typescript from "./icons/skills/Typescript.Astro";
-import JQuery from "./icons/skills/JQuery.Astro";
-import Jira from "./icons/skills/Jira.Astro";
-import Trello from "./icons/skills/Trello.Astro";
-import Github from "./icons/skills/Github.Astro";
-import Vercel from "./icons/skills/Vercel.Astro";
-import MaterialUI from "./icons/skills/MaterialUI.Astro";
-
-const skills = [
-  { title: "HTML5", icon: Html },
-  { title: "CSS3", icon: Css },
-  { title: "JavaScript", icon: Javascript },
-  { title: "TypeScript", icon: Typescript },
-  { title: "Python", icon: Python },
-  { title: "React", icon: React },
-  { title: "Astro", icon: AstroIcon },
-  { title: "Node.js", icon: Nodejs },
-  { title: "Express.js", icon: Express },
-  { title: "PostgresSQL", icon: Postgres },
-  { title: "MongoDB", icon: Mongo },
-  { title: "Redux", icon: Redux },
-  { title: "Tailwind CSS", icon: Tailwind },
-  { title: "Bootstrap", icon: Bootstrap },
-  { title: "Material UI", icon: MaterialUI },
-  { title: "Framer Motion", icon: Framer },
-  { title: "JQuery", icon: JQuery },
-];
-
-const techs = [
-  { title: "Git", icon: Git },
-  { title: "GitHub", icon: Github },
-  { title: "Vercel", icon: Vercel },
-  { title: "Postman", icon: Postman },
-  { title: "Figma", icon: Figma },
-  { title: "Jira", icon: Jira },
-  { title: "Trello", icon: Trello },
-  { title: "Slack", icon: Slack },
-  { title: "Discord", icon: Discord },
-];
+import TechStackMarquee from "./skills/TechStackMarquee.astro";
+import { skills, techs } from "../config/stackData.ts";
 ---
 
-<section class="bg-white py-14 lg:py-28 dark:bg-dark">
-  <div class="container mx-auto xl:max-w-7xl max-w-4xl">
-    <div class="flex flex-col justify-center items-center">
+<section class="py-14
+      bg-white
+      sm:py-18
+      xl:py-28">
+  <div
+    class="container
+      max-w-4xl
+      mx-auto
+      lg:max-w-3xl
+      xl:max-w-7xl"
+  >
+    <div class="flex flex-col
+        justify-center items-center">
       <span
-        class="text-sm uppercase tracking-widest text-indigo-600 dark:text-gray-400 mb-3 font-body"
+        class="mb-3
+          text-sm tracking-widest text-indigo-600 font-body
+          uppercase dark:text-gray-400"
       >
         Mi ecosistema de desarrollo
       </span>
 
       <span
-        class="text-2xl lg:text-4xl font-extrabold text-gray-700 dark:text-white block mb-2 font-heading"
+        class="block
+          mb-2
+          text-2xl font-extrabold text-gray-700 font-heading
+          dark:text-white
+          sm:mb-4
+          md:text-3xl
+          xl:text-4xl"
       >
         Stack tecnológico
       </span>
       <p
-        class="text-gray-600 dark:text-gray-300 text-sm lg:text-base font-body w-[80%] lg:w-full text-center"
+        class="w-[80%]
+          text-gray-600 text-sm font-body text-center
+          dark:text-gray-300
+          sm:text-md
+          md:text-lg
+          lg:w-full lg:text-base"
       >
         Herramientas y plataformas que utilizo para crear soluciones web
       </p>
     </div>
 
-    <div class="overflow-hidden relative w-full space-y-8 lg:mt-12 mt-10">
-      <div class="marquee-container">
-        <div class="marquee-track flex">
-          {
-            skills.map((skill) => (
-              <div class="flex flex-col items-center justify-center w-20 h-20 lg:w-28 lg:h-28 flex-shrink-0 mx-4 lg:mx-5">
-                <skill.icon class="w-10 h-10 lg:w-16 lg:h-16" />
-                <span class="text-center mt-2 text-slate-700 dark:text-white text-xs lg:text-sm font-heading">
-                  {skill.title}
-                </span>
-              </div>
-            ))
-          }
-          {
-            skills.map((skill) => (
-              <div class="flex flex-col items-center justify-center w-20 h-20 lg:w-28 lg:h-28 flex-shrink-0 mx-4 lg:mx-5">
-                <skill.icon class="w-10 h-10 lg:w-16 lg:h-16" />
-                <span class="text-center mt-2 text-slate-700 dark:text-white text-xs lg:text-sm font-heading">
-                  {skill.title}
-                </span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+    <div
+      class="overflow-hidden
+        w-full
+        space-y-8 mt-10
+        relative
+        sm:mt-12
+        lg:mt-12"
+    >
+      <TechStackMarquee data={skills} trackClass="marquee-track" />
 
-      <div class="marquee-container">
-        <div class="marquee-track-reverse flex">
-          {
-            techs.map((skill) => (
-              <div class="flex flex-col items-center justify-center w-20 h-20 lg:w-28 lg:h-28 flex-shrink-0 mx-4 lg:mx-5">
-                <skill.icon class="w-10 h-10 lg:w-16 lg:h-16" />
-                <span class="text-center mt-2 text-slate-700 dark:text-white text-xs lg:text-sm font-heading">
-                  {skill.title}
-                </span>
-              </div>
-            ))
-          }
-          {
-            techs.map((skill) => (
-              <div class="flex flex-col items-center justify-center w-20 h-20 lg:w-28 lg:h-28 flex-shrink-0 mx-4 lg:mx-5">
-                <skill.icon class="w-10 h-10 lg:w-16 lg:h-16" />
-                <span class="text-center mt-2 text-slate-700 dark:text-white text-xs lg:text-sm font-heading">
-                  {skill.title}
-                </span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+      <TechStackMarquee data={techs} trackClass="marquee-track-reverse" />
     </div>
   </div>
 </section>
 
-<style>
-  .marquee-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
-
-  .marquee-track {
-    animation: marquee 40s linear infinite;
-    width: max-content;
-  }
-
-  .marquee-track-reverse {
-    animation: marquee-reverse 45s linear infinite;
-    width: max-content;
-  }
-
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes marquee-reverse {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-</style>
+<style></style>

@@ -19,8 +19,8 @@ const {
 
 const Element = href ? "a" : "button";
 const commonProps = {
-  class: `inline-flex flex-1 lg:px-4 py-2.5 align-middle font-semibold text-center rounded-lg select-none transition-colors shadow-sm items-center justify-center duration-200 ease-in hover:shadow-md cursor-pointer
-    ${classStyle ? classStyle : "hover:bg-indigo-700 text-white bg-indigo-600"}`,
+  class: `inline-flex flex-1 lg:px-3 py-2.5 align-middle font-semibold text-center rounded-lg select-none transition-colors shadow-sm items-center justify-center duration-200 ease-in hover:shadow-md cursor-pointer 
+    ${classStyle ? classStyle : "hover:bg-indigo-700 text-white bg-indigo-600 md:py-4.5"}`,
   ...(href ? { href, target: "_blank" } : { type }),
 };
 ---

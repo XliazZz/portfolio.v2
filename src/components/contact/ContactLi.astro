@@ -9,59 +9,132 @@ interface Props {
 const { type, value, icon, href } = Astro.props;
 ---
 
-{href ? (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="group flex items-center gap-3 p-3 rounded-xl bg-white border border-indigo-100 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all duration-250 no-underline"
-  >
-    <div
-      class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow"
+{
+  href ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="
+        flex
+        p-3
+        bg-white
+        rounded-xl border border-indigo-100
+        shadow-sm transition-all
+        group items-center gap-3 hover:shadow-md hover:border-indigo-200 duration-250 no-underline
+      "
     >
-      <svg
-        class="w-6 h-6 text-white flex-shrink-0"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1"
-        stroke="currentColor"
-        aria-hidden="true"
+      <div
+        class="
+        flex-shrink-0 flex
+        w-10 h-10
+        bg-gradient-to-br from-indigo-500 to-purple-500
+        rounded-lg
+        shadow-sm transition-shadow
+        items-center justify-center group-hover:shadow-md
+      "
       >
-        <use href={`/techsSprite.svg#${icon}`}></use>
-      </svg>
-    </div>
+        <svg
+          class="
+          flex-shrink-0
+          w-6 h-6
+          text-white
+        "
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <use href={`/techsSprite.svg#${icon}`} />
+        </svg>
+      </div>
 
-    <div class="flex-1 min-w-0">
-      <span class="font-medium text-gray-700 text-sm">{type}:</span>
-      <span class="block text-indigo-600 hover:text-indigo-700 font-medium text-sm transition-colors duration-150 truncate">
-        {value}
-      </span>
-    </div>
-  </a>
-) : (
-  <div
-    class="group flex items-center gap-3 p-3 rounded-xl bg-white border border-indigo-100 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all duration-250"
-  >
+      <div
+        class="
+        flex-1
+        min-w-0
+      "
+      >
+        <span
+          class="
+          font-medium text-gray-700 text-sm md:text-base
+        "
+        >
+          {type}:
+        </span>
+        <span
+          class="
+          block
+          text-indigo-600 font-medium text-sm
+          transition-colors
+          hover:text-indigo-700 duration-150 truncate md:text-base
+        "
+        >
+          {value}
+        </span>
+      </div>
+    </a>
+  ) : (
     <div
-      class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow"
+      class="
+      flex
+      p-3
+      bg-white
+      rounded-xl border border-indigo-100
+      shadow-sm transition-all
+      group items-center gap-3 hover:shadow-md hover:border-indigo-200 duration-250
+    "
     >
-      <svg
-        class="w-6 h-6 text-white flex-shrink-0"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1"
-        stroke="currentColor"
-        aria-hidden="true"
+      <div
+        class="
+        flex-shrink-0 flex
+        w-10 h-10
+        bg-gradient-to-br from-indigo-500 to-purple-500
+        rounded-lg
+        shadow-sm transition-shadow
+        items-center justify-center group-hover:shadow-md
+      "
       >
-        <use href={`/techsSprite.svg#${icon}`}></use>
-      </svg>
-    </div>
+        <svg
+          class="
+          flex-shrink-0
+          w-6 h-6
+          text-white
+        "
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <use href={`/techsSprite.svg#${icon}`} />
+        </svg>
+      </div>
 
-    <div class="flex-1 min-w-0">
-      <span class="font-medium text-gray-700 text-sm">{type}:</span>
-      <span class="block text-gray-800 font-medium text-sm truncate">
-        {value}
-      </span>
+      <div
+        class="
+        flex-1
+        min-w-0
+      "
+      >
+        <span
+          class="
+          font-medium text-gray-700 text-sm md:text-base
+        "
+        >
+          {type}:
+        </span>
+        <span
+          class="
+          block
+          text-gray-800 font-medium text-sm md:text-base
+          truncate
+        "
+        >
+          {value}
+        </span>
+      </div>
     </div>
-  </div>
-)}
+  )
+}

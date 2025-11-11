@@ -1,0 +1,94 @@
+---
+import IconSprite from "../ui/IconSprite.astro";
+
+interface SkillOrTech {
+  title: string;
+  icon: string;
+}
+
+interface Props {
+  data: SkillOrTech[];
+  trackClass: "marquee-track" | "marquee-track-reverse";
+}
+
+const { data, trackClass } = Astro.props;
+
+const duplicatedData = [...data, ...data];
+
+const iconContainerClasses =
+  `flex flex-col flex-shrink-0 w-20 h-20 mx-4 items-center justify-center 
+    sm:w-22 sm:h-22 
+    md:w-24 md:h-24 
+    lg:w-26 lg:h-26 
+    xl:w-28 xl:h-28 xl:mx-5`;
+
+const iconSizeClasses = "w-10 h-10 lg:w-16 lg:h-16 text-gray-500";
+---
+
+<div class="marquee-container">
+  <div class:list={[trackClass, "flex"]}>
+    {
+      duplicatedData.map((item) => (
+        <div class={iconContainerClasses}>
+          <div
+            class="
+              flex
+              w-full h-[70%]
+              items-center justify-center
+            "
+          >
+            <IconSprite id={item.icon} class={iconSizeClasses} />
+          </div>
+
+          <span
+            class="
+              h-[30%]
+              mt-1
+              text-center text-slate-700 text-xs font-heading
+              dark:text-white
+              md:text-sm
+            "
+          >
+            {item.title}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-track-reverse {
+    animation: marquee-reverse 45s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+</style>
