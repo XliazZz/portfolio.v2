@@ -12,7 +12,7 @@ import HeaderProjects from "./project/HeaderProjects.astro";
     class="max-w-4xl
       mx-8
       md:mx-10
-      lg:mx-20
+      lg:mx-auto lg:max-w-5xl lg:px-8
       xl:max-w-7xl xl:mx-auto"
   >
     <HeaderProjects />
@@ -21,7 +21,8 @@ import HeaderProjects from "./project/HeaderProjects.astro";
         space-y-8 mt-12
         gap-6 items-stretch
         md:mt-16 md:gap-9
-        lg:grid-cols-3 lg:mt-20"
+        lg:grid-cols-3 lg:mt-14 lg:gap-4 lg:w-full lg:mx-auto lg:gap-y-8
+        xl:mt-20"
     >
       {projectsData.map((project) => <CardProject {...project} />)}
     </ul>

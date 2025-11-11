@@ -1,5 +1,5 @@
 [
-{
+  {
     "title": "Wow Bao",
     "demoUrl": "https://wowbao.com.ar",
     "githubUrl": "https://github.com/XliazZz/Baos",
@@ -10,12 +10,12 @@
       { "name": "Tailwind", "icon": "teenyicons:tailwind-solid" },
       { "name": "JavaScript", "icon": "bi:javascript" }
     ],
-    "description": "Landing page moderna y responsive para Wow Bao, emprendimiento gastronómico",
+    "description": "Landing page moderna y responsive para Wow Bao, un emprendimiento gastronómico.",
     "descriptionEng": "Modern and responsive landing page for Wow Bao, a culinary venture specializing in bao buns",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1753506458/Captura_de_pantalla_2025-07-26_020621_onexlm.png",
     "rol": "Front-End",
     "category": "Landing Page"
-},
+  },
   {
     "title": "Mini Proyectos",
     "demoUrl": "https://miniproyectos.vercel.app/",
@@ -29,7 +29,7 @@
       { "name": "JavaScript", "icon": "bi:javascript" },
       { "name": "Framer Motion", "icon": "simple-icons:framer" }
     ],
-    "description": "Mini-proyectos para mejorar mi lógica de programación y habilidades ",
+    "description": "Conjunto de mini-proyectos para mejorar mi lógica y mis habilidades de programación.",
     "descriptionEng": "A personal web page showcasing mini-projects that enhance my programming logic and CSS3 skills with Tailwind. Explore games like Tic Tac Toe and more!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1732127734/miniproyectos/Captura_de_pantalla_1_fff7ez.png",
     "rol": "Front-End",
@@ -53,7 +53,7 @@
       { "name": "JWT", "icon": "logos:jwt-icon" },
       { "name": "REST API", "icon": "dashicons:rest-api" }
     ],
-    "description": "Es un Ecommerce innovador con tecnología avanzada y facilidad de uso",
+    "description": "Ecommerce innovador con tecnología avanzada, centrado en seguridad y experiencia de usuario.",
     "descriptionEng": "It is an innovative Ecommerce with advanced technology and ease of use. User experience, security, and efficient communication are priorities. Secure transactions and smooth communication guaranteed.",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1703708244/Captura_desde_2023-12-27_17-11-26_dyszvq.png",
     "rol": "Full-Stack",
@@ -77,7 +77,7 @@
       { "name": "JWT", "icon": "logos:jwt-icon" },
       { "name": "REST API", "icon": "dashicons:rest-api" }
     ],
-    "description": "En The Bark Side, lideré el desarrollo de una página web full stack",
+    "description": "Lideré el desarrollo full stack para amantes de los perros, con favoritos y creación de razas.",
     "descriptionEng": "At The Bark Side, I led the development of a full stack web page. Users can add dogs to favorites, search and create custom dogs. An unforgettable experience for dog lovers!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1704374132/Captura_desde_2024-01-04_09-54-58_z621mi.png",
     "rol": "Full-Stack",
@@ -100,7 +100,7 @@
       { "name": "JavaScript", "icon": "bi:javascript" },
       { "name": "REST API", "icon": "dashicons:rest-api" }
     ],
-    "description": "Este proyecto te invita a explorar el fascinante mundo de los países",
+    "description": "Explora el mundo: información detallada de países, y funciones para crear actividades turísticas.",
     "descriptionEng": "This project invites you to explore the fascinating world of countries. Discover detailed information about each country, including its name, flag, continent, capital, subregion, area, and population. You can also create and associate activities with different countries. An exciting way to learn about the diversity of our planet!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1704497781/countries/Captura_desde_2024-01-05_20-23-54_jecsex.png",
     "rol": "Full-Stack",
@@ -124,7 +124,7 @@
       { "name": "JWT", "icon": "logos:jwt-icon" },
       { "name": "REST API", "icon": "dashicons:rest-api" }
     ],
-    "description": "Página interactiva de Rick and Morty con registro, favoritos, filtros y búsqueda.",
+    "description": "Página interactiva de Rick and Morty con gestión de favoritos, filtros, búsqueda y registro.", 
     "descriptionEng": "Interactive Rick and Morty page with registration, favorites, filters, and search. Explore the universe of the series in an exciting way. If you are a fan of the series, this page is for you!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1703708262/Captura_desde_2023-12-27_17-02-24_dr1zch.png",
     "rol": "Back-End",
