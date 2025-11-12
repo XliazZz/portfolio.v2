@@ -14,6 +14,7 @@ import contactAndSocial from "../../data/contactAndSocial.json";
       bg-white
       relative
       lg:py-28 lg:px-0
+      xl:py-0
       sm:px-3"
 >
   <div
@@ -50,7 +51,7 @@ import contactAndSocial from "../../data/contactAndSocial.json";
       mx-auto
       relative
       lg:max-w-5xl lg:px-8 lg:mt-auto
-      xl:max-w-7xl"
+      xl:max-w-7xl xl:px-0"
   >
     <div class="grid grid-cols-1
         min-h-screen
@@ -63,7 +64,7 @@ import contactAndSocial from "../../data/contactAndSocial.json";
               h-full
               px-6
               items-center
-              lg:px-0 lg:pr-8"
+              lg:px-0"
           >
             <div class="w-full">
               <div class="relative">
@@ -81,7 +82,7 @@ import contactAndSocial from "../../data/contactAndSocial.json";
                     text-3xl font-bold font-heading tracking-tight text-gray-900 leading-tight
                     relative drop-shadow-[0_4px_12px_rgba(99,102,241,0.3)]
                      lg:text-3.5xl md:text-4xl
-                    sm:text-3xl xl:text-6xl"
+                    sm:text-3xl xl:text-4xl"
                 >
                   Transformemos tu idea
                   <span
@@ -215,8 +216,8 @@ import contactAndSocial from "../../data/contactAndSocial.json";
             pt-20
             items-center justify-center
             md:pt-12
-            lg:py-0
-            xl:py-40"
+            lg:py-0 lg:pl-9
+            xl:py-40 xl:pl-20"
         >
           <ContactForm client:load />
         </div>

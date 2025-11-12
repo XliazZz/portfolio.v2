@@ -15,14 +15,14 @@ const { data, trackClass } = Astro.props;
 
 const duplicatedData = [...data, ...data];
 
-const iconContainerClasses =
-  `flex flex-col flex-shrink-0 w-20 h-20 mx-4 items-center justify-center 
+const iconContainerClasses = `flex flex-col flex-shrink-0 w-20 h-20 mx-4 items-center justify-center 
     sm:w-22 sm:h-22 
     md:w-24 md:h-24 
     lg:w-26 lg:h-26 
-    xl:w-28 xl:h-28 xl:mx-5`;
+    xl:w-32 xl:h-32 xl:mx-5`;
 
-const iconSizeClasses = "w-10 h-10 lg:w-16 lg:h-16 text-gray-500";
+const iconSizeClasses =
+  "w-10 h-10 lg:w-16 lg:h-16 xl:w-18.5 xl:h-18.5 text-gray-500";
 ---
 
 <div class="marquee-container">

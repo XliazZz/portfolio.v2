@@ -100,7 +100,7 @@
       { "name": "JavaScript", "icon": "bi:javascript" },
       { "name": "REST API", "icon": "dashicons:rest-api" }
     ],
-    "description": "Explora el mundo: información detallada de países, y funciones para crear actividades turísticas.",
+    "description": "Explora el mundo: información detallada de países, y funciones para crear actividades.",
     "descriptionEng": "This project invites you to explore the fascinating world of countries. Discover detailed information about each country, including its name, flag, continent, capital, subregion, area, and population. You can also create and associate activities with different countries. An exciting way to learn about the diversity of our planet!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1704497781/countries/Captura_desde_2024-01-05_20-23-54_jecsex.png",
     "rol": "Full-Stack",

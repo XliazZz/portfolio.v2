@@ -33,8 +33,7 @@ const {
       bg-white
       rounded-xl border border-gray-200
       shadow-sm transition-all
-      justify-between hover:shadow-md duration-300 hover:border-indigo-100
-      xl:m-4"
+      justify-between hover:shadow-md duration-300 hover:border-indigo-100"
 >
   <div class="h-max
       border-b border-gray-100
@@ -44,7 +43,8 @@ const {
         w-full h-48
         rounded-t-xl
         transition-transform
-        group-hover:scale-105 duration-300"
+        group-hover:scale-105 duration-300
+        xl:h-60"
       src={featuredImage}
       alt={`Captura del proyecto ${title}`}
       width={400}
@@ -82,7 +82,8 @@ const {
           antialiased
           sm:py-1
           md:m-0 md:mt-0
-          lg:mx-0 lg:mt-0 lg:text-left lg:text-base"
+          lg:mx-0 lg:mt-0 lg:text-left lg:text-base
+          xl:text-xl"
       >
         {title}
       </h6>
@@ -109,7 +110,7 @@ const {
       {description}
     </p>
 
-    <div class="lg:mt-auto">
+    <div class="lg:mt-auto xl:mt-2">
       <TechChips technologies={technologies} />
     </div>
   </div>
