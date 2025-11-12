@@ -8,7 +8,7 @@ interface Props {
 const { text, type = "default", roleType } = Astro.props;
 
 const baseClasses =
-  "px-2 py-1 text-xs font-medium md:text-sm rounded-lg lg:text-xs xl:rounded-full";
+  "px-2 py-1 text-xs font-medium md:text-sm rounded-lg lg:text-xs xl:text-sm";
 
 const getVariantClasses = () => {
   if (type === "role") {

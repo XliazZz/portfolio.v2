@@ -4,16 +4,19 @@ import projectsData from "../data/projectsCard.json";
 import HeaderProjects from "./project/HeaderProjects.astro";
 ---
 
-<section class="py-14
+<section
+  class="py-14
       bg-gray-50
       relative
-      lg:py-28">
+      lg:py-28
+      xl:py-22"
+>
   <div
     class="max-w-4xl
       mx-8
       md:mx-10
       lg:mx-auto lg:max-w-5xl lg:px-8
-      xl:max-w-7xl xl:mx-auto"
+      xl:max-w-7xl xl:px-0"
   >
     <HeaderProjects />
     <ul
@@ -22,7 +25,8 @@ import HeaderProjects from "./project/HeaderProjects.astro";
         gap-6 items-stretch
         md:mt-16 md:gap-9
         lg:grid-cols-3 lg:mt-14 lg:gap-4 lg:w-full lg:mx-auto lg:gap-y-8
-        xl:mt-20"
+        xl:gap-14
+        2xl:mt-20"
     >
       {projectsData.map((project) => <CardProject {...project} />)}
     </ul>
