@@ -2,22 +2,22 @@
 import Button from "./ui/Button.astro";
 
 const sections = [
-  { name: "Proyectos", href: "#" },
-  { name: "Sobre mí", href: "#" },
-  { name: "Experiencia", href: "#" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Proyectos", href: "#projects" },
+  { name: "Servicios", href: "#services" },
 ];
 ---
 
 <div
   class="z-50
       w-full
-      py-3
+      py-4
       bg-white
       top-0
-      sm:py-4
       md:py-6
       lg:py-2 lg:relative
       xl:py-2.5"
+  data-main-navc
 >
   <nav
     class="max-w-4xl
@@ -83,41 +83,13 @@ const sections = [
         >
           <Button
             text="Contacto"
-            href="/contacto"
+            href="https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web"
             icon="contactIcon"
             iconStyle="w-5 h-5 xl:w-7 xl:h-7"
             classStyle="text-white bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-emerald-700 transition duration-200 px-6 py-2 text-base rounded-xl font-semibold  hover:shadow-lg xl:py-3 xl:px-5 xl:text-[20px]"
           />
         </div>
       </div>
-
-      <button
-        data-collapse-toggle="mobile-menu-2"
-        type="button"
-        class="inline-flex
-            p-1
-            text-sm text-indigo-500
-            rounded-lg
-            items-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600
-            lg:hidden"
-        aria-controls="mobile-menu-2"
-        aria-expanded="true"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512"
-          ><path
-            d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
-            fill="currentColor"></path><path
-            d="M432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
-            fill="currentColor"></path><path
-            d="M432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
-            fill="currentColor"></path></svg
-        >
-      </button>
     </div>
   </nav>
 </div>

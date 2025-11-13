@@ -14,11 +14,24 @@ import Footer from "../components/Footer.astro";
 <Layout>
   <NavBar client:load />
   <Header client:load />
-  <Skills client:load />
-  <About />
-  <Features />
-  <Projects client:idle />
-  <Contact />
-  <Footer client:load/>
-  <!-- <FloatBar client:idle /> -->
+
+  <section id="about">
+    <About client:load />
+    <Skills client:load />
+  </section>
+
+  <section id="services">
+    <Features />
+  </section>
+
+  <section id="projects">
+    <Projects client:idle />
+  </section>
+
+  <section id="contact">
+    <Contact />
+  </section>
+
+  <Footer client:load />
+  <FloatBar client:idle />
 </Layout>
