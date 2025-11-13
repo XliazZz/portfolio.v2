@@ -9,8 +9,10 @@ import GradientBackground from "./ui/GradientBackground.astro";
       bg-indigo-50
       items-center justify-center relative
       sm:h-[34vh]
-      md:h-[40vh]
-      xl:h-[40vh]"
+      md:h-[30vh]
+      lg:h-[40vh]
+      xl:h-[45vh]
+      2xl:h-[40vh]"
 >
   <div class="h-full w-full">
     <GradientBackground client:load />
@@ -24,7 +26,7 @@ import GradientBackground from "./ui/GradientBackground.astro";
       absolute inset-0 items-center justify-center
       sm:px-10
       lg:px-0 lg:max-w-3xl
-      xl:max-w-7xl"
+      xl:max-w-6xl"
   >
     <div
       class="w-full
@@ -32,17 +34,18 @@ import GradientBackground from "./ui/GradientBackground.astro";
         bg-black/50
         rounded-2xl
         sm:pt-7
-        md:h-[83%] md:pb-0 md:pt-12
+        md:h-[83%] md:p-0
         lg:h-[55%] lg:p-0 lg:m-0 lg:py-10
          flex flex-col justify-center
-         xl:h-[70%] xl:space-y-7 xl:w-[90%]"
+         xl:h-[70%] xl:space-y-7 xl:w-[90%]
+         2xl:h-[60%]"
     >
       <p
         class="text-lg font-medium leading-8 text-indigo-100 font-heading
           sm:text-xl
-          md:text-2xl
+          md:text-xl
           lg:text-lg
-          xl:text-2xl"
+          xl:text-xl"
       >
         Hola, soy <span class="font-semibold">Elías Martínez</span>
       </p>
@@ -58,9 +61,9 @@ import GradientBackground from "./ui/GradientBackground.astro";
             w-[23rem]
             font-bold font-heading leading-[4rem] tracking-tight text-white text-[1.8rem] text-left
             sm:w-[28rem] sm:text-[2.3rem]
-            md:w-[35rem] md:text-[2.7rem]
+            md:w-[25rem] md:text-[2rem]
             lg:w-[32rem] lg:text-[2.5rem]
-            xl:text-5xl xl:h-[5rem] xl:w-[46rem] xl:my-auto xl:py-auto"
+            xl:text-4xl xl:h-[5rem] xl:w-[46rem] xl:my-auto xl:py-auto"
         >
           <span class="whitespace-nowrap">Programador</span>
 
@@ -86,7 +89,7 @@ import GradientBackground from "./ui/GradientBackground.astro";
           sm:w-[80%] sm:text-lg
           md:w-[90%] md:mt-6
           lg:w-[80%] lg:mt-3 lg:text-base
-          xl:text-xl"
+          xl:text-lg"
       >
         Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
         diseño limpio.
