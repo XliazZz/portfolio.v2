@@ -1,59 +1,93 @@
 ---
-import LucideFolder from "./icons/LucideFolder.astro";
-import LucideMessageSquareShare from "./icons/LucideMessageSquareShare.astro";
-import LucideUser from "./icons/LucideUser.astro";
 import Tooltip from "./ui/Tooltip.astro";
+import IconSprite from "./ui/IconSprite.astro";
 
 const icons = [
-  { href: "/", icon: LucideFolder, title: "Proyectos" },
-  { href: "/about", icon: LucideMessageSquareShare, title: "Sobre Mí" },
-  { href: "/contact", icon: LucideUser, title: "Contacto" },
+  { title: "Sobre Mí", id: "meteor-icons:user", href: "#about" },
+  { title: "Servicios", id: "ph:briefcase", href: "#services" },
+  { title: "Proyectos", id: "lucide:folder", href: "#projects" },
+  { title: "Contacto", id: "mdi:message-outline", href: "#contact" },
 ];
+
+const dockBaseClasses = `
+  flex p-2 px-3 rounded-3xl fixed bottom-8 left-1/2 -translate-x-1/2
+  backdrop-blur-xl
+  justify-center items-center w-auto max-w-sm z-50
+  sm:bottom-12 sm:p-3
+  transition-all duration-300
+  dock-bg
+`;
+
+const hiddenInitialClasses = `
+  opacity-0 translate-y-4 pointer-events-none
+`;
+
+const iconButtonClasses = `
+  flex w-9 h-9 p-2 
+  text-indigo-800
+  rounded-full justify-center items-center shadow-sm cursor-pointer
+  bg-white ring-1 ring-indigo-800
+  transition-all duration-400 ease-out 
+  hover:scale-110 hover:text-white 
+  hover:shadow-2xl hover:bg-gradient-to-br hover:from-indigo-500/90 hover:to-purple-600
+`;
 ---
 
-<div
-  class="flex
-      w-[8%]
-      p-2
-      bg-white bg-opacity-50
-      rounded-2xl
-      shadow-lg
-      fixed bottom-12 left-1/2 -translate-x-1/2 backdrop-blur-md justify-center items-center"
+<nav
+  data-float-bar
+  class={dockBaseClasses + " " + hiddenInitialClasses}
+  aria-label="Navegación principal flotante"
 >
-  <ul
-    class="flex
-      text-white font-semibold
-      justify-center items-center gap-4"
-  >
+  <ul class="flex justify-center items-center gap-4 bg-indigo-950 rounded-3xl">
     {
-      icons.map(({ href, icon: Icon, title }) => (
-        <li
-          class="
-            relative group
-          "
-        >
-          <a
-            href={href}
-            class="
-            flex
-            w-11 h-11 p-3
-            text-white
-            bg-gradient-to-r from-indigo-500/95 to-indigo-600 
-            rounded-full
-            justify-center items-center
-            shadow-[0_0_3px_0.6px_rgba(0,0,0,0.5)]
-            transition-all duration-500 ease-in-out
-            hover:shadow-[0_0_5px_2.5px_rgba(0,0,0,0.5)]
-            hover:brightness-110 hover:saturate-150
-            hover:from-indigo-600/95 hover:to-purple-700"
-            aria-label={title}
-          >
-            <Icon />
+      icons.map(({ href, id, title }) => (
+        <li class="relative group">
+          <a href={href} class={iconButtonClasses} aria-label={title}>
+            <IconSprite id={id} />
           </a>
-
           <Tooltip text={title} />
         </li>
       ))
     }
   </ul>
-</div>
+</nav>
+
+<style>
+  .dock-bg {
+    background: linear-gradient(145deg, #1b1745, #201c52);
+    box-shadow: 5px 5px 15px #292369;
+  }
+</style>
+
+<script is:inline>
+  const nav = document.querySelector("[data-main-nav]");
+  const floatBar = document.querySelector("[data-float-bar]");
+
+  if (nav && floatBar && "IntersectionObserver" in window) {
+    const HIDDEN = ["opacity-0", "translate-y-4", "pointer-events-none"];
+    const VISIBLE = ["opacity-100", "translate-y-0", "pointer-events-auto"];
+
+    const setVisible = (visible) => {
+      if (visible) {
+        floatBar.classList.remove(...HIDDEN);
+        floatBar.classList.add(...VISIBLE);
+        floatBar.setAttribute("aria-hidden", "false");
+      } else {
+        floatBar.classList.remove(...VISIBLE);
+        floatBar.classList.add(...HIDDEN);
+        floatBar.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    setVisible(false);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(nav);
+  }
+</script>

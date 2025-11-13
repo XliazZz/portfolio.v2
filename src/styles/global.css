@@ -18,3 +18,7 @@
 .font-body {
   font-family: 'Nunito', system-ui, sans-serif;
 }
+
+html {
+    scroll-behavior: smooth;
+}
