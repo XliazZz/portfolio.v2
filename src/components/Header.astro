@@ -4,15 +4,14 @@ import GradientBackground from "./ui/GradientBackground.astro";
 
 <section
   class="flex overflow-hidden
-      w-full h-[32vh]
+      w-full h-[35vh]
       py-0
       bg-indigo-50
       items-center justify-center relative
       sm:h-[34vh]
       md:h-[30vh]
-      lg:h-[40vh]
-      xl:h-[45vh]
-      2xl:h-[40vh]"
+      lg:h-[90vh]
+      2xl:h-[50vh]"
 >
   <div class="h-full w-full">
     <GradientBackground client:load />
@@ -21,7 +20,7 @@ import GradientBackground from "./ui/GradientBackground.astro";
   <div
     class="flex z-10
       max-w-4xl w-full
-      mx-auto px-5
+      mx-auto px-2
       text-center
       absolute inset-0 items-center justify-center
       sm:px-10
@@ -35,61 +34,59 @@ import GradientBackground from "./ui/GradientBackground.astro";
         rounded-2xl
         sm:pt-7
         md:h-[83%] md:p-0
-        lg:h-[55%] lg:p-0 lg:m-0 lg:py-10
-         flex flex-col justify-center
-         xl:h-[70%] xl:space-y-7 xl:w-[90%]
-         2xl:h-[60%]"
+        lg:h-[65%] lg:p-0 lg:m-0 lg:py-10
+        flex flex-col justify-center
+        xl:h-[70%] lg:space-y-7 xl:w-[90%]
+        2xl:h-[65%]"
     >
       <p
-        class="text-lg font-medium leading-8 text-indigo-100 font-heading
+        class="text-base font-medium leading-8 text-indigo-100 font-heading
           sm:text-xl
           md:text-xl
-          lg:text-lg
-          xl:text-xl"
+          lg:text-xl
+          xl:text-2xl"
       >
         Hola, soy <span class="font-semibold">Elías Martínez</span>
       </p>
 
-      <div
-        class="flex
-          min-h-[60px] w-full
-          justify-center items-center
-        xl:min-h-auto xl:mb-2"
-      >
+      <div class="flex justify-center items-center w-full">
         <h1
-          class="overflow-hidden
-            w-[23rem]
-            font-bold font-heading leading-[4rem] tracking-tight text-white text-[1.8rem] text-left
-            sm:w-[28rem] sm:text-[2.3rem]
-            md:w-[25rem] md:text-[2rem]
-            lg:w-[32rem] lg:text-[2.5rem]
-            xl:text-4xl xl:h-[5rem] xl:w-[46rem] xl:my-auto xl:py-auto"
+          class="font-heading font-bold text-white w-[250px] xl:w-[350px]
+           text-2xl sm:text-4xl md:text-4xl xl:text-5xl
+           leading-tight tracking-tight
+           text-right"
         >
-          <span class="whitespace-nowrap">Programador</span>
+          Programador
+        </h1>
 
+        <div class="w-3"></div>
+
+        <div
+          class="relative overflow-hidden text-left w-[250px] xl:w-[350px]"
+          style="width: 250px;"
+        >
           <span
             id="typewriter"
             class="inline-block
-                ml-2
-                align-top text-transparent
-                bg-gradient-to-r from-indigo-500 to-pink-400 bg-clip-text
-                relative
-                lg:ml-1"
+              font-heading font-bold
+              text-3xl sm:text-4xl md:text-4xl xl:text-5xl
+              leading-tight tracking-tight
+              text-transparent bg-gradient-to-r from-indigo-500 to-pink-400 bg-clip-text"
           >
             <span class="text"></span>
             <span class="cursor"></span>
           </span>
-        </h1>
+        </div>
       </div>
 
       <p
         class="max-w-4xl
-          mt-2 mx-auto
+          sm:mt-2 mx-auto
           leading-relaxed text-slate-300 font-body
           sm:w-[80%] sm:text-lg
           md:w-[90%] md:mt-6
           lg:w-[80%] lg:mt-3 lg:text-base
-          xl:text-lg"
+          xl:text-xl"
       >
         Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
         diseño limpio.

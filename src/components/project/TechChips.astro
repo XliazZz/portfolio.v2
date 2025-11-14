@@ -12,10 +12,10 @@ const remainingCount = technologies.length - 4;
 
 <div
   class="inline-flex flex-wrap
-      mb-4 lg:my-auto
+      mb-4 md:my-auto
       items-center gap-2 relative ocultar-en-movil"
 >
-  <ul class="inline-flex flex-wrap 
+  <ul class="inline-flex flex-wrap
       items-center gap-2">
     {
       technologies.slice(0, 4).map((tech) => (
@@ -104,7 +104,7 @@ const remainingCount = technologies.length - 4;
 </div>
 
 <style>
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .ocultar-en-movil {
       display: none;
     }
