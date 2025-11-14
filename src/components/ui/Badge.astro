@@ -14,11 +14,11 @@ const getVariantClasses = () => {
   if (type === "role") {
     switch (roleType) {
       case "Full-Stack":
-        return "bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700";
+        return "bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 cursor-pointer";
       case "Front-End":
-        return "bg-gradient-to-r from-green-100 to-teal-100 text-green-800";
+        return "bg-gradient-to-r from-green-100 to-teal-100 text-green-800 cursor-pointer";
       case "Back-End":
-        return "bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-400";
+        return "bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-400 cursor-pointer";
       default:
         return "bg-gray-100 text-gray-700";
     }
