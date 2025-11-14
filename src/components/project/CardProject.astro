@@ -2,6 +2,7 @@
 import TechChips from "./TechChips.astro";
 import CardLinks from "./CardLinks.astro";
 import Badge from "../ui/Badge.astro";
+import Tooltip from "../ui/Tooltip.astro";
 
 interface Props {
   title: string;
@@ -12,6 +13,7 @@ interface Props {
   description: string;
   rol: string;
   category: string;
+  rolDescription: string;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   description,
   rol,
   category,
+  rolDescription,
 } = Astro.props;
 ---
 
@@ -93,11 +96,14 @@ const {
           my-auto md:block lg:flex
           gap-2 md:space-y-2 lg:space-y-0"
       >
-        <Badge
-          text={rol}
-          type="role"
-          roleType={rol as "Full-Stack" | "Front-End" | "Back-End"}
-        />
+        <div class="relative group inline-flex items-center">
+          <Badge
+            text={rol}
+            type="role"
+            roleType={rol as "Full-Stack" | "Front-End" | "Back-End"}
+          />
+          <Tooltip text={rolDescription} classProp="w-[200px] max-w-lg" />
+        </div>
 
         <Badge text={category} type="category" />
       </div>

@@ -8,13 +8,15 @@
       { "name": "CSS3", "icon": "tdesign:css3-filled" },
       { "name": "HTML", "icon": "devicon-plain:html5" },
       { "name": "Tailwind", "icon": "teenyicons:tailwind-solid" },
-      { "name": "JavaScript", "icon": "bi:javascript" }
+      { "name": "JavaScript", "icon": "bi:javascript" },
+      { "name": "Framer Motion", "icon": "simple-icons:framer" }
     ],
     "description": "Landing page moderna y responsive para Wow Bao, un emprendimiento gastronómico.",
     "descriptionEng": "Modern and responsive landing page for Wow Bao, a culinary venture specializing in bao buns",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1753506458/Captura_de_pantalla_2025-07-26_020621_onexlm.png",
     "rol": "Front-End",
-    "category": "Landing Page"
+    "category": "Landing Page",
+    "rolDescription": "Trabajo enfocado en la interfaz y experiencia del usuario: diseño, estilos, interacción y comportamiento visual del sitio."
   },
   {
     "title": "Mini Proyectos",
@@ -33,7 +35,8 @@
     "descriptionEng": "A personal web page showcasing mini-projects that enhance my programming logic and CSS3 skills with Tailwind. Explore games like Tic Tac Toe and more!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1732127734/miniproyectos/Captura_de_pantalla_1_fff7ez.png",
     "rol": "Front-End",
-    "category": "Portfolio"
+    "category": "Portfolio",
+    "rolDescription": "Trabajo enfocado en la interfaz y experiencia del usuario: diseño, estilos, interacción y comportamiento visual del sitio."
   },
   {
     "title": "Elitronic",
@@ -57,7 +60,8 @@
     "descriptionEng": "It is an innovative Ecommerce with advanced technology and ease of use. User experience, security, and efficient communication are priorities. Secure transactions and smooth communication guaranteed.",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1703708244/Captura_desde_2023-12-27_17-11-26_dyszvq.png",
     "rol": "Full-Stack",
-    "category": "E-commerce"
+    "category": "E-commerce",
+    "rolDescription": "Trabajo completo: desde la interfaz y la experiencia del usuario hasta la lógica del servidor y la gestión de datos."
   },
   {
     "title": "The Bark Side",
@@ -81,7 +85,8 @@
     "descriptionEng": "At The Bark Side, I led the development of a full stack web page. Users can add dogs to favorites, search and create custom dogs. An unforgettable experience for dog lovers!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1704374132/Captura_desde_2024-01-04_09-54-58_z621mi.png",
     "rol": "Full-Stack",
-    "category": "Portfolio"
+    "category": "Portfolio",
+      "rolDescription": "Trabajo completo: desde la interfaz y la experiencia del usuario hasta la lógica del servidor y la gestión de datos."
   },
   {
     "title": "Globe Gazers",
@@ -104,7 +109,8 @@
     "descriptionEng": "This project invites you to explore the fascinating world of countries. Discover detailed information about each country, including its name, flag, continent, capital, subregion, area, and population. You can also create and associate activities with different countries. An exciting way to learn about the diversity of our planet!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1704497781/countries/Captura_desde_2024-01-05_20-23-54_jecsex.png",
     "rol": "Full-Stack",
-    "category": "Portfolio"
+    "category": "Portfolio",
+    "rolDescription": "Trabajo completo: desde la interfaz y la experiencia del usuario hasta la lógica del servidor y la gestión de datos."
   },
   {
     "title": "Rick and Morty",
@@ -128,6 +134,7 @@
     "descriptionEng": "Interactive Rick and Morty page with registration, favorites, filters, and search. Explore the universe of the series in an exciting way. If you are a fan of the series, this page is for you!",
     "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1703708262/Captura_desde_2023-12-27_17-02-24_dr1zch.png",
     "rol": "Back-End",
-    "category": "Portfolio"
+    "category": "Portfolio",
+    "rolDescription": "Desarrollo de la lógica del servidor, bases de datos, API y manejo de información para que la aplicación funcione por detrás."
   }
 ]

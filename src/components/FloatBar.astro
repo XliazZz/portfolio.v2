@@ -43,7 +43,7 @@ const iconButtonClasses = `
       icons.map(({ href, id, title }) => (
         <li class="relative group">
           <a href={href} class={iconButtonClasses} aria-label={title}>
-            <IconSprite id={id} />
+            <IconSprite id={id} class="w-5 h-5"/>
           </a>
           <Tooltip text={title} />
         </li>
