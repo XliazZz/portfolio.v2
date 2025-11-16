@@ -30,37 +30,37 @@ const authorData = {
 ---
 
 <Layout
-  title={pageTitle}
-  description={pageDescription}
-  image={ogImage}
-  authorName={authorData.name}
-  authorUrl={authorData.url}
-  socialProfiles={authorData.socialProfiles}
+    title={pageTitle}
+    description={pageDescription}
+    image={ogImage}
+    authorName={authorData.name}
+    authorUrl={authorData.url}
+    socialProfiles={authorData.socialProfiles}
 >
-  <NavBar client:load />
-  <Header client:load />
+    <NavBar client:visible /> 
+    <Header client:visible />
 
-  <section id="about">
-    <About client:visible />
-    <Skills client:visible />
-  </section>
+    <section id="about">
+        <About client:visible />
+        <Skills client:visible />
+    </section>
 
-  <QuoteBlock />
+    <QuoteBlock />
 
-  <section id="services">
-    <Features client:visible />
-  </section>
+    <section id="services">
+        <Features client:visible />
+    </section>
 
-  <CtaSeparator />
+    <CtaSeparator />
 
-  <section id="projects">
-    <Projects client:idle />
-  </section>
+    <section id="projects">
+        <Projects client:idle />
+    </section>
 
-  <section id="contact">
-    <Contact client:visible />
-  </section>
+    <section id="contact">
+        <Contact client:visible />
+    </section>
 
-  <Footer client:load />
-  <FloatBar client:load />
+    <Footer client:idle /> 
+    <FloatBar client:idle />
 </Layout>

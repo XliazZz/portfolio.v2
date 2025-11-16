@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { successMessage, loadingMessage, errorMessage, warningMessage } from "./notifications.js";
-import { sendEmailService } from "../api/emailService.js";
+import { sendEmailService } from "../../src/api/emailService.js";
 
 export const sendForm = () => {
   const form = document.getElementById("contactForm");
