@@ -1,0 +1,30 @@
+---
+import TechChipsList from "./TechChipsList.astro";
+import TechChipsCounter from "./TechChipsCounter.astro";
+
+interface Props {
+  technologies: Array<{ name: string; icon: string }>;
+}
+
+const { technologies } = Astro.props;
+const remainingCount = technologies.length - 4;
+---
+
+<div
+
+  class="inline-flex flex-wrap
+    mb-4 md:my-auto
+    items-center gap-2 relative
+    hidden md:inline-flex"
+>
+  <TechChipsList technologies={technologies} />
+
+  {
+    remainingCount > 0 && (
+      <TechChipsCounter
+        technologies={technologies}
+        remainingCount={remainingCount}
+      />
+    )
+  }
+</div>

@@ -1,9 +1,9 @@
 ---
-import Select from "../ui/Select.astro";
+import Select from "../base/Select.astro";
 import formOptionsData from "../../data/formOptionsData.json";
-import Label from "../ui/Label.astro";
-import Input from "../ui/Input.astro";
-import Button from "../ui/Button.astro";
+import Label from "../base/Label.astro";
+import Input from "../base/Input.astro";
+import Button from "../base/Button.astro";
 ---
 
 <form
@@ -107,15 +107,16 @@ import Button from "../ui/Button.astro";
         justify-end">
       <Button
         type="submit"
-        text="Enviar consulta"
         icon="sendIcon"
-        classStyle="lg:py-3.5 hover:bg-indigo-700 text-white bg-indigo-600"
-      />
+        class="lg:py-3.5 w-full hover:bg-indigo-700 text-white bg-indigo-600 rounded-lg"
+      >
+        Enviar consulta
+      </Button>
     </div>
   </div>
 </form>
 
 <script>
-  import { sendForm } from "../../scripts/sendForm.js";
+  import { sendForm } from "../../utils/sendForm.js";
   document.addEventListener("DOMContentLoaded", sendForm);
 </script>

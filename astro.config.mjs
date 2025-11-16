@@ -8,11 +8,6 @@ export default defineConfig({
         content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'],
         theme: {
           extend: {
-            fontFamily: {
-              heading: ['Lexend', 'system-ui', 'sans-serif'],
-              body: ['Nunito', 'system-ui', 'sans-serif'],
-              sans: ['Lexend', 'system-ui', 'sans-serif'],
-            },
             fontWeight: {
               light: 300,
               normal: 400,

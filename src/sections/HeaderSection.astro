@@ -1,5 +1,6 @@
 ---
-import GradientBackground from "./ui/GradientBackground.astro";
+import GradientBackground from "../components/base/GradientBackground.astro";
+import Typewriter from "../components/base/Typewriter.astro";
 ---
 
 <section
@@ -60,23 +61,7 @@ import GradientBackground from "./ui/GradientBackground.astro";
         </h1>
 
         <div class="w-3"></div>
-
-        <div
-          class="relative overflow-hidden text-left w-[250px] xl:w-[350px]"
-          style="width: 250px;"
-        >
-          <span
-            id="typewriter"
-            class="inline-block
-              font-heading font-bold
-              text-3xl sm:text-4xl md:text-4xl xl:text-5xl
-              leading-tight tracking-tight
-              text-transparent bg-gradient-to-r from-indigo-500 to-pink-400 bg-clip-text"
-          >
-            <span class="text"></span>
-            <span class="cursor"></span>
-          </span>
-        </div>
+        <Typewriter client:visible/>
       </div>
 
       <p
@@ -103,56 +88,18 @@ import GradientBackground from "./ui/GradientBackground.astro";
   </div>
 </section>
 
-<script>
-  import { typewriterEffect } from "../scripts/typewriter";
-  document.addEventListener("DOMContentLoaded", typewriterEffect);
-</script>
-
 <style>
-  #typewriter {
-    position: relative;
-    display: inline-block;
-  }
-
-  #typewriter .text {
-    display: inline-block;
-  }
-
-  #typewriter .cursor {
-    position: absolute;
-    top: 0;
-    width: 2px;
-    background-color: #ffffff;
-    animation: blink-caret 0.8s step-end infinite;
-
-    height: 100%;
-  }
-
-  @media (max-width: 768px) {
-    #typewriter .cursor {
-      height: 70%;
-      top: 15%;
-    }
-
+  @media (max-width: 767px) {
     .ocultar-en-movil {
       display: none;
     }
   }
 
-  @media (max-width: 480px) {
-    #typewriter .cursor {
-      height: 60%;
-      top: 20%;
-    }
-  }
-
-  @keyframes blink-caret {
-    0%,
-    100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
+  @media (max-width: 870px) {
+    .ocultar-en-tablet {
+      display: none;
     }
   }
 </style>
+
+<script></script>

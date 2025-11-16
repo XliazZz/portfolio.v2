@@ -7,18 +7,6 @@
   }
 }
 
-.fonts-loaded body {
-  font-family: system-ui, -apple-system, sans-serif; /* solo fallback */
-}
-
-.font-heading {
-  font-family: 'Lexend', system-ui, sans-serif;
-}
-
-.font-body {
-  font-family: 'Nunito', system-ui, sans-serif;
-}
-
 html {
     scroll-behavior: smooth;
 }

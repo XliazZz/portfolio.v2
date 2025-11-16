@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+export type ButtonVariant = "primary" | "secondary" | "attention" | "rounded";
+
+interface Props extends HTMLAttributes<"button" | "a"> {
+  type?: "button" | "submit" | "reset";
+  href?: string;
+  variant?: ButtonVariant;
+  icon?: string;
+  iconClass?: string;
+  ariaLabel?: string;
+  class: string;
+}
+
+const {
+  type = "button",
+  href,
+  variant = "primary",
+  icon,
+  iconClass,
+  ariaLabel,
+  class: classStyle,
+  ...attrs
+} = Astro.props;
+
+const Element = href ? "a" : "button";
+
+const baseClasses =
+  "inline-flex items-center justify-center font-semibold text-center select-none transition-all duration-300 ease-out shadow-sm hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
+
+const focusClasses =
+  "focus:outline-none focus:ring-4 focus:ring-opacity-70 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900";
+
+const variantClasses = {
+  primary:
+    "px-5 py-2.5 border border-transparent bg-indigo-600 text-white hover:bg-white hover:text-pink-600 hover:border-pink-600",
+  secondary:
+    "px-5 py-2.5 border border-indigo-600 bg-white text-indigo-600 hover:bg-indigo-950 hover:text-white",
+  attention:
+    "px-5 py-2.5 border border-transparent text-white bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-emerald-700",
+  rounded:
+    "px-8 py-3 text-sm sm:text-base lg:text-lg rounded-full border border-purple-600 bg-transparent text-purple-600 hover:bg-purple-600 hover:text-white hover:shadow-xl hover:shadow-purple-900/40",
+};
+
+const elementProps = href
+  ? {
+      href,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "aria-label": ariaLabel,
+    }
+  : {
+      type,
+      "aria-label": ariaLabel,
+    };
+---
+
+<Element
+  class:list={[baseClasses, focusClasses, variantClasses[variant], classStyle]}
+  {...elementProps}
+  {...attrs}
+>
+  {
+    icon && (
+      <svg
+        class:list={["mr-2 w-5 h-5", iconClass]}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <use href={`/techsSprite.svg#${icon}`} />
+      </svg>
+    )
+  }
+
+  <slot />
+</Element>

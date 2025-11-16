@@ -1,5 +1,5 @@
 ---
-
+import Button from "./Button.astro";
 ---
 
 <section
@@ -36,18 +36,14 @@
       <div
         class="flex flex-col items-center md:items-end gap-4 w-full md:w-[35%]"
       >
-        <a
+        <Button
           href="#contact"
-          class="inline-flex items-center justify-center rounded-full lg:text-lg
-              px-8 py-3
-              text-sm sm:text-base font-semibold
-              bg-white text-indigo-700
-              transition-all duration-300 ease-out
-              hover:bg-indigo-600 hover:text-white
-              hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-900/40"
+          variant="rounded"
+          ariaLabel="Iniciar conversación"
+          class="hover:-translate-y-0.5 bg-white"
         >
           Iniciar conversación
-        </a>
+        </Button>
       </div>
     </div>
   </div>
