@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const pageTitle = "Página no encontrada | Elías Martínez";
+const pageDescription =
+  "La página que estás buscando no existe o fue movida. Volvé al inicio o explorá mis proyectos como desarrollador web full-stack.";
+const ogImage =
+  "https://res.cloudinary.com/do5ubt5g0/image/upload/v1763248298/WhatsApp_Image_2025-11-15_at_20.10.46_x9hddc.jpg";
+
+const authorData = {
+  name: "Elías Martínez",
+  url: "https://tu-dominio.com",
+  socialProfiles: {
+    linkedin: "https://www.linkedin.com/in/xliazzz/",
+    github: "https://github.com/XliazZz",
+    instagram: "https://www.instagram.com/xliazzz.dev/",
+  },
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  image={ogImage}
+  authorName={authorData.name}
+  authorUrl={authorData.url}
+  socialProfiles={authorData.socialProfiles}
+>
+  <main
+    class="min-h-screen flex items-center justify-center bg-black text-white px-4"
+  >
+    <div class="text-center space-y-4">
+      <p class="text-sm text-indigo-300 uppercase tracking-[0.25em]">
+        Error 404
+      </p>
+      <h1 class="text-3xl sm:text-4xl font-bold">Esta página no existe</h1>
+      <p class="text-slate-300 max-w-md mx-auto">
+        Puede que el enlace esté roto o que la página haya sido movida.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center px-6 py-3 mt-4 rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-500"
+      >
+        Volver al inicio
+      </a>
+    </div>
+  </main>
+</Layout>

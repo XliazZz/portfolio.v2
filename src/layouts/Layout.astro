@@ -65,6 +65,12 @@ const websiteSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index,follow" />
+    <meta name="author" content="Elías Martínez" />
+    <meta
+      property="og:site_name"
+      content="Elías Martínez · Desarrollador web full-stack"
+    />
+    <meta property="og:locale" content="es_AR" />
 
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 
@@ -78,6 +84,8 @@ const websiteSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}
+
+    <link rel="manifest" href="/site.webmanifest" />
 
     <link
       rel="preload"

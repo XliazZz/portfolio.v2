@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://tu-dominio.com",
+  integrations: [sitemap()],
   vite: {
     plugins: [
       tailwindcss({
