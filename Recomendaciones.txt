@@ -1,7 +1,0 @@
--añadir efecto opaco al hacer hover sobre la imagen con un texto de ver más o algo para ver detalles
-
--añaidr skeletoncard
-
--mejorar tab en button/cards
-
---arreglar el tab del tooltip card y del boton
