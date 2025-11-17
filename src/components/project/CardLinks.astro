@@ -1,46 +1,47 @@
 ---
-import Button from "../ui/Button.astro";
+import Button from "../base/Button.astro";
 
 interface Props {
   demoUrl?: string;
   githubUrl?: string;
+  title: string;
 }
 
-const { demoUrl, githubUrl } = Astro.props;
+const { demoUrl, githubUrl, title } = Astro.props;
 ---
 
 <div
-  class="flex
-      w-full px-1
-      font-heading text-sm
-      rounded gap-3 uppercase lg:px-0 lg:py-0"
+  class={`flex justify-center items-center
+		w-full px-1
+		font-heading text-sm mt-2
+		rounded gap-3 uppercase lg:px-0 lg:py-0`}
 >
   {
     demoUrl && (
       <Button
-        text="Ver Demo"
         icon="external-link"
         href={demoUrl}
-        classStyle="py-0 sm:text-base text-xs text-white bg-indigo-600 border hover:bg-indigo-700 xl:py-3.5"
-      />
+        class={`py-0 text-sm w-full xl:py-3.5 rounded-lg`}
+        ariaLabel={`Ver demo del proyecto ${title}`}
+        openInNewTab={true}
+      >
+        Ver Demo
+      </Button>
     )
   }
   {
     githubUrl && (
       <Button
-        text="Código"
         icon="fa:github"
         href={githubUrl}
-        classStyle="py-0 sm:text-base text-xs  bg-white border border-indigo-600 text-indigo-600 border hover:bg-indigo-950 hover:text-white ocultar-en-movil xl:py-3.5"
-      />
+        class={`py-0 text-sm w-full xl:py-3.5 rounded-lg 
+					hidden md:flex`}
+        variant="secondary"
+        ariaLabel={`Ver código del proyecto ${title}`}
+        openInNewTab={true}
+      >
+        Código
+      </Button>
     )
   }
 </div>
-
-<style>
-  @media (max-width: 767px) {
-    .ocultar-en-movil {
-      display: none;
-    }
-  }
-</style>

@@ -1,8 +1,9 @@
 ---
-import TechChips from "./TechChips.astro";
+import TechChips from "./TechChips/TechChips.astro";
 import CardLinks from "./CardLinks.astro";
-import Badge from "../ui/Badge.astro";
-import Tooltip from "../ui/Tooltip.astro";
+import Badge from "../base/Badge.astro";
+import Tooltip from "../base/Tooltip.astro";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -27,76 +28,79 @@ const {
   category,
   rolDescription,
 } = Astro.props;
+
+const siteUrl = Astro.site?.href ?? Astro.url.origin;
+
+const projectUrl = demoUrl || githubUrl || siteUrl;
+const titleId = `project-${title.toLowerCase().replace(/\s+/g, "-")}`;
+
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "@id": `${siteUrl}#${titleId}`,
+  name: title,
+  description,
+  url: projectUrl,
+  image: featuredImage,
+  inLanguage: "es",
+  programmingLanguage: technologies.map((t) => t.name),
+  keywords: technologies.map((t) => t.name).join(", "),
+  codeRepository: githubUrl,
+  author: {
+    "@type": "Person",
+    name: "Elías Martínez",
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${siteUrl}#projects`,
+  },
+};
 ---
 
-<div
-  class="flex flex-col overflow-hidden
-      w-full h-full max-w-[26rem]
-      m-0
-      bg-white
-      rounded-xl border border-gray-200
-      shadow-sm transition-all
-      justify-between hover:shadow-md duration-300 hover:border-indigo-100"
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(projectSchema)}
+/>
+
+<article
+  class="flex flex-col overflow-hidden w-full h-full max-w-[26rem] m-0 bg-white rounded-xl border border-gray-200 shadow-sm transition-all justify-between hover:shadow-md duration-300 hover:border-indigo-100"
+  aria-labelledby={titleId}
 >
-  <div class="h-max
-      border-b border-gray-100
-      relative group">
-    <img
-      class="object-cover
-        w-full sm:h-48 h-32
-        rounded-t-xl
-        transition-transform
-        group-hover:scale-105 duration-300
-        xl:h-60"
+  <div class="h-max border-b border-gray-100 relative group">
+    <Image
+      class="object-cover w-full sm:h-48 h-32 rounded-t-xl transition-transform group-hover:scale-105 duration-300 xl:h-60"
       src={featuredImage}
       alt={`Captura del proyecto ${title}`}
-      width={400}
-      height={200}
+      width={768}
+      height={432}
+      sizes="(max-width: 640px) 100vw, 400px"
+      loading="lazy"
+      decoding="async"
     />
 
     <div
-      class="bg-indigo-600
-        rounded-t-xl
-        opacity-0 transition-opacity
-        absolute inset-0 group-hover:opacity-5 duration-300"
+      class="bg-indigo-600 rounded-t-xl opacity-0 transition-opacity absolute inset-0 group-hover:opacity-5 duration-300"
     >
     </div>
   </div>
 
-  <div
-    class="flex-grow flex flex-col
-      w-full
-      px-4
-      rounded
-      md:pt-3
-      lg:pt-2"
-  >
+  <div class="flex-grow flex flex-col w-full rounded p-2 pb-3 md:pt-3 lg:pt-2">
     <div
-      class="flex
-        w-full
-        sm:mb-4
-        items-center justify-between gap-0
-        md:mb-2
-        lg:gap-2"
+      class="flex w-full sm:mb-4 items-center justify-between gap-0 md:mb-2 lg:gap-2"
     >
-      <h6
-        class="mx-auto
-          font-sans font-bold sm:text-lg text-gray-800 font-heading text-center
-          antialiased
-          py-2 md:py-auto md:my-0
-          md:m-0 md:mt-0
-          lg:mx-0 lg:mt-0 lg:text-left lg:text-base
-          xl:text-xl"
+      <h3
+        class="mx-auto font-sans font-bold sm:text-lg text-gray-800 font-heading text-center antialiased py-2 md:py-auto md:my-0 md:m-0 md:mt-0 lg:mx-0 lg:mt-0 lg:text-left lg:text-base xl:text-xl"
+        id={titleId}
       >
         {title}
-      </h6>
+      </h3>
 
       <div
-        class="flex flex-shrink-0
-          my-auto md:block lg:flex
-          gap-2 md:space-y-2 lg:space-y-0"
+        class="flex flex-shrink-0 my-auto md:block lg:flex gap-2 md:space-y-2 lg:space-y-0"
       >
-        <div class="relative group inline-flex items-center">
+        <div class="relative group inline-flex items-center" tabindex="0">
           <Badge
             text={rol}
             type="role"
@@ -110,10 +114,8 @@ const {
     </div>
 
     <p
-      class="mb-4
-        font-body text-sm text-gray-600 leading-relaxed
-        antialiased line-clamp-3 ocultar-en-movil
-        md:text-base md:pt-5 lg:pt-0"
+      class="mb-4 font-body text-sm text-gray-600 leading-relaxed antialiased line-clamp-3
+         hidden sm:block md:text-base md:pt-5 lg:pt-0"
     >
       {description}
     </p>
@@ -121,18 +123,7 @@ const {
     <div class="lg:mt-auto xl:mt-2">
       <TechChips technologies={technologies} />
     </div>
-  </div>
 
-  <div class="sm:px-4 md:pb-2
-      md:mt-3 md:px-1
-      lg:mt-3.5 lg:px-4">
-    <CardLinks {...{ demoUrl, githubUrl }} />
+    <CardLinks {...{ demoUrl, githubUrl, title }} />
   </div>
-</div>
-<style>
-  @media (max-width: 767px) {
-    .ocultar-en-movil {
-      display: none;
-    }
-  }
-</style>
+</article>

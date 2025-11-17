@@ -1,43 +1,69 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FloatBar from "../components/FloatBar.astro";
-import Header from "../components/Header.astro";
-import NavBar from "../components/NavBar.astro";
-import Skills from "../components/Skills.astro";
-import About from "../components/About.astro";
-import Features from "../components/Features.astro";
-import Projects from "../components/Projects.astro";
-import Contact from "../components/contact/Contact.astro";
-import Footer from "../components/Footer.astro";
-import CtaSeparator from "../components/ui/CtaSeparator.astro";
-import QuoteBlock from "../components/ui/QuoteBlock.astro";
+import FloatBar from "../components/base/FloatBar.astro";
+import Header from "../sections/HeaderSection.astro";
+import NavBar from "../components/base/NavBar.astro";
+import Skills from "../sections/SkillsSection.astro";
+import About from "../sections/AboutSection.astro";
+import Features from "../sections/FeaturesSection.astro";
+import Projects from "../sections/ProjectsSection.astro";
+import Contact from "../sections/ContactSection.astro";
+import Footer from "../sections/FooterSection.astro";
+import CtaSeparator from "../components/base/CtaSeparator.astro";
+import QuoteBlock from "../components/base/QuoteBlock.astro";
+
+const pageTitle = "Elías Martínez | Desarrollador web full-stack";
+const pageDescription =
+  "Portafolio profesional de Elías Martínez, desarrollador Full-Stack especializado en React, Astro, Node.js y optimización de rendimiento. Diseño y construyo sitios web rápidos, escalables y listos para producción.";
+const ogImage =
+  "https://res.cloudinary.com/do5ubt5g0/image/upload/v1763248298/WhatsApp_Image_2025-11-15_at_20.10.46_x9hddc.jpg";
+
+const authorData = {
+  name: "Elías Martínez",
+  url: "https://tu-dominio.com",
+  socialProfiles: {
+    linkedin: "https://www.linkedin.com/in/xliazzz/",
+    github: "https://github.com/XliazZz",
+    instagram: "https://www.instagram.com/xliazzz.dev/",
+  },
+};
 ---
 
-<Layout>
-  <NavBar client:load />
-  <Header client:load />
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  image={ogImage}
+  authorName={authorData.name}
+  authorUrl={authorData.url}
+  socialProfiles={authorData.socialProfiles}
+>
+  <NavBar client:visible />
+  
+  <Header client:visible />
 
-  <section id="about">
-    <About client:load />
-    <Skills client:load />
-  </section>
+  <main id="main-content">
+    <section id="about">
+      <About />
+      <Skills />
+    </section>
 
-  <QuoteBlock />
+    <QuoteBlock />
 
-  <section id="services">
-    <Features />
-  </section>
+    <section id="services">
+      <Features />
+    </section>
 
-  <CtaSeparator />
+    <CtaSeparator />
 
-  <section id="projects">
-    <Projects client:idle />
-  </section>
+    <section id="projects">
+      <Projects client:idle />
+    </section>
 
-  <section id="contact">
-    <Contact />
-  </section>
+    <section id="contact">
+      <Contact client:visible />
+    </section>
+  </main>
 
-  <Footer client:load />
-  <FloatBar client:load />
+  <Footer client:idle />
+  <FloatBar client:idle />
 </Layout>

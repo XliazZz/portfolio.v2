@@ -1,0 +1,127 @@
+---
+
+import Tooltip from "./Tooltip.astro";
+import IconSprite from "./IconSprite.astro";
+
+const icons = [
+  { title: "Sobre Mí", id: "meteor-icons:user", href: "#about" },
+  { title: "Servicios", id: "ph:briefcase", href: "#services" },
+  { title: "Proyectos", id: "lucide:folder", href: "#projects" },
+  { title: "Contacto", id: "mdi:message-outline", href: "#contact" },
+];
+
+const dockBaseClasses = `
+  flex p-2 px-3 rounded-3xl fixed bottom-8 left-1/2 -translate-x-1/2
+  backdrop-blur-xl
+  justify-center items-center w-auto max-w-sm z-50
+  sm:bottom-12 sm:p-3
+  transition-all duration-300
+  dock-bg
+`;
+
+const hiddenInitialClasses = `
+  opacity-0 translate-y-4 pointer-events-none
+`;
+
+const iconButtonClasses = `
+  flex w-9 h-9 p-2 
+  text-indigo-800
+  rounded-full justify-center items-center shadow-sm cursor-pointer
+  bg-white ring-1 ring-indigo-800
+  transition-all duration-400 ease-out 
+  hover:scale-110 hover:text-white 
+  hover:shadow-2xl hover:bg-gradient-to-br hover:from-indigo-500/90 hover:to-purple-600
+`;
+---
+
+<nav
+  data-float-bar
+  class={dockBaseClasses + " " + hiddenInitialClasses}
+  aria-label="Navegación principal flotante"
+>
+  <ul class="flex justify-center items-center gap-4 bg-indigo-950 rounded-3xl">
+    {
+      icons.map(({ href, id, title }) => (
+        <li class="relative group">
+          <a href={href} class={iconButtonClasses} aria-label={title}>
+            <IconSprite id={id} class="w-5 h-5"/>
+          </a>
+          <Tooltip text={title} />
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .dock-bg {
+    background: linear-gradient(145deg, #1b1745, #201c52);
+    box-shadow: 5px 5px 15px #292369;
+  }
+
+  a.active-icon {
+    background: linear-gradient(to bottom right, #6366f1, #9333ea);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+  }
+
+  a.active-icon svg {
+    color: white;
+  }
+</style>
+
+
+<script is:inline>
+  const nav = document.querySelector("[data-main-nav]");
+  const floatBar = document.querySelector("[data-float-bar]");
+  const links = floatBar?.querySelectorAll("a[href^='#']");
+
+  // Mostrar / ocultar float bar
+  if (nav && floatBar && "IntersectionObserver" in window) {
+    const HIDDEN = ["opacity-0", "translate-y-4", "pointer-events-none"];
+    const VISIBLE = ["opacity-100", "translate-y-0", "pointer-events-auto"];
+
+    const setVisible = (visible) => {
+      if (visible) {
+        floatBar.classList.remove(...HIDDEN);
+        floatBar.classList.add(...VISIBLE);
+        floatBar.setAttribute("aria-hidden", "false");
+      } else {
+        floatBar.classList.remove(...VISIBLE);
+        floatBar.classList.add(...HIDDEN);
+        floatBar.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    setVisible(false);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    observer.observe(nav);
+  }
+
+  // --- NUEVO: resaltar ícono activo según la sección visible ---
+  const sections = document.querySelectorAll("main section[id]");
+  const options = { threshold: 0.5 }; // detecta cuando la mitad de la sección es visible
+
+  const highlightObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute("id");
+      const link = floatBar?.querySelector(`a[href="#${id}"]`);
+
+      if (link) {
+        if (entry.isIntersecting) {
+          link.classList.add("active-icon");
+        } else {
+          link.classList.remove("active-icon");
+        }
+      }
+    });
+  }, options);
+
+  sections.forEach((section) => highlightObserver.observe(section));
+</script>

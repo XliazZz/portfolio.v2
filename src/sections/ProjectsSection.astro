@@ -1,0 +1,67 @@
+---
+import CardProject from "../components/project/CardProject.astro";
+import projectsData from "../data/projectsCard.json";
+import HeaderProjects from "../components/project/HeaderProjects.astro";
+
+const projectsListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Proyectos de desarrollo web de Elías Martínez",
+  itemListElement: projectsData.map((project, index) => ({
+    "@type": "SoftwareSourceCode",
+    position: index + 1,
+    name: project.title,
+    description: project.description,
+    url: project.demoUrl || project.githubUrl,
+    image: project.featuredImage,
+  })),
+};
+---
+
+<section
+  class="py-14
+      bg-gray-50
+      relative
+      lg:py-28
+      xl:py-22
+      2xl:py-36"
+>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(projectsListSchema)}
+  />
+
+  <div
+    class="max-w-4xl px-4
+      sm:mx-8
+      md:mx-10
+      lg:mx-auto lg:max-w-5xl lg:px-0
+      xl:max-w-6xl xl:px-0
+      2xl:max-w-7xl"
+  >
+    <HeaderProjects />
+    <ul
+  class="grid grid-cols-2
+    mt-12
+    gap-2 gap-y-4 sm:gap-6
+    md:mt-16 md:gap-9
+    lg:grid-cols-3 lg:mt-14 lg:gap-4 lg:w-full lg:mx-auto lg:gap-y-8
+    xl:gap-10
+    2xl:mt-20
+    items-stretch
+    [grid-auto-rows:1fr]"
+>
+  {
+    projectsData.map((project) => (
+      <li class="flex">
+        <CardProject {...project} />
+      </li>
+    ))
+  }
+</ul>
+
+  </div>
+</section>
+
+<style></style>

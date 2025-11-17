@@ -1,0 +1,54 @@
+---
+interface Props {
+  technologies: Array<{ name: string; icon: string }>;
+  remainingCount: number;
+}
+const { technologies, remainingCount } = Astro.props;
+---
+
+<div class="relative inline-flex group">
+  <button
+    class="w-8 h-8
+      text-gray-500 font-medium
+      bg-gray-100
+      rounded-lg border border-gray-200
+      transition-all
+      hover:text-indigo-600 hover:bg-indigo-100 hover:border-indigo-200 duration-200
+      md:w-9 md:h-9"
+    data-shape="circular"
+    aria-label={`Mostrar ${remainingCount} tecnologías adicionales`}
+  >
+    +{remainingCount}
+  </button>
+
+  <div
+    class="px-3 py-1.5 text-xs text-white font-body
+    bg-gray-900/95 rounded-md shadow-md
+    opacity-0 translate-y-3 pointer-events-none
+    absolute bottom-[140%] left-1/2 -translate-x-1/2
+    leading-snug backdrop-blur-md z-20
+    transition-all duration-300 ease-out
+    group-hover:opacity-100 group-hover:translate-y-0
+    group-focus-within:opacity-100 group-focus-within:translate-y-0
+    text-left"
+  >
+    <ul class="space-y-1">
+      {
+        technologies.slice(4).map((tech) => (
+          <li class="flex items-center gap-2 whitespace-nowrap">
+            <span class="inline-block w-3 h-3">
+              <svg
+                viewBox="0 0 128 128"
+                fill="currentColor"
+                class="w-full h-full"
+              >
+                <use href={`/techsSprite.svg#${tech.icon}`} />
+              </svg>
+            </span>
+            <span>{tech.name}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

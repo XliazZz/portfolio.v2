@@ -1,0 +1,48 @@
+---
+import ContactInfo from "../components/contact/ContactInfo.astro";
+import ContactFormWrapper from "../components/contact/ContactFormWrapper.astro";
+---
+
+<section
+  id="contact"
+  class="overflow-hidden w-full py-20 text-black bg-white relative
+    sm:px-3
+    lg:px-0
+    xl:py-0
+    2xl:py-28"
+  aria-labelledby="contact-heading"
+>
+  <div
+    class="h-full w-full bg-gray-50 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] absolute inset-0 -z-10 hidden md:block"
+  >
+    <div
+      class="h-[310px] w-[310px] m-auto bg-fuchsia-400 rounded-full opacity-20 absolute -left-[70%] right-0 top-20 -z-10 blur-[100px]"
+    >
+    </div>
+  </div>
+  <div class="h-full w-1/2 bg-white absolute top-0 -z-10 left-1/2">
+    <div
+      class="h-[500px] w-[500px] bg-[rgba(173,109,244,0.5)] rounded-full opacity-50 absolute bottom-auto left-auto right-0 top-0 -translate-x-[30%] translate-y-[20%] blur-[80px]"
+    >
+    </div>
+  </div>
+
+  <div
+    class="z-10 max-w-4xl mx-auto relative
+    lg:max-w-5xl lg:mt-auto
+    xl:max-w-6xl xl:px-0
+    2xl:max-w-7xl"
+  >
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <ContactInfo />
+
+      <div class="w-full relative">
+        <div
+          class="flex w-full h-full pt-20 items-center justify-center md:pt-12 lg:py-0 lg:pl-9 xl:py-40 xl:pl-20 2xl:py-0"
+        >
+          <ContactFormWrapper client:visible />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
