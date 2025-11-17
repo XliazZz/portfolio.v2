@@ -1,70 +1,149 @@
------
+---
 
-# 🚀 Portfolio Personal de Elías Martínez
+# 🚀 **Portfolio Personal — Elías Martínez**
 
-## Desarrollador Web Full-Stack | Performance & Experiencia de Usuario
+## **Desarrollador Web Full-Stack | Performance · Accesibilidad · SEO**
 
-Este es el repositorio oficial de mi portafolio personal y sitio web. Construido con un enfoque en la **velocidad de carga (Lighthouse)**, **accesibilidad (A11Y)** y **optimización SEO** utilizando las mejores prácticas de la **Arquitectura de Islas de Astro**.
+Repositorio oficial de mi **portfolio personal** y sitio web profesional.
+Construido con foco en **rendimiento extremo**, **accesibilidad (A11y)** y **SEO avanzado**, aprovechando al máximo las ventajas de **Astro + Arquitectura de Islas**.
 
-El objetivo principal es mostrar mis habilidades de desarrollo Full-Stack y servir como una plataforma para mis proyectos.
+---
 
------
+# ✨ **Características Principales**
 
-## ✨ Características Destacadas
+Este proyecto no es solo una muestra de mis trabajos:
+es una **implementación real de buenas prácticas modernas** en desarrollo web.
 
-Este portafolio no solo muestra mi trabajo, sino que es un proyecto de alto rendimiento por sí mismo:
+### **⚡ Performance / Web Vitals**
 
-  * **⚡ Web Performance (LCP/FID):** Puntuaciones cercanas al 100% en Lighthouse gracias al SSR (Server-Side Rendering) de Astro.
-  * **🏝️ Arquitectura de Islas:** Utiliza la arquitectura de Astro para cargar JavaScript de forma perezosa (`client:visible`, `client:idle`) solo donde es necesario (Formularios, Barras de Navegación).
-  * **📐 Diseño y Estilo:** Implementado con **Tailwind CSS** para un desarrollo rápido y escalable.
-  * **🔍 SEO Avanzado (Structured Data):** Incluye Schemas anidados **JSON-LD** para `Person`, `ContactPoint`, `ItemList` y `SoftwareSourceCode` para maximizar la visibilidad en resultados de búsqueda (Rich Results).
-  * **♿ Accesibilidad (A11Y):** Diseño semántico, uso correcto de etiquetas `aria-label` y jerarquía de encabezados.
+* LCP, CLS y INP optimizados con SSR y carga de scripts inteligente.
+* JavaScript reducido al mínimo gracias al modelo Zero-JS de Astro.
 
------
+### **🏝️ Arquitectura de Islas (Islands Architecture)**
 
-## 🛠️ Tecnologías Utilizadas
+Cargas solo lo necesario:
 
-| Categoría | Tecnología | Uso Principal |
-| :--- | :--- | :--- |
-| **Framework/Compilador** | **Astro** | Generación de sitio estático (SSG) y Zero-JS por defecto. |
-| **Estilos** | **Tailwind CSS** | Framework CSS *utility-first* para un desarrollo rápido y responsive. |
-| **Preprocesamiento** | **Vite** | Compilador y Bundler utilizado por Astro para desarrollo y producción. |
-| **Control de Versiones** | **Git** / **GitHub** | Historial de código y *deployment* automatizado. |
-| **Lenguajes** | **HTML, CSS, JavaScript, TypeScript** | Fundamentos del desarrollo. |
+* `client:visible` → hidrata cuando aparece en pantalla
+* `client:idle` → hidrata cuando la CPU está libre
+* Resultado: **hasta 80% menos JavaScript enviado al cliente.**
 
------
+### **🎨 Diseño & UI**
 
-## 🏗️ Estructura del Proyecto
+* Interfaz desarrollada con **Tailwind CSS**, escalable y altamente personalizable.
+* Animaciones optimizadas sin bloquear el render.
 
-El portafolio sigue la **convención estándar del Framework Astro**, organizada por la función que cumple cada tipo de archivo en la arquitectura del sitio.
+### **🔍 SEO Avanzado**
 
-| Directorio | Propósito General | Detalles Clave de Este Proyecto |
-| :--- | :--- | :--- |
-| **`src/pages/`** | **Rutas y Vistas (Routing)** | Contiene archivos `.astro` que se convierten en las rutas navegables del sitio (ej., `index.astro` para la Home, `404.astro` para el error). Define el contenido base de cada URL. |
-| **`src/layouts/`** | **Plantillas Principales (Wrapper)** | Define la estructura HTML base de la página (`<head>`, `<body>`). El archivo `Layout.astro` centraliza los **Metadatos globales** y el **Schema JSON-LD (`Person`, `ContactPoint`)** aplicable a todo el sitio. |
-| **`src/sections/`** | **Estructura de Contenido (Bloques)** | Componentes grandes que representan secciones completas de la *landing page* (ej., `HeaderSection`, `ProjectsSection`, `ContactSection`). |
-| **`src/components/`** | **Módulos Reutilizables (Islands)** | Componentes más pequeños y modulares que se combinan para construir las secciones (Botones, Tarjetas, Chips de Tecnología). |
-| **`src/data/`** | **Fuente de Datos (Data Layer)** | Archivos `.json` o `.ts` que contienen la data principal del proyecto, como la lista de servicios y la información de los proyectos. |
-| **`public/`** | **Recursos Estáticos (Assets)** | Archivos que son servidos directamente al navegador **sin ser procesados** por Astro (Imágenes de *featured*, *favicons*, *sprites* SVG y archivos JS para hidratación de cliente). |
+Incluye:
 
-### 💡 Arquitectura de Componentes
+* `JSON-LD` estructurado con:
 
-La interacción clave de este proyecto se encuentra en la anidación y el rendimiento:
+  * **Person**
+  * **ContactPoint**
+  * **WebSite**
+  * **ItemList**
+  * **SoftwareSourceCode** para cada proyecto
+* Preload de fuentes, SVG sprites y Cloudinary.
 
-* **Esquemas Anidados:** El `Layout.astro` establece la identidad global, mientras que componentes como `CardProject.astro` implementan **Schemas locales (`SoftwareSourceCode`)** para definir la semántica de contenido específica.
-* **Lazy Loading:** Componentes con lógica de interacción (ej., `ContactFormWrapper.astro`) usan directivas de cliente de Astro (`client:visible`, `client:idle`) para asegurar que el **JavaScript solo se descargue cuando es visible** o cuando la *main thread* está inactiva, maximizando el rendimiento (LCP).
+### **♿ Accesibilidad Real (A11Y)**
 
------
+* Navegación con teclado
+* ARIA Labels
+* Enlaces semánticos
+* Jerarquía correcta de headings
 
-## 📄 Licencia
+---
 
-Este proyecto está bajo la licencia **MIT**. Eres libre de usar el código como referencia, pero te pido que respetes el contenido y diseño originales si planeas modificarlo para tu propio uso.
+# 🛠️ **Tecnologías Utilizadas**
 
------
+| Categoría           | Tecnologías               | Uso                       |
+| ------------------- | ------------------------- | ------------------------- |
+| **Framework**       | Astro                     | SSG + SSR + Islands       |
+| **Estilos**         | Tailwind CSS              | UI moderna y responsive   |
+| **Frontend**        | HTML, CSS, JS, TypeScript | Base del proyecto         |
+| **Herramientas**    | Vite, PNPM                | Bundling y performance    |
+| **Infraestructura** | Vercel                    | Deploy continuo           |
+| **Imágenes**        | Cloudinary                | Optimización automatizada |
 
-### 📬 Contacto
+---
 
-Si tienes alguna pregunta sobre el código o deseas contactarme para proyectos:
+# 📂 **Estructura del Proyecto**
 
-  * **LinkedIn:** [https://www.linkedin.com/in/xliazzz/](https://www.linkedin.com/in/xliazzz/)
-  * **Email:** [eliasdev1912@gmail.com](eliasdev1912@gmail.com)
+Organizado para escalabilidad, claridad y mantenibilidad.
+
+### **`src/pages/` — Rutas públicas**
+
+Contiene las páginas visibles del sitio (`index.astro`, `404.astro`).
+
+### **`src/layouts/` — Plantillas**
+
+Incluye:
+
+* Metadatos de SEO globales
+* JSON-LD para Person + WebSite
+* Preloads optimizados
+
+### **`src/sections/` — Bloques de página**
+
+Secciones completas como:
+
+* Header
+* Skills
+* Projects
+* Contact
+
+### **`src/components/` — Componentes reutilizables**
+
+Botones, tarjetas, chips, tooltips, etc.
+
+### **`src/data/` — Capa de datos**
+
+JSON con proyectos, habilidades y servicios.
+
+### **`public/` — Assets estáticos**
+
+Favicons, sprites, imágenes, manifest y JS sin procesar.
+
+---
+
+# 🧠 **Arquitectura & Decisiones Técnicas**
+
+### **Schemas Anidados**
+
+* Global (`Layout.astro`) define información del autor.
+* Cada proyecto añade su propio `SoftwareSourceCode`.
+
+### **Carga Inteligente**
+
+* El 90% de la UI es **HTML + CSS sin JS**.
+* Componentes interactivos cargan solo cuando:
+
+  * el usuario los ve (`client:visible`)
+  * el navegador está idle (`client:idle`)
+
+### **Accesibilidad Pensada**
+
+* Tooltips accesibles
+* Navegación por teclado
+* Colores compatibles con WCAG
+
+---
+
+# 📄 **Licencia**
+
+Este proyecto está bajo licencia **MIT**.
+Puedes usar el código como referencia o inspiración manteniendo la atribución original.
+
+---
+
+# 📬 **Contacto**
+
+¿Consultas o propuestas laborales?
+
+* **LinkedIn:** [https://www.linkedin.com/in/xliazzz/](https://www.linkedin.com/in/xliazzz/)
+* **GitHub:** [https://github.com/XliazZz](https://github.com/XliazZz)
+* **Email:** [eliasdev1912@gmail.com](mailto:eliasdev1912@gmail.com)
+* **Instagram:** [@xliazzz.dev](https://www.instagram.com/xliazzz.dev)
+* **WhatsApp:** [Hablemos por WhatsApp](https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web)
+
+---
