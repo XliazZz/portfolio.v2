@@ -1,0 +1,15 @@
+---
+interface Props {
+  value: string;
+  text: string;
+  selected?: boolean;
+}
+
+const { value, text, selected = false } = Astro.props;
+---
+
+<option value={value} class="text-gray-800 font-heading" selected={selected}>
+  {text}
+</option>
+
+<style></style>

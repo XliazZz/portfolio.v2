@@ -1,0 +1,111 @@
+---
+import IconSprite from "../base/IconSprite.astro";
+
+interface SkillOrTech {
+  title: string;
+  icon: string;
+}
+
+interface Props {
+  data: SkillOrTech[];
+  trackClass: "marquee-track" | "marquee-track-reverse";
+}
+
+const { data, trackClass } = Astro.props;
+
+const duplicatedData = [...data, ...data];
+
+const iconContainerClasses = `flex flex-col flex-shrink-0 w-20 h-20 mx-4 items-center justify-center 
+  sm:w-22 sm:h-22 
+  md:w-24 md:h-24 
+  lg:w-26 lg:h-26 
+  xl:w-32 xl:h-32 xl:mx-5`;
+
+const iconSizeClasses =
+  "w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-18.5 xl:h-18.5 text-gray-500";
+---
+
+<div
+  class="marquee-container"
+  aria-label="Listado de tecnologías del stack"
+>
+  <ul class:list={[trackClass, "flex"]} role="list">
+    {
+      duplicatedData.map((item) => (
+        <li class={iconContainerClasses}>
+          <div
+            class="
+              flex
+              w-full h-[70%]
+              items-center justify-center
+            "
+          >
+            <IconSprite
+              id={item.icon}
+              class={iconSizeClasses}
+              aria-hidden="true"
+            />
+          </div>
+
+          <span
+            class="
+              h-[30%] md:w-full md:h-[40%]
+              mt-1
+              text-center text-slate-700 text-xs font-heading
+              dark:text-white
+              md:text-sm
+            "
+          >
+            {item.title}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .marquee-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .marquee-track-reverse {
+    animation: marquee-reverse 45s linear infinite;
+    width: max-content;
+    will-change: transform;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    0% {
+      transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .marquee-track-reverse {
+      animation: none;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+</style>

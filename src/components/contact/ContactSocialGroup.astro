@@ -1,0 +1,60 @@
+---
+import ContactSocialMedia from "./ContactSocialMedia.astro";
+import Tooltip from "../base/Tooltip.astro";
+import contactAndSocial from "../../data/contactAndSocial.json";
+---
+
+<div class="mt-6
+      lg:mt-12">
+  <span class="sm:flex hidden
+      items-center
+      xl:flex">
+    <span
+      class="flex-1
+        h-px
+        mb-4
+        bg-gradient-to-r from-transparent via-indigo-300 to-transparent"
+    ></span>
+    <span
+      class="mb-4 px-6 py-2
+        text-sm font-semibold text-gray-600 text-center
+        bg-white/80
+        rounded-full border border-indigo-100
+        shadow-sm
+        shrink-0 backdrop-blur-sm"
+    >
+      Seguime en redes
+    </span>
+    <span
+      class="flex-1
+        h-px
+        mb-4
+        bg-gradient-to-r from-transparent via-indigo-300 to-transparent"
+    ></span>
+  </span>
+  <ul
+    class="flex
+      p-3
+      bg-white/80
+      rounded-2xl border border-indigo-100
+      shadow-sm transition-all
+      items-center justify-center gap-3 backdrop-blur-sm hover:shadow-md duration-300"
+  >
+    {
+      contactAndSocial.socialMedia.map((social) => (
+        <li
+          class="
+            relative group
+          "
+        >
+          <ContactSocialMedia
+            icon={social.icon}
+            href={social.href}
+            name={social.value}
+          />
+          <Tooltip text={social.type} />
+        </li>
+      ))
+    }
+  </ul>
+</div>

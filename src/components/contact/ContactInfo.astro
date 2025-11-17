@@ -1,0 +1,59 @@
+---
+import ContactLi from "./ContactLi.astro";
+import contactAndSocial from "../../data/contactAndSocial.json";
+import ContactTitle from "./ContactTitle.astro";
+import ContactSocialGroup from "./ContactSocialGroup.astro";
+---
+
+<div class="w-full h-full flex items-center px-6 lg:px-0">
+  <div class="w-full relative">
+    <ContactTitle id="contact-heading" />
+
+    <p
+      class="hidden md:block
+				p-6
+				text-lg leading-8 text-gray-700 font-body
+				bg-white/80
+				rounded-xl border border-indigo-100
+				shadow-sm transition-shadow
+				relative backdrop-blur-sm hover:shadow-md duration-300
+				lg:text-base"
+    >
+      <span aria-hidden="true">💡</span>
+      <span>
+        {" "}
+        Si tenés una idea, un negocio o querés mejorar tu presencia online, estoy
+        listo para ayudarte a hacerlo realidad. Escribime y empecemos a crear algo
+        grande.</span
+      >
+    </p>
+
+    <div class="mt-8 space-y-4">
+      <h3
+        class="hidden md:flex
+					text-lg font-semibold text-gray-800
+					items-center gap-2"
+      >
+        <span class="w-2 h-2
+						bg-indigo-500
+						rounded-full"></span>
+        Contacto directo
+      </h3>
+      <dl class="space-y-3
+					text-base leading-7">
+        {
+          contactAndSocial.contactMethods.map((method) => (
+            <ContactLi
+              type={method.type}
+              value={method.value}
+              href={method.href}
+              icon={method.icon}
+            />
+          ))
+        }
+      </dl>
+    </div>
+
+    <ContactSocialGroup />
+  </div>
+</div>

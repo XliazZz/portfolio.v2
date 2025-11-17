@@ -1,22 +1,216 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+
+  authorName: string;
+  authorUrl: string;
+  socialProfiles: {
+    linkedin: string;
+    github: string;
+    instagram: string;
+  };
+}
+
+const { title, description, image, authorName, authorUrl, socialProfiles } =
+  Astro.props;
+
+const personId = `${authorUrl.replace(/\/$/, "")}#person`;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": personId,
+  name: authorName,
+  url: authorUrl,
+  image: image,
+  sameAs: [
+    socialProfiles.linkedin,
+    socialProfiles.github,
+    socialProfiles.instagram,
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      availableLanguage: ["es"],
+      url: "https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web",
+    },
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: title,
+  url: Astro.url.href,
+  description,
+  inLanguage: "es-AR",
+  author: {
+    "@id": personId,
+  },
+};
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="Elías Martínez" />
+    <meta
+      property="og:site_name"
+      content="Elías Martínez · Desarrollador web full-stack"
+    />
+    <meta property="og:locale" content="es_AR" />
+
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    {image && <meta property="og:image" content={image} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link
+      rel="preload"
+      href="/fonts/Lexend/Lexend-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Nunito/Nunito-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/techsSprite.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link
+      rel="preload"
+      href="/featuresSprite.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+
+    <link rel="canonical" href={Astro.url.href} />
+
+    <meta name="theme-color" content="#121212" />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify([personSchema, websiteSchema])}
+    />
+  </head>
+  <body class="bg-black font-sans">
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  @font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/Lexend/Lexend-Light.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Lexend/Lexend-Regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/Lexend/Lexend-SemiBold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/Lexend/Lexend-Bold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("/fonts/Lexend/Lexend-ExtraBold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/Nunito/Nunito-Light.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Nunito/Nunito-Regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/Nunito/Nunito-SemiBold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/Nunito/Nunito-Bold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("/fonts/Nunito/Nunito-ExtraBold.woff2") format("woff2");
+  }
 </style>

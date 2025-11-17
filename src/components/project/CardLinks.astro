@@ -1,0 +1,47 @@
+---
+import Button from "../base/Button.astro";
+
+interface Props {
+  demoUrl?: string;
+  githubUrl?: string;
+  title: string;
+}
+
+const { demoUrl, githubUrl, title } = Astro.props;
+---
+
+<div
+  class={`flex justify-center items-center
+		w-full px-1
+		font-heading text-sm mt-2
+		rounded gap-3 uppercase lg:px-0 lg:py-0`}
+>
+  {
+    demoUrl && (
+      <Button
+        icon="external-link"
+        href={demoUrl}
+        class={`py-0 text-sm w-full xl:py-3.5 rounded-lg`}
+        ariaLabel={`Ver demo del proyecto ${title}`}
+        openInNewTab={true}
+      >
+        Ver Demo
+      </Button>
+    )
+  }
+  {
+    githubUrl && (
+      <Button
+        icon="fa:github"
+        href={githubUrl}
+        class={`py-0 text-sm w-full xl:py-3.5 rounded-lg 
+					hidden md:flex`}
+        variant="secondary"
+        ariaLabel={`Ver código del proyecto ${title}`}
+        openInNewTab={true}
+      >
+        Código
+      </Button>
+    )
+  }
+</div>

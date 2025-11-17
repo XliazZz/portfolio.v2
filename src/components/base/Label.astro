@@ -1,0 +1,20 @@
+---
+interface Props {
+  for: string;
+  text: string;
+}
+
+const { for: forId, text } = Astro.props;
+---
+
+<label
+  for={forId}
+  class="block
+      mb-2
+      text-sm font-semibold leading-6 text-indigo-900 font-heading
+      md:text-base
+      lg:text-sm
+      xl:text-base"
+>
+  {text}
+</label>

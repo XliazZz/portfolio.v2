@@ -1,0 +1,67 @@
+---
+
+---
+
+<div
+  class="relative overflow-hidden text-left w-[250px] xl:w-[350px]"
+  style="width: 250px;"
+>
+  <span
+    id="typewriter"
+    class="inline-block font-heading font-bold text-3xl sm:text-4xl md:text-4xl xl:text-5xl leading-tight tracking-tight text-transparent bg-gradient-to-r from-indigo-500 to-pink-400 bg-clip-text"
+  >
+    <span class="text"></span>
+    <span class="cursor"></span>
+  </span>
+</div>
+
+<style>
+  #typewriter {
+    position: relative;
+    display: inline-block;
+  }
+
+  #typewriter .text {
+    display: inline-block;
+  }
+
+  #typewriter .cursor {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    background-color: #ffffff;
+    animation: blink-caret 0.8s step-end infinite;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    #typewriter .cursor {
+      height: 70%;
+      top: 15%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #typewriter .cursor {
+      height: 60%;
+      top: 20%;
+    }
+  }
+
+  @keyframes blink-caret {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script type="module">
+  import { typewriterEffect } from "../../../public/utils/typewriter.js";
+  document.addEventListener("DOMContentLoaded", () => {
+    typewriterEffect();
+  });
+</script>

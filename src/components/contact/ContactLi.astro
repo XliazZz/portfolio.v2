@@ -1,0 +1,62 @@
+---
+interface Props {
+  type: string;
+  value: string;
+  icon: string;
+  href?: string;
+}
+
+const { type, value, icon, href } = Astro.props;
+
+const wrapperClasses = `
+    flex p-3 bg-white
+    rounded-xl border border-indigo-100
+    shadow-sm transition-all
+    group items-center gap-3
+    hover:shadow-md hover:border-indigo-200 duration-250
+`;
+
+const RootElement = href ? "a" : "div";
+---
+
+<div class={wrapperClasses} data-type={type}>
+  <RootElement
+    href={href}
+    target={href ? "_blank" : undefined}
+    rel={href ? "noopener noreferrer nofollow" : undefined}
+    class={href
+      ? "no-underline w-full flex items-center gap-3"
+      : "w-full flex items-center gap-3"}
+  >
+    <div
+      class="flex-shrink-0 flex w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg shadow-sm transition-shadow items-center justify-center group-hover:shadow-md"
+    >
+      <svg
+        class="flex-shrink-0 w-6 h-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <use href={`/techsSprite.svg#${icon}`}></use>
+      </svg>
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <dt class="font-medium text-gray-700 text-sm md:text-base">
+        {type}:
+      </dt>
+      <dd
+        class={`block font-medium text-sm md:text-base truncate
+          ${
+            href
+              ? "text-indigo-600 transition-colors hover:text-indigo-700 duration-150"
+              : "text-gray-800"
+          }`}
+      >
+        {value}
+      </dd>
+    </div>
+  </RootElement>
+</div>

@@ -1,0 +1,14 @@
+---
+
+interface Props {
+  id: string;
+  class?: string;
+}
+
+const { id, class: className } = Astro.props;
+const spritePath = '/techsSprite.svg'; 
+---
+
+<svg class:list={[className]} aria-hidden="true">
+  <use href={`${spritePath}#${id}`} />
+</svg>

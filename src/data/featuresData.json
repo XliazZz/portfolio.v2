@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Desarrollo Full Stack",
+    "text": "Apps completas: front-end, back-end y bases de datos.",
+    "id": "codeIcon"
+  },
+  {
+    "title": "Portfolios Personales",
+    "text": "Sitios profesionales que resaltan tu marca y proyectos.",
+    "id": "userIcon"
+  },
+  {
+    "title": "E-commerce & Tiendas",
+    "text": "Plataformas de venta seguras y escalables para conversión.",
+    "id": "storeIcon"
+  },
+  {
+    "title": "Integración de APIs",
+    "text": "Conexión de sistemas externos para aplicaciones avanzadas.",
+    "id": "apiIcon"
+  },
+  {
+    "title": "Diseño UI/UX",
+    "text": "Diseño centrado en el usuario, interfaces intuitivas y eficaces.",
+    "id": "paletteIcon"
+  },
+  {
+    "title": "Optimización SEO",
+    "text": "Mejora de posicionamiento en buscadores para visibilidad.",
+    "id": "trendingUpIcon"
+  },
+  {
+    "title": "Rendimiento Óptimo",
+    "text": "Sitios rápidos y optimizados para la mejor experiencia.",
+    "id": "rocketIcon"
+  },
+  {
+    "title": "Modernización Web",
+    "text": "Actualización de sitios existentes a tecnologías modernas.",
+    "id": "updateIcon"
+  }
+]
