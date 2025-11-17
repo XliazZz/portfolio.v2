@@ -15,7 +15,7 @@ import Typewriter from "../components/base/Typewriter.astro";
       2xl:h-[50vh]"
 >
   <div class="h-full w-full">
-    <GradientBackground client:idle />
+    <GradientBackground />
   </div>
 
   <div
@@ -65,7 +65,7 @@ import Typewriter from "../components/base/Typewriter.astro";
         </h1>
 
         <div class="w-3"></div>
-        <Typewriter client:visible aria-hidden="true" />
+        <Typewriter aria-hidden="true" />
       </div>
 
       <p
@@ -80,7 +80,7 @@ import Typewriter from "../components/base/Typewriter.astro";
         Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
         diseño limpio.
         <br />
-        <span class="ocultar-en-movil">
+        <span class="hidden md:hidden lg:inline">
           {" "}
           Como <span class="font-medium text-white"
             >desarrollador web full-stack</span
@@ -94,19 +94,3 @@ import Typewriter from "../components/base/Typewriter.astro";
     </div>
   </div>
 </section>
-
-<style>
-  @media (max-width: 767px) {
-    .ocultar-en-movil {
-      display: none;
-    }
-  }
-
-  @media (max-width: 870px) {
-    .ocultar-en-tablet {
-      display: none;
-    }
-  }
-</style>
-
-<script></script>

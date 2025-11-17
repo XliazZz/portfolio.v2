@@ -37,9 +37,9 @@ const authorData = {
   authorUrl={authorData.url}
   socialProfiles={authorData.socialProfiles}
 >
-  <NavBar client:visible />
-  
-  <Header client:visible />
+  <NavBar />
+
+  <Header />
 
   <main id="main-content">
     <section id="about">
@@ -56,14 +56,14 @@ const authorData = {
     <CtaSeparator />
 
     <section id="projects">
-      <Projects client:idle />
+      <Projects />
     </section>
 
     <section id="contact">
-      <Contact client:visible />
+      <Contact />
     </section>
   </main>
 
-  <Footer client:idle />
-  <FloatBar client:idle />
+  <Footer />
+  <FloatBar />
 </Layout>

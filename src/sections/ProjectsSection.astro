@@ -42,7 +42,7 @@ const projectsListSchema = {
   >
     <HeaderProjects />
     <ul
-  class="grid grid-cols-2
+      class="grid grid-cols-2
     mt-12
     gap-2 gap-y-4 sm:gap-6
     md:mt-16 md:gap-9
@@ -51,17 +51,14 @@ const projectsListSchema = {
     2xl:mt-20
     items-stretch
     [grid-auto-rows:1fr]"
->
-  {
-    projectsData.map((project) => (
-      <li class="flex">
-        <CardProject {...project} />
-      </li>
-    ))
-  }
-</ul>
-
+    >
+      {
+        projectsData.map((project) => (
+          <li class="flex">
+            <CardProject {...project} />
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>
-
-<style></style>
