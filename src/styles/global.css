@@ -1,20 +1,9 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .font-smooth {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+:root {
+  --font-heading: "Lexend", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
 }
 
-.font-heading {
-  font-family: 'Lexend', system-ui, sans-serif;
-}
-
-.font-body {
-  font-family: 'Nunito', system-ui, sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-}
+@utility font-heading { font-family: var(--font-heading); }
+@utility font-body    { font-family: var(--font-body); }
