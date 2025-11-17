@@ -1,6 +1,22 @@
 ---
 import services from "../data/featuresData.json";
 import ServiceGrid from "../components/features/ServiceGrid.astro";
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Servicios de desarrollo web",
+  itemListElement: services.map((service, index) => ({
+    "@type": "Service",
+    position: index + 1,
+    name: service.title,
+    description: service.text,
+    provider: {
+      "@type": "Person",
+      name: "Elías Martínez",
+    },
+  })),
+};
 ---
 
 <section
@@ -11,6 +27,11 @@ import ServiceGrid from "../components/features/ServiceGrid.astro";
       2xl:pb-52 2xl:pt-36"
   aria-labelledby="services-heading"
 >
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(servicesSchema)}
+  />
   <div
     class="max-w-4xl
       px-4 mx-auto
@@ -66,28 +87,23 @@ import ServiceGrid from "../components/features/ServiceGrid.astro";
 
       <p
         class="max-w-2xl
-          mx-auto mt-3
-          text-[0.9rem] leading-7 text-gray-600 font-body
-          sm:text-[1rem]
-          md:text-[1.05rem]
-          lg:text-[1.15rem]
-          xl:text-lg 2xl:mt-10 xl:mt-3"
+    mx-auto mt-3
+    text-[0.9rem] leading-7 text-gray-600 font-body
+    sm:text-[1rem]
+    md:text-[1.05rem]
+    lg:text-[1.15rem]
+    xl:text-lg 2xl:mt-10 xl:mt-3"
       >
-        Creo aplicaciones web que combinan <strong>diseño excepcional</strong> con
-        <strong>tecnología robusta</strong>. <span class="ocultar-en-movil">
-          Diseñadas específicamente para impulsar el crecimiento de tu negocio</span
-        >
+        Creo <strong>servicios de desarrollo web</strong> que combinan
+        <strong> diseño excepcional</strong> con
+        <strong> tecnología robusta</strong>.
+        <span class="hidden sm:flex">
+          {" "}
+          Diseñados específicamente para impulsar el crecimiento de tu negocio.
+        </span>
       </p>
     </div>
 
     <ServiceGrid services={services} />
   </div>
 </section>
-
-<style>
-  @media (max-width: 768px) {
-    .ocultar-en-movil {
-      display: none;
-    }
-  }
-</style>

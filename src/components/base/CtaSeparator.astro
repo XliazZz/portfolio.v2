@@ -3,6 +3,8 @@ import Button from "./Button.astro";
 ---
 
 <section
+  id="cta"
+  aria-labelledby="cta-heading"
   class="w-full py-24 xl:py-18 bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-800 text-white px-4 mx-auto"
 >
   <div
@@ -20,16 +22,17 @@ import Button from "./Button.astro";
           Disponible para nuevos proyectos
         </p>
 
-        <h3
+        <h2
+          id="cta-heading"
           class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight"
         >
-          ¿Listo para construir algo profesional y bien hecho?
-        </h3>
+          ¿Listo para una web profesional que de verdad represente tu negocio?
+        </h2>
 
         <p class="text-indigo-100/90 text-sm sm:text-base leading-relaxed">
-          Si buscás una web rápida, clara y diseñada con intención, podemos
-          trabajar juntos. Te propongo una solución real según lo que necesitás,
-          sin vueltas.
+          Como <strong>desarrollador web full-stack</strong> puedo ayudarte a crear una
+          landing rápida, clara y orientada a resultados. Hablemos de lo que
+          necesitás y diseñamos una solución concreta, sin vueltas.
         </p>
       </div>
 
@@ -39,7 +42,6 @@ import Button from "./Button.astro";
         <Button
           href="#contact"
           variant="rounded"
-          ariaLabel="Iniciar conversación"
           class="hover:-translate-y-0.5 bg-white"
         >
           Iniciar conversación

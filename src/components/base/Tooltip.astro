@@ -2,64 +2,28 @@
 interface Props {
   text?: string;
   classProp?: string;
-
-  tech?: {
-    name: string;
-    icon: string;
-  };
 }
 
-const { text, classProp, tech } = Astro.props;
+const { text, classProp } = Astro.props;
 
 const baseClasses = `
-    px-3 py-1.5 text-xs text-white font-body 
-    bg-gray-900/95 rounded-md shadow-md 
-    opacity-0 translate-y-3 pointer-events-none 
-    absolute bottom-[140%] left-1/2 -translate-x-1/2 
-    text-center leading-snug backdrop-blur-md z-20 
-    transition-all duration-300 ease-out
-    group-hover:opacity-100 group-hover:translate-y-0
-    group-focus-within:opacity-100 group-focus-within:translate-y-0`;
+  absolute bottom-[140%] left-1/2 -translate-x-1/2
+  px-3 py-1.5 text-xs font-body text-white
+  bg-gray-900/95 rounded-md shadow-md backdrop-blur-md
+  opacity-0 translate-y-3 pointer-events-none
+  z-20 leading-snug whitespace-nowrap
+  transition-all duration-300 ease-out
+  group-hover:opacity-100 group-hover:translate-y-0
+  group-focus-within:opacity-100 group-focus-within:translate-y-0
+`;
 
-const finalClass = classProp
-  ? `${baseClasses} ${classProp}`
-  : `${baseClasses} whitespace-nowrap`;
-
-const isCardVariant = !!tech;
+const finalClass = classProp ? `${baseClasses} ${classProp}` : baseClasses;
 ---
 
-{
-  isCardVariant ? (
-    <div
-      class="relative group inline-flex items-center select-none"
-      data-tooltip-wrapper
-      tabindex="0"
-    >
-      <span class="inline-block w-3 h-3 mr-2 align-middle">
-        <svg viewBox="0 0 128 128" fill="currentColor">
-          <use href={`/techsSprite.svg#${tech.icon}`} />
-        </svg>
-      </span>
-
-      <span class="align-middle">{tech.name}</span>
-
-      <div
-        data-tooltip
-        class="invisible opacity-0 absolute left-1/2 -translate-x-1/2 top-full mt-2
-          bg-black text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap
-          transition-all duration-200
-          group-hover:visible group-hover:opacity-100"
-      >
-        {tech.name}
-      </div>
-    </div>
-  ) : (
-    <span class={finalClass}>{text}</span>
-  )
-}
-
-{
-  isCardVariant && (
-    <script type="module" src="../../../public/utils/tooltipWrapper.js" is:inline />
-  )
-}
+<span
+  class={finalClass}
+  role="tooltip"
+  aria-hidden={text ? "false" : "true"}
+>
+  {text}
+</span>

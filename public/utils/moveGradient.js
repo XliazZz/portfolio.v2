@@ -63,7 +63,6 @@ export class GradientBackground {
     }
 
     animate() {
-        // Si es móvil, no animar la burbuja interactiva
     if (this.isMobile) return;
 
     const dx = this.tgX - this.curX;
@@ -74,7 +73,7 @@ export class GradientBackground {
       this.isMoving = false;
     }
 
-    const speed = Math.min(0.15, 20 / (distance + 1));
+    const speed = 0.08;
     this.curX += dx * speed;
     this.curY += dy * speed;
 

@@ -1,39 +1,42 @@
 ---
 interface Props {
-	text: string;
-	type?: "role" | "category" | "default";
-	roleType?: "Full-Stack" | "Front-End" | "Back-End";
+  text: string;
+  type?: "role" | "category" | "default";
+  roleType?: "Full-Stack" | "Front-End" | "Back-End";
 }
 
 const { text, type = "default", roleType } = Astro.props;
 
 const baseClasses =
-	"px-2 py-1 text-xs font-medium md:text-sm rounded-lg lg:text-xs xl:text-sm text-center";
+  "inline-flex items-center justify-center px-2 py-1 text-xs font-medium md:text-sm rounded-lg lg:text-xs xl:text-sm text-center";
 
 const getVariantClasses = () => {
-	if (type === "role") {
-		switch (roleType) {
-			case "Full-Stack":
-				return "bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 cursor-default";
-			case "Front-End":
-				return "bg-gradient-to-r from-green-100 to-teal-100 text-green-800 cursor-default";
-			case "Back-End":
-				return "bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-400 cursor-default";
-			default:
-				return "bg-gray-100 text-gray-700";
-		}
-	}
+  if (type === "role") {
+    switch (roleType) {
+      case "Full-Stack":
+        return "bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 cursor-default";
+      case "Front-End":
+        return "bg-gradient-to-r from-green-100 to-teal-100 text-green-800 cursor-default";
+      case "Back-End":
+        return "bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-500 cursor-default";
+      default:
+        return "bg-gray-100 text-gray-700";
+    }
+  }
 
-	return "bg-gray-100 text-gray-700";
+  return "bg-gray-100 text-gray-700";
 };
 
-const visibilityClass = "hidden md:block"; 
+const visibilityClass = "hidden md:inline-flex";
+
+const ariaLabel =
+  type === "role" && roleType ? `Rol: ${roleType} (${text})` : text;
 ---
 
-<div 
-	class={`${baseClasses} ${getVariantClasses()} ${visibilityClass}`}
-	{...(type === 'role' ? { tabindex: "0" } : {})} 
-	data-role-type={roleType} 
+<span
+  class={`${baseClasses} ${getVariantClasses()} ${visibilityClass}`}
+  aria-label={ariaLabel}
+  data-role-type={roleType}
 >
-	{text}
-</div>
+  {text}
+</span>

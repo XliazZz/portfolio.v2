@@ -12,7 +12,7 @@ interface Props {
 const { services } = Astro.props;
 ---
 
-<div
+<ul
   class="grid grid-cols-2
     mt-8 px-2
     text-center
@@ -20,60 +20,52 @@ const { services } = Astro.props;
     sm:grid-cols-2 sm:mt-10 sm:gap-x-0
     md:grid-cols-3 md:gap-0
     lg:grid-cols-4 lg:px-0 lg:gap-x-0 lg:gap-y-2 lg:gap-5
-    xl:gap-y-6 xl:gap-x-0 2xl:mt-18 xl:mt-3W
+    xl:gap-y-6 xl:gap-x-0 2xl:mt-18
     2xl:px-0 2xl:gap-y-20"
-  role="list"
 >
   {
     services.map((service, index) => (
-      <dl
-        class="
-          md:py-4
-        "
+      <a
+        href="#contact"
+        class="block md:py-4 transition duration-300 ease-in-out hover:bg-gray-50 hover:shadow-lg rounded-lg p-4"
+        aria-labelledby={`service-${index}-title`}
       >
-        <svg
-          class="
-            w-8 h-8
-            mx-auto
-            text-indigo-600
-            lg:w-10 lg:h-10
-          "
-          viewBox="0 0 46 46"
-          fill="none"
-          aria-hidden="true"
-        >
-          <use href={`/featuresSprite.svg#${service.id}`} />
-        </svg>
+        <li class="md:py-4" aria-labelledby={`service-${index}-title`}>
+          <svg
+            class="w-8 h-8 mx-auto text-indigo-600 lg:w-10 lg:h-10"
+            viewBox="0 0 46 46"
+            fill="none"
+            aria-hidden="true"
+          >
+            <use href={`/featuresSprite.svg#${service.id}`} />
+          </svg>
 
-        <dt
-          id={`service-${index}-title`}
-          class="
-            mt-2
+          <h3
+            id={`service-${index}-title`}
+            class="mt-2
             text-[0.95rem] text-gray-900 font-heading
             sm:text-[1rem]
             md:text-[1.05rem]
             xl:mt-6 lg:mt-4 lg:text-base lg:font-bold
-            xl:text-xl
-          "
-        >
-          {service.title}
-        </dt>
+            xl:text-xl"
+          >
+            {service.title}
+          </h3>
 
-        <dd
-          class="
-            w-[80%]
+          <p
+            class="w-[80%]
             mt-1 px-0 mx-auto
             text-[0.8rem] text-gray-600 font-body text-center
             ocultar-en-movil
             sm:text-[0.85rem]
             md:text-[0.9rem]
             xl:mt-2 lg:mt-3 lg:text-sm lg:px-0
-            xl:text-base xl:w-[60%]
-          "
-        >
-          {service.text}
-        </dd>
-      </dl>
+            xl:text-base xl:w-[60%]"
+          >
+            {service.text}
+          </p>
+        </li>
+      </a>
     ))
   }
-</div>
+</ul>

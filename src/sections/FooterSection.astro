@@ -1,20 +1,20 @@
 ---
 import Button from "../components/base/Button.astro";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class="overflow-hidden
-      pt-32 pb-16
-      text-black
-      bg-gradient-to-tr from-white to-indigo-50
-      relative
-      lg:pt-56 lg:pb-28"
+  class="overflow-hidden pt-32 pb-16 w-full text-black bg-gradient-to-tr from-white to-indigo-50 relative lg:pt-56 lg:pb-28"
+  aria-label="Pie de página del portfolio de Elias Martinez"
 >
   <div
     class="overflow-hidden
-      w-full h-full
-      opacity-20
-      absolute top-0 left-0"
+    w-full h-full
+    opacity-20
+    absolute top-0 left-0
+    pointer-events-none"
+    aria-hidden="true"
   >
     <div
       class="w-20 h-20
@@ -46,8 +46,7 @@ import Button from "../components/base/Button.astro";
     class="max-w-4xl
       mx-auto px-4
       relative
-      sm:px-6
-      lg:px-8
+      sm:px-6 lg:px-0 lg:max-w-5xl
       xl:max-w-6xl xl:px-0
       2xl:max-w-7xl"
   >
@@ -56,7 +55,7 @@ import Button from "../components/base/Button.astro";
         pb-8 mb-6 space-y-8
         border-b border-indigo-300/30
         justify-between items-center
-        md:pb-12 md:mb-8
+        md:pb-12 md:mb-0
         lg:flex-row md:space-y-10 lg:space-y-0"
     >
       <div
@@ -80,21 +79,21 @@ import Button from "../components/base/Button.astro";
               md:w-10 md:h-10"
           >
             <span
-              class="text-lg font-bold text-indigo-500 font-heading
-                md:text-xl"
-              >EM</span
+              class="text-lg font-bold text-indigo-500 font-heading md:text-xl"
+              aria-hidden="true"
             >
+              EM
+            </span>
           </div>
-          <h2
+          <span
             class="text-xl font-bold text-black tracking-tight font-heading
               md:text-2xl"
           >
             Elias Martinez
-          </h2>
+          </span>
         </div>
-        <p class="text-xs text-gray-500 font-body
-            md:text-sm">
-          Diseñador UX/UI & Desarrollador Fullstack
+        <p class="text-xs text-gray-500 font-body md:text-sm">
+          Diseñador UX/UI y desarrollador web full-stack
         </p>
       </div>
 
@@ -159,10 +158,8 @@ import Button from "../components/base/Button.astro";
     mb-3 mx-auto
     text-gray-500
     md:mb-0">
-        &copy; {new Date().getFullYear()} Elias Martinez. Todos los derechos reservados.
+        &copy; {currentYear} Elias Martinez. Todos los derechos reservados.
       </p>
     </div>
   </div>
 </footer>
-
-<script></script>

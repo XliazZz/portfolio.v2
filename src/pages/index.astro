@@ -12,9 +12,9 @@ import Footer from "../sections/FooterSection.astro";
 import CtaSeparator from "../components/base/CtaSeparator.astro";
 import QuoteBlock from "../components/base/QuoteBlock.astro";
 
-const pageTitle = "Elías Martínez | Desarrollador Full-Stack y Arquitecto Web";
+const pageTitle = "Elías Martínez | Desarrollador web full-stack";
 const pageDescription =
-  "Portafolio profesional de Elías Martínez, especializado en desarrollo Full-Stack con experiencia en React, Astro, Node.js, y optimización de rendimiento.";
+  "Portafolio profesional de Elías Martínez, desarrollador Full-Stack especializado en React, Astro, Node.js y optimización de rendimiento. Diseño y construyo sitios web rápidos, escalables y listos para producción.";
 const ogImage =
   "https://res.cloudinary.com/do5ubt5g0/image/upload/v1763248298/WhatsApp_Image_2025-11-15_at_20.10.46_x9hddc.jpg";
 
@@ -30,37 +30,40 @@ const authorData = {
 ---
 
 <Layout
-    title={pageTitle}
-    description={pageDescription}
-    image={ogImage}
-    authorName={authorData.name}
-    authorUrl={authorData.url}
-    socialProfiles={authorData.socialProfiles}
+  title={pageTitle}
+  description={pageDescription}
+  image={ogImage}
+  authorName={authorData.name}
+  authorUrl={authorData.url}
+  socialProfiles={authorData.socialProfiles}
 >
-    <NavBar client:visible /> 
-    <Header client:visible />
+  <NavBar client:visible />
+  
+  <Header client:visible />
 
+  <main id="main-content">
     <section id="about">
-        <About client:visible />
-        <Skills client:visible />
+      <About />
+      <Skills />
     </section>
 
     <QuoteBlock />
 
     <section id="services">
-        <Features client:visible />
+      <Features />
     </section>
 
     <CtaSeparator />
 
     <section id="projects">
-        <Projects client:idle />
+      <Projects client:idle />
     </section>
 
     <section id="contact">
-        <Contact client:visible />
+      <Contact client:visible />
     </section>
+  </main>
 
-    <Footer client:idle /> 
-    <FloatBar client:idle />
+  <Footer client:idle />
+  <FloatBar client:idle />
 </Layout>

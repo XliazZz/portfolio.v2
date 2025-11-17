@@ -4,9 +4,10 @@ import Button from "../base/Button.astro";
 interface Props {
   demoUrl?: string;
   githubUrl?: string;
+  title: string;
 }
 
-const { demoUrl, githubUrl } = Astro.props;
+const { demoUrl, githubUrl, title } = Astro.props;
 ---
 
 <div
@@ -21,7 +22,8 @@ const { demoUrl, githubUrl } = Astro.props;
         icon="external-link"
         href={demoUrl}
         class={`py-0 text-sm w-full xl:py-3.5 rounded-lg`}
-        ariaLabel="Ver Demo del proyecto en una nueva pestaña"
+        ariaLabel={`Ver demo del proyecto ${title}`}
+        openInNewTab={true}
       >
         Ver Demo
       </Button>
@@ -35,7 +37,8 @@ const { demoUrl, githubUrl } = Astro.props;
         class={`py-0 text-sm w-full xl:py-3.5 rounded-lg 
 					hidden md:flex`}
         variant="secondary"
-        ariaLabel="Ver Código Fuente en GitHub (nueva pestaña)"
+        ariaLabel={`Ver código del proyecto ${title}`}
+        openInNewTab={true}
       >
         Código
       </Button>

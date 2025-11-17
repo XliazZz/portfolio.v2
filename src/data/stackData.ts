@@ -20,9 +20,9 @@ export const skills: StackItem[] = [
   { title: "Bootstrap", icon: "lineicons:bootstrap" },
   { title: "Material UI", icon: "devicon-plain:materialui" },
   { title: "Framer", icon: "simple-icons:framer" },
-  { title: "JQuery", icon: "devicon-plain:jquery" },
+  { title: "jQuery", icon: "devicon-plain:jquery" },
   { title: "JWT", icon: "logos:jwt-icon" },
-  { title: "Oauth", icon: "cbi:oauth" },
+  { title: "OAuth 2.0", icon: "cbi:oauth" },
   { title: "Sequelize", icon: "material-icon-theme:sequelize" },
   { title: "Mongoose", icon: "simple-icons:mongoose" },
 ];

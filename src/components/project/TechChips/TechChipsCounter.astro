@@ -1,6 +1,4 @@
 ---
-import Tooltip from "../../base/Tooltip.astro";
-
 interface Props {
   technologies: Array<{ name: string; icon: string }>;
   remainingCount: number;
@@ -8,7 +6,7 @@ interface Props {
 const { technologies, remainingCount } = Astro.props;
 ---
 
-<div class="relative group/tooltip">
+<div class="relative inline-flex group">
   <button
     class="w-8 h-8
       text-gray-500 font-medium
@@ -19,31 +17,35 @@ const { technologies, remainingCount } = Astro.props;
       md:w-9 md:h-9"
     data-shape="circular"
     aria-label={`Mostrar ${remainingCount} tecnologías adicionales`}
-    aria-expanded="false"
   >
     +{remainingCount}
   </button>
 
   <div
-    class="z-10
-      mb-2 px-3 py-2
-      text-white text-xs whitespace-nowrap
-      bg-gray-900
-      rounded-lg
-      opacity-0 transition-opacity pointer-events-none shadow-lg
-      absolute bottom-full left-1/2 -translate-x-1/2 group-hover/tooltip:opacity-100 duration-200"
+    class="px-3 py-1.5 text-xs text-white font-body
+    bg-gray-900/95 rounded-md shadow-md
+    opacity-0 translate-y-3 pointer-events-none
+    absolute bottom-[140%] left-1/2 -translate-x-1/2
+    leading-snug backdrop-blur-md z-20
+    transition-all duration-300 ease-out
+    group-hover:opacity-100 group-hover:translate-y-0
+    group-focus-within:opacity-100 group-focus-within:translate-y-0
+    text-left"
   >
-    <ul class="pointer-events-none">
+    <ul class="space-y-1">
       {
         technologies.slice(4).map((tech) => (
-          <li
-            class="
-              mb-1
-              pointer-events-none
-              last:mb-0
-            "
-          >
-            <Tooltip tech={tech} />
+          <li class="flex items-center gap-2 whitespace-nowrap">
+            <span class="inline-block w-3 h-3">
+              <svg
+                viewBox="0 0 128 128"
+                fill="currentColor"
+                class="w-full h-full"
+              >
+                <use href={`/techsSprite.svg#${tech.icon}`} />
+              </svg>
+            </span>
+            <span>{tech.name}</span>
           </li>
         ))
       }

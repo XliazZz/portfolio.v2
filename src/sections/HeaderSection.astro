@@ -15,7 +15,7 @@ import Typewriter from "../components/base/Typewriter.astro";
       2xl:h-[50vh]"
 >
   <div class="h-full w-full">
-    <GradientBackground client:load />
+    <GradientBackground client:idle />
   </div>
 
   <div
@@ -58,10 +58,14 @@ import Typewriter from "../components/base/Typewriter.astro";
            text-right"
         >
           Programador
+          <span class="sr-only">
+            {" "}
+            web full-stack, frontend y backend developer
+          </span>
         </h1>
 
         <div class="w-3"></div>
-        <Typewriter client:visible/>
+        <Typewriter client:visible aria-hidden="true" />
       </div>
 
       <p
@@ -70,17 +74,20 @@ import Typewriter from "../components/base/Typewriter.astro";
           leading-relaxed text-slate-300 font-body
           sm:w-[80%] sm:text-lg
           md:w-[90%] md:mt-6
-          lg:w-[80%] lg:mt-3 lg:text-base
+          lg:w-[85%] lg:mt-3 lg:text-base
           xl:text-xl"
       >
         Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
         diseño limpio.
-
+        <br />
         <span class="ocultar-en-movil">
-          Trabajo con tecnologías modernas como
+          {" "}
+          Como <span class="font-medium text-white"
+            >desarrollador web full-stack</span
+          >, trabajo con tecnologías modernas como{" "}
           <span class="font-medium text-white">
             JavaScript, Python, Astro, React y Node.js
-          </span>
+          </span>{" "}
           para transformar ideas en productos digitales.
         </span>
       </p>

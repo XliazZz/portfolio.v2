@@ -29,19 +29,31 @@ const {
   rolDescription,
 } = Astro.props;
 
+const siteUrl = Astro.site?.href ?? Astro.url.origin;
+
+const projectUrl = demoUrl || githubUrl || siteUrl;
+const titleId = `project-${title.toLowerCase().replace(/\s+/g, "-")}`;
+
 const projectSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
+  "@id": `${siteUrl}#${titleId}`,
   name: title,
-  description: description,
-  url: demoUrl || githubUrl || Astro.url.href,
+  description,
+  url: projectUrl,
   image: featuredImage,
+  inLanguage: "es",
   programmingLanguage: technologies.map((t) => t.name),
   keywords: technologies.map((t) => t.name).join(", "),
+  codeRepository: githubUrl,
   author: {
     "@type": "Person",
     name: "Elías Martínez",
-    url: Astro.url.base,
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${siteUrl}#projects`,
   },
 };
 ---
@@ -52,8 +64,9 @@ const projectSchema = {
   set:html={JSON.stringify(projectSchema)}
 />
 
-<div
+<article
   class="flex flex-col overflow-hidden w-full h-full max-w-[26rem] m-0 bg-white rounded-xl border border-gray-200 shadow-sm transition-all justify-between hover:shadow-md duration-300 hover:border-indigo-100"
+  aria-labelledby={titleId}
 >
   <div class="h-max border-b border-gray-100 relative group">
     <Image
@@ -73,15 +86,16 @@ const projectSchema = {
     </div>
   </div>
 
-  <div class="flex-grow flex flex-col w-full rounded p-2 md:pt-3 lg:pt-2">
+  <div class="flex-grow flex flex-col w-full rounded p-2 pb-3 md:pt-3 lg:pt-2">
     <div
       class="flex w-full sm:mb-4 items-center justify-between gap-0 md:mb-2 lg:gap-2"
     >
-      <h4
+      <h3
         class="mx-auto font-sans font-bold sm:text-lg text-gray-800 font-heading text-center antialiased py-2 md:py-auto md:my-0 md:m-0 md:mt-0 lg:mx-0 lg:mt-0 lg:text-left lg:text-base xl:text-xl"
+        id={titleId}
       >
         {title}
-      </h4>
+      </h3>
 
       <div
         class="flex flex-shrink-0 my-auto md:block lg:flex gap-2 md:space-y-2 lg:space-y-0"
@@ -101,7 +115,7 @@ const projectSchema = {
 
     <p
       class="mb-4 font-body text-sm text-gray-600 leading-relaxed antialiased line-clamp-3
-        **hidden sm:block** md:text-base md:pt-5 lg:pt-0"
+         hidden sm:block md:text-base md:pt-5 lg:pt-0"
     >
       {description}
     </p>
@@ -110,6 +124,6 @@ const projectSchema = {
       <TechChips technologies={technologies} />
     </div>
 
-    <CardLinks {...{ demoUrl, githubUrl }} />
+    <CardLinks {...{ demoUrl, githubUrl, title }} />
   </div>
-</div>
+</article>
