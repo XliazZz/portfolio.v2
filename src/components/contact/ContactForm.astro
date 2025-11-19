@@ -7,89 +7,87 @@ import Button from "../base/Button.astro";
 ---
 
 <form
-	id="contactForm"
-	action="#"
-	method="POST"
-	class="w-full px-6 xl:py-12 lg:px-0"
-	role="form"
-	aria-label="Formulario de contacto para nuevos proyectos"
+  id="contactForm"
+  action="#"
+  method="POST"
+  class="w-full px-6 xl:py-0 lg:px-0"
+  role="form"
+  aria-label="Formulario de contacto para nuevos proyectos"
 >
-	<div
-		class="grid grid-cols-2
+  <div class="grid grid-cols-2
 			gap-x-4 gap-y-6
-			lg:gap-x-8"
-	>
-		<div>
-			<Label for="name" text="Nombre completo" />
-			<div class="mt-1">
-				<Input
-					id="name"
-					type="text"
-					name="user_name"
-					autocomplete="name"
-					placeholder="Escribe tu nombre"
-					required
-				/>
-			</div>
-		</div>
+			lg:gap-x-8">
+    <div>
+      <Label for="name" text="Nombre completo" />
+      <div class="mt-1">
+        <Input
+          id="name"
+          type="text"
+          name="user_name"
+          autocomplete="name"
+          placeholder="Escribe tu nombre"
+          required
+        />
+      </div>
+    </div>
 
-		<div>
-			<Label for="email" text="Email" />
-			<div class="mt-1">
-				<Input
-					id="email"
-					type="email"
-					name="user_email"
-					autocomplete="email"
-					required
-					placeholder="Escribe tu email"
-				/>
-			</div>
-		</div>
+    <div>
+      <Label for="email" text="Email" />
+      <div class="mt-1">
+        <Input
+          id="email"
+          type="email"
+          name="user_email"
+          autocomplete="email"
+          required
+          placeholder="Escribe tu email"
+        />
+      </div>
+    </div>
 
-		<div class="col-span-2">
-			<Label for="project_type" text="Tipo de proyecto *" />
-			<div class="mt-1">
-				<Select
-					name="project_type"
-					id="project_type"
-					required
-					options={formOptionsData.projectOptions}
-				/>
-			</div>
-		</div>
+    <div class="col-span-2">
+      <Label for="project_type" text="Tipo de proyecto *" />
+      <div class="mt-1">
+        <Select
+          name="project_type"
+          id="project_type"
+          required
+          options={formOptionsData.projectOptions}
+        />
+      </div>
+    </div>
 
-		<div class="col-span-2">
-			<Label for="budget" text="Presupuesto" />
-			<div class="mt-1">
-				<Select
-					name="budget"
-					id="budget"
-					options={formOptionsData.budgetOptions}
-				/>
-			</div>
-		</div>
+    <div class="col-span-2">
+      <Label for="budget" text="Presupuesto" />
+      <div class="mt-1">
+        <Select
+          name="budget"
+          id="budget"
+          options={formOptionsData.budgetOptions}
+        />
+      </div>
+    </div>
 
-		<div class="col-span-2">
-			<Label for="delivery_time" text="Tiempo de entrega esperado" />
-			<div class="mt-1">
-				<Select
-					name="delivery_time"
-					id="delivery_time"
-					options={formOptionsData.deliveryTimeOptions}
-				/>
-			</div>
-		</div>
+    <div class="col-span-2">
+      <Label for="delivery_time" text="Tiempo de entrega esperado" />
+      <div class="mt-1">
+        <Select
+          name="delivery_time"
+          id="delivery_time"
+          options={formOptionsData.deliveryTimeOptions}
+        />
+      </div>
+    </div>
 
-		<div class="col-span-2">
-			<Label for="message" text="Cuéntame sobre tu proyecto *" />
-			<textarea
-				name="message"
-				id="message"
-				rows="4"
-				required
-				placeholder="Describe tu proyecto, objetivos, funcionalidades necesarias, público objetivo, etc."
-				class="block
+    <div class="col-span-2">
+      <Label for="message" text="Cuéntame sobre tu proyecto *" />
+      <textarea
+        name="message"
+        id="message"
+        rows="4"
+        required
+        placeholder="Describe tu proyecto, objetivos, funcionalidades necesarias, público objetivo, etc."
+        class="block
 					w-full
 					px-4 py-3
 					text-gray-900 font-body
@@ -99,18 +97,18 @@ import Button from "../base/Button.astro";
 					ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 transition duration-200 hover:bg-white
 					sm:text-sm sm:leading-6
 					md:text-base"
-			></textarea>
-		</div>
-	</div>
+      ></textarea>
+    </div>
+  </div>
 
-	<div class="flex mt-6 justify-end">
-		<Button
-			type="submit"
-			name="submit_form"
-			icon="sendIcon"
-			class="lg:py-3.5 w-full hover:bg-indigo-700 text-white bg-indigo-600 rounded-lg"
-		>
-			Enviar consulta
-		</Button>
-	</div>
+  <div class="flex mt-6 justify-end">
+    <Button
+      type="submit"
+      name="submit_form"
+      icon="sendIcon"
+      class="lg:py-3.5 w-full hover:bg-indigo-700 text-white bg-indigo-600 rounded-lg"
+    >
+      Enviar consulta
+    </Button>
+  </div>
 </form>

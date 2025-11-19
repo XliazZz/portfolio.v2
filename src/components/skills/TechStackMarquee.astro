@@ -22,13 +22,10 @@ const iconContainerClasses = `flex flex-col flex-shrink-0 w-20 h-20 mx-4 items-c
   xl:w-32 xl:h-32 xl:mx-5`;
 
 const iconSizeClasses =
-  "w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-18.5 xl:h-18.5 text-gray-500";
+  "w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-18.5 xl:h-18.5 text-gray-500 dark:text-slate-300";
 ---
 
-<div
-  class="marquee-container"
-  aria-label="Listado de tecnologías del stack"
->
+<div class="marquee-container" aria-label="Listado de tecnologías del stack">
   <ul class:list={[trackClass, "flex"]} role="list">
     {
       duplicatedData.map((item) => (

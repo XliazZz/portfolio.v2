@@ -1,5 +1,4 @@
 ---
-
 import Tooltip from "./Tooltip.astro";
 import IconSprite from "./IconSprite.astro";
 
@@ -44,9 +43,9 @@ const iconButtonClasses = `
       icons.map(({ href, id, title }) => (
         <li class="relative group">
           <a href={href} class={iconButtonClasses} aria-label={title}>
-            <IconSprite id={id} class="w-5 h-5"/>
+            <IconSprite id={id} class="w-5 h-5" />
           </a>
-          <Tooltip text={title} />
+          <Tooltip text={title} classProp="whitespace-nowrap" />
         </li>
       ))
     }
@@ -70,7 +69,6 @@ const iconButtonClasses = `
     color: white;
   }
 </style>
-
 
 <script is:inline>
   const nav = document.querySelector("[data-main-nav]");

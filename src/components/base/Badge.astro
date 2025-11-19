@@ -14,17 +14,35 @@ const getVariantClasses = () => {
   if (type === "role") {
     switch (roleType) {
       case "Full-Stack":
-        return "bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 cursor-default";
+        return `
+          bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 cursor-default
+          dark:from-indigo-900 dark:to-purple-900 dark:text-indigo-200
+        `;
+
       case "Front-End":
-        return "bg-gradient-to-r from-green-100 to-teal-100 text-green-800 cursor-default";
+        return `
+          bg-gradient-to-r from-green-100 to-teal-100 text-green-800 cursor-default
+          dark:from-green-900 dark:to-teal-900 dark:text-green-200
+        `;
+
       case "Back-End":
-        return "bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-500 cursor-default";
+        return `
+          bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-500 cursor-default
+          dark:from-yellow-900 dark:to-orange-900 dark:text-orange-200
+        `;
+
       default:
-        return "bg-gray-100 text-gray-700";
+        return `
+          bg-gray-100 text-gray-700
+          dark:bg-gray-800 dark:text-gray-300
+        `;
     }
   }
 
-  return "bg-gray-100 text-gray-700";
+  return `
+    bg-gray-100 text-gray-700
+    dark:bg-gray-800 dark:text-gray-300
+  `;
 };
 
 const visibilityClass = "hidden md:inline-flex";

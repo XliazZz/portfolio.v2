@@ -9,7 +9,7 @@ interface Props {
 const { type, value, icon, href } = Astro.props;
 
 const wrapperClasses = `
-    flex p-3 bg-white
+    flex p-3 bg-white dark:bg-gray-950 dark:border-indigo-900
     rounded-xl border border-indigo-100
     shadow-sm transition-all
     group items-center gap-3
@@ -44,15 +44,17 @@ const RootElement = href ? "a" : "div";
     </div>
 
     <div class="flex-1 min-w-0">
-      <dt class="font-medium text-gray-700 text-sm md:text-base">
+      <dt
+        class="font-medium text-gray-700 dark:text-white text-sm md:text-base"
+      >
         {type}:
       </dt>
       <dd
         class={`block font-medium text-sm md:text-base truncate
           ${
             href
-              ? "text-indigo-600 transition-colors hover:text-indigo-700 duration-150"
-              : "text-gray-800"
+              ? "text-indigo-600 dark:text-indigo-300 dark:hover:text-indigo-400 transition-colors hover:text-indigo-700 duration-150"
+              : "text-gray-800 dark:text-gray-400"
           }`}
       >
         {value}

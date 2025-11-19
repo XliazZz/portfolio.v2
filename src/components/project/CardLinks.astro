@@ -12,7 +12,7 @@ const { demoUrl, githubUrl, title } = Astro.props;
 
 <div
   class={`flex justify-center items-center
-		w-full px-1
+		w-full px-0
 		font-heading text-sm mt-2
 		rounded gap-3 uppercase lg:px-0 lg:py-0`}
 >
@@ -21,11 +21,11 @@ const { demoUrl, githubUrl, title } = Astro.props;
       <Button
         icon="external-link"
         href={demoUrl}
-        class={`py-0 text-sm w-full xl:py-3.5 rounded-lg`}
+        class={`py-0 text-sm w-full xl:py-3.5 rounded-lg dark:bg-indigo-950`}
         ariaLabel={`Ver demo del proyecto ${title}`}
         openInNewTab={true}
       >
-        Ver Demo
+        Demo
       </Button>
     )
   }
