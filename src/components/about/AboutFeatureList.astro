@@ -11,26 +11,24 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="mt-5 space-y-3
-    font-medium
-    md:mt-0
-    xl:mt-6">
+<ul class="mt-5 space-y-3 font-medium
+  md:mt-0
+  xl:mt-6">
   {
     items.map((item) => (
       <li
-        class="
-            flex
-            my-3
-            items-start
-            sm:my-4
-            md:my-5
-            lg:my-4 lg:col-span-1"
+        class=" flex my-3 items-start
+        sm:my-4
+        md:my-5
+        lg:my-4 lg:col-span-1"
       >
-        <div
-          class="flex-shrink-0"
-        >
+        <div class="flex-shrink-0">
           <svg
-            class="w-5 h-5 text-indigo-600"
+            class="
+              w-5 h-5
+              text-indigo-600
+              dark:text-indigo-400
+            "
             fill="currentColor"
             viewBox="0 0 20 20"
             aria-hidden="true"
@@ -43,16 +41,23 @@ const { items } = Astro.props;
           </svg>
         </div>
         <p
-          class="ml-3 leading-5 text-gray-600 text-sm
-              sm:text-[16px]
-              md:text-base
-              xl:text-lg"
+          class="
+            ml-3
+            leading-5 text-gray-600 text-sm
+            dark:text-gray-200
+            sm:text-[16px]
+            md:text-base
+            xl:text-lg
+          "
         >
           <strong
-            class="font-heading"
+            class="
+              font-heading text-gray-900
+              dark:text-gray-50
+            "
           >
             {item.title}
-          </strong>{" "}
+          </strong>
           {item.text}
         </p>
       </li>

@@ -65,10 +65,14 @@ const projectSchema = {
 />
 
 <article
-  class="flex flex-col overflow-hidden w-full h-full max-w-[26rem] m-0 bg-white rounded-xl border border-gray-200 shadow-sm transition-all justify-between hover:shadow-md duration-300 hover:border-indigo-100"
+  class="flex flex-col overflow-hidden w-full h-full max-w-[26rem] m-0 rounded-xl border shadow-sm transition-all justify-between hover:shadow-md duration-300
+  bg-white hover:border-indigo-100 border-gray-200
+    dark:bg-gray-950 dark:border-gray-900 dark:hover:border-indigo-900"
   aria-labelledby={titleId}
 >
-  <div class="h-max border-b border-gray-100 relative group">
+  <div
+    class="h-max border-b border-gray-100 dark:border-indigo-950 relative group"
+  >
     <Image
       class="object-cover w-full sm:h-48 h-32 rounded-t-xl transition-transform group-hover:scale-105 duration-300 xl:h-60"
       src={featuredImage}
@@ -86,12 +90,14 @@ const projectSchema = {
     </div>
   </div>
 
-  <div class="flex-grow flex flex-col w-full rounded p-2 pb-3 md:pt-3 lg:pt-2">
+  <div
+    class="grid grid-rows-[auto,auto,1fr,auto] w-full rounded p-2 pb-3 md:pt-3 lg:pt-2 flex-1"
+  >
     <div
       class="flex w-full sm:mb-4 items-center justify-between gap-0 md:mb-2 lg:gap-2"
     >
       <h3
-        class="mx-auto font-sans font-bold sm:text-lg text-gray-800 font-heading text-center antialiased py-2 md:py-auto md:my-0 md:m-0 md:mt-0 lg:mx-0 lg:mt-0 lg:text-left lg:text-base xl:text-xl"
+        class="font-bold text-sm sm:text-lg text-gray-800 dark:text-white font-heading text-center antialiased py-2 md:py-auto md:my-0 md:m-0 md:mt-0 lg:mx-0 lg:mt-0 lg:text-left md:text-base xl:text-xl"
         id={titleId}
       >
         {title}
@@ -113,17 +119,20 @@ const projectSchema = {
       </div>
     </div>
 
-    <p
-      class="mb-4 font-body text-sm text-gray-600 leading-relaxed antialiased line-clamp-3
-         hidden sm:block md:text-base md:pt-5 lg:pt-0"
-    >
-      {description}
-    </p>
-
-    <div class="lg:mt-auto xl:mt-2">
-      <TechChips technologies={technologies} />
+    <div>
+      <p
+        class="mb-4 font-body text-sm text-gray-600 dark:text-gray-300 leading-relaxed antialiased line-clamp-3
+        md:text-base md:pt-0 lg:pt-0"
+      >
+        {description}
+      </p>
     </div>
 
-    <CardLinks {...{ demoUrl, githubUrl, title }} />
+    <div></div>
+
+    <div class="flex flex-col gap-2 lg:mt-auto xl:mt-2">
+      <TechChips technologies={technologies} />
+      <CardLinks {...{ demoUrl, githubUrl, title }} />
+    </div>
   </div>
 </article>
