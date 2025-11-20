@@ -104,23 +104,18 @@ const iconButtonClasses = `
       const navObserver = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
-          // Si el Navbar NO está intersectando (no se ve), mostramos el Dock.
-          // Si el Navbar SI está intersectando (se ve), ocultamos el Dock.
           toggleDock(!entry.isIntersecting);
         },
         {
           root: null,
-          threshold: 0, // Se dispara apenas 1px del navbar entra/sale
+          threshold: 0,
         }
       );
 
       navObserver.observe(mainNav);
     } else {
-      // Fallback: Si por alguna razón no encuentra el navbar, muestra el dock siempre tras 1s
       setTimeout(() => toggleDock(true), 500);
     }
-
-    // --- 2. LÓGICA DE SCROLL SPY (Resaltar icono activo) ---
 
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("[data-dock-link]");

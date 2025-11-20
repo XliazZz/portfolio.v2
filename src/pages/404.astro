@@ -3,75 +3,91 @@ import Layout from "../layouts/Layout.astro";
 
 const pageTitle = "Página no encontrada | Elías Martínez";
 const pageDescription =
-  "La página que estás buscando no existe o fue movida. Volvé al inicio o explorá mis proyectos como desarrollador web full-stack.";
+  "La página que estás buscando no existe o fue movida. Volvé al inicio o explorá mis proyectos como desarrollador web full-stack.";
 const ogImage =
-  "https://res.cloudinary.com/do5ubt5g0/image/upload/v1763248298/WhatsApp_Image_2025-11-15_at_20.10.46_x9hddc.jpg";
+  "https://res.cloudinary.com/do5ubt5g0/image/upload/v1763248298/WhatsApp_Image_2025-11-15_at_20.10.46_x9hddc.jpg";
 
 const authorData = {
-  name: "Elías Martínez",
-  url: "https://portfolio-v2-rust-kappa.vercel.app/",
-  socialProfiles: {
-    linkedin: "https://www.linkedin.com/in/xliazzz/",
-    github: "https://github.com/XliazZz",
-    instagram: "https://www.instagram.com/xliazzz.dev/",
-  },
+  name: "Elías Martínez",
+  url: "https://portfolio-v2-rust-kappa.vercel.app/",
+  socialProfiles: {
+    linkedin: "https://www.linkedin.com/in/xliazzz/",
+    github: "https://github.com/XliazZz",
+    instagram: "https://www.instagram.com/xliazzz.dev/",
+  },
 };
 ---
 
 <Layout
-  title={pageTitle}
-  description={pageDescription}
-  image={ogImage}
-  authorName={authorData.name}
-  authorUrl={authorData.url}
-  socialProfiles={authorData.socialProfiles}
+  title={pageTitle}
+  description={pageDescription}
+  image={ogImage}
+  authorName={authorData.name}
+  authorUrl={authorData.url}
+  socialProfiles={authorData.socialProfiles}
 >
-  <main
-    class="min-h-screen flex flex-col items-center justify-center 
-        bg-gray-900 text-white px-4 
+  <main
+    class="min-h-screen flex flex-col items-center justify-center
+        bg-gray-900 text-white px-4
         relative overflow-hidden"
-  >
-    <div 
-      class="absolute inset-0 z-0 opacity-10 bg-gradient-to-br from-indigo-900 to-purple-900"
-    >
-      <div 
-        class="h-full w-full bg-[radial-gradient(#ffffff33_1px,transparent_1px)] 
+  >
+    <div
+      class="absolute inset-0 z-0 opacity-10 bg-gradient-to-br from-indigo-900 to-purple-900"
+    >
+      <div
+        class="h-full w-full bg-[radial-gradient(#ffffff33_1px,transparent_1px)]
           bg-[size:20px_20px]"
-      ></div>
-    </div>
+      >
+      </div>
+    </div>
 
-    <div class="text-center space-y-6 z-10 max-w-lg mx-auto">
-      
-      <div class="bg-gray-800 p-4 rounded-lg shadow-2xl border border-gray-700">
-        <p class="text-xs text-red-400 font-mono text-left mb-2">
-          <span class="text-green-400">$</span> Error: Page Not Found (HTTP 404)
-        </p>
-        <p class="text-5xl sm:text-7xl font-extrabold text-transparent bg-clip-text 
-            bg-gradient-to-r from-indigo-400 to-purple-400 font-heading">
-          404
-        </p>
-      </div>
+    <div class="text-center space-y-6 z-10 max-w-lg mx-auto">
+      <div class="bg-gray-800 p-4 rounded-lg shadow-2xl border border-gray-700">
+        <p class="text-xs text-red-400 font-mono text-left mb-2">
+          <span class="text-green-400">$</span> Error: Page Not Found (HTTP 404)
+        </p>
+        <p
+          class="text-5xl sm:text-7xl font-extrabold text-transparent bg-clip-text
+            bg-gradient-to-r from-indigo-400 to-purple-400 font-heading"
+        >
+          404
+        </p>
+      </div>
 
-      <p class="text-sm text-indigo-400 uppercase tracking-widest font-semibold pt-4">
-        Búsqueda Fallida
-      </p>
-      <h1 class="text-3xl sm:text-4xl font-bold font-heading">
-        La ruta no existe
-      </h1>
-      <p class="text-slate-400 max-w-md mx-auto text-lg">
-        El recurso al que intentaste acceder ha sido removido, renombrado o nunca existió.
-      </p>
+      <p
+        class="text-sm text-indigo-400 uppercase tracking-widest font-semibold pt-4"
+      >
+        Búsqueda Fallida
+      </p>
+      <h1 class="text-3xl sm:text-4xl font-bold font-heading">
+        La ruta no existe
+      </h1>
+      <p class="text-slate-400 max-w-md mx-auto text-lg">
+        El recurso al que intentaste acceder ha sido removido, renombrado o
+        nunca existió.
+      </p>
 
-      <a
-        href="/"
-        class="inline-flex items-center px-8 py-3 mt-6 rounded-full 
-          bg-indigo-600 text-white font-bold 
-          transition duration-300 hover:bg-indigo-500 shadow-lg 
+      <a
+        href="/"
+        class="inline-flex items-center px-8 py-3 mt-6 rounded-full
+          bg-indigo-600 text-white font-bold
+          transition duration-300 hover:bg-indigo-500 shadow-lg
           hover:shadow-indigo-500/50"
-      >
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-        Regresar al Home
-      </a>
-    </div>
-  </main>
+      >
+        <svg
+          class="w-5 h-5 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+        >
+                Regresar al Home
+      </a>
+    </div>
+  </main>
 </Layout>
