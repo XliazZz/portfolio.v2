@@ -1,5 +1,22 @@
 [
   {
+  "title": "Estudio Capilar Aurora",
+  "demoUrl": "https://landings-three-kohl.vercel.app/aurora",
+  "githubUrl": "https://github.com/XliazZz/landings/tree/main/src/components/estudio-capilar-aurora",
+  "technologies": [
+    { "name": "Astro", "icon": "lineicons:astro" },
+    { "name": "Tailwind", "icon": "teenyicons:tailwind-solid" },
+    { "name": "TypeScript", "icon": "bi:typescript" },
+    { "name": "JavaScript", "icon": "bi:javascript" }
+  ],
+  "description": "Landing page estilo editorial y 'high-end' para un estudio capilar premium.",
+  "descriptionEng": "Editorial and high-end style landing page for a premium hair salon. Focused on minimalist aesthetics and motion physics.",
+  "featuredImage": "https://res.cloudinary.com/do5ubt5g0/image/upload/v1764818390/Gemini_Generated_Image_o1xajo1xajo1xajo_dxfkmm.png",
+  "rol": "Front-End",
+  "category": "Landing Page",
+  "rolDescription": "Arquitectura modular con Astro, configuración de diseño 'scoped' con Tailwind v4, implementación de scroll inercial, texturas SVG y optimización SEO/Performance."
+},
+  {
     "title": "Wow Bao",
     "demoUrl": "https://wowbao.com.ar",
     "githubUrl": "https://github.com/XliazZz/Baos",
