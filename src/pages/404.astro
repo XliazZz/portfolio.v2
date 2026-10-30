@@ -1,24 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Icon from "../components/base/Icon.astro";
 
 const pageTitle = "Página no encontrada | Elías Martínez";
 const pageDescription =
-  "La página que estás buscando no existe o fue movida. Volvé al inicio o explorá mis proyectos como desarrollador web full-stack.";
-const ogImage =
-  "https://res.cloudinary.com/do5ubt5g0/image/upload/v1763248298/WhatsApp_Image_2025-11-15_at_20.10.46_x9hddc.jpg";
+  "La página que estás buscando no existe o fue movida. Volvé al inicio para ver mi experiencia, proyectos y CV.";
+const ogImage = new URL("/og-image.jpg", Astro.site).href;
 
 const authorData = {
   name: "Elías Martínez",
   url: "https://portfolio-v2-rust-kappa.vercel.app/",
   socialProfiles: {
-    linkedin: "https://www.linkedin.com/in/xliazzz/",
+    linkedin: "https://www.linkedin.com/in/eliasm166/",
     github: "https://github.com/XliazZz",
-    instagram: "https://www.instagram.com/xliazzz.dev/",
   },
 };
 ---
 
 <Layout
+  noindex
   title={pageTitle}
   description={pageDescription}
   image={ogImage}
@@ -27,67 +27,63 @@ const authorData = {
   socialProfiles={authorData.socialProfiles}
 >
   <main
-    class="min-h-screen flex flex-col items-center justify-center
-        bg-gray-900 text-white px-4
-        relative overflow-hidden"
+    id="main-content"
+    class="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 px-5 text-center"
   >
-    <div
-      class="absolute inset-0 z-0 opacity-10 bg-gradient-to-br from-indigo-900 to-purple-900"
+    <p class="font-mono text-label-md tracking-widest text-secondary">
+      <span class="text-tertiary">$</span> ERROR // HTTP 404
+    </p>
+    <p
+      class="bg-gradient-to-r from-tertiary via-primary to-secondary bg-clip-text font-display text-[120px] leading-none font-bold tracking-tighter text-transparent md:text-[180px]"
+      aria-hidden="true"
     >
-      <div
-        class="h-full w-full bg-[radial-gradient(#ffffff33_1px,transparent_1px)]
-          bg-[size:20px_20px]"
-      >
-      </div>
-    </div>
-
-    <div class="text-center space-y-6 z-10 max-w-lg mx-auto">
-      <div class="bg-gray-800 p-4 rounded-lg shadow-2xl border border-gray-700">
-        <p class="text-xs text-red-400 font-mono text-left mb-2">
-          <span class="text-green-400">$</span> Error: Page Not Found (HTTP 404)
-        </p>
-        <p
-          class="text-5xl sm:text-7xl font-extrabold text-transparent bg-clip-text
-            bg-gradient-to-r from-indigo-400 to-purple-400 font-heading"
-        >
-          404
-        </p>
-      </div>
-
-      <p
-        class="text-sm text-indigo-400 uppercase tracking-widest font-semibold pt-4"
-      >
-        Búsqueda Fallida
-      </p>
-      <h1 class="text-3xl sm:text-4xl font-bold font-heading">
-        La ruta no existe
-      </h1>
-      <p class="text-slate-400 max-w-md mx-auto text-lg">
-        El recurso al que intentaste acceder ha sido removido, renombrado o
-        nunca existió.
-      </p>
-
-      <a
-        href="/"
-        class="inline-flex items-center px-8 py-3 mt-6 rounded-full
-          bg-indigo-600 text-white font-bold
-          transition duration-300 hover:bg-indigo-500 shadow-lg
-          hover:shadow-indigo-500/50"
-      >
-        <svg
-          class="w-5 h-5 mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
-        >
-                Regresar al Home
-      </a>
-    </div>
+      404
+    </p>
+    <h1
+      class="font-display text-headline-md-mobile font-bold text-on-surface uppercase md:text-headline-md"
+      data-en="Route not found"
+    >
+      La ruta no existe
+    </h1>
+    <p
+      class="max-w-md text-body-lg text-on-surface-variant"
+      data-en="The resource you tried to reach was removed, renamed or never existed."
+    >
+      El recurso al que intentaste acceder fue removido, renombrado o nunca
+      existió.
+    </p>
+    <a
+      href="/"
+      data-en-href="/en/"
+      class="mt-4 inline-flex items-center gap-2 rounded-sm bg-tertiary px-6 py-2.5 font-mono text-label-md font-semibold tracking-wider text-on-tertiary shadow-[0_0_25px_rgba(39,218,240,0.3)] transition-colors hover:bg-tertiary-fixed"
+    >
+      <Icon name="arrow_back" />
+      <span data-en="BACK HOME">VOLVER AL INICIO</span>
+    </a>
   </main>
+
+  <script is:inline>
+    // Vercel serves this one file for every missing path, /en/ included, so it picks its language here.
+    let saved = null;
+    try {
+      saved = localStorage.getItem("lang");
+    } catch {}
+    const browser = (
+      navigator.languages?.[0] ??
+      navigator.language ??
+      "es"
+    ).toLowerCase();
+    if (
+      location.pathname.startsWith("/en") ||
+      (saved ?? (browser.startsWith("es") ? "es" : "en")) === "en"
+    ) {
+      document.documentElement.lang = "en";
+      document
+        .querySelectorAll("[data-en]")
+        .forEach((el) => (el.textContent = el.dataset.en));
+      document
+        .querySelectorAll("[data-en-href]")
+        .forEach((el) => (el.href = el.dataset.enHref));
+    }
+  </script>
 </Layout>

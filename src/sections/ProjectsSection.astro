@@ -1,64 +1,277 @@
 ---
-import CardProject from "../components/project/CardProject.astro";
+import { Image } from "astro:assets";
+import Section from "../components/base/Section.astro";
+import Icon from "../components/base/Icon.astro";
 import projectsData from "../data/projectsCard.json";
-import HeaderProjects from "../components/project/HeaderProjects.astro";
+
+interface Props {
+  lang: "es" | "en";
+}
+
+const en = Astro.props.lang === "en";
+
+const featured = projectsData.filter((p) => p.featured);
+const archive = projectsData.filter((p) => !p.featured);
+
+const accents = [
+  {
+    text: "text-tertiary",
+    hoverText: "group-hover:text-tertiary",
+    border: "hover:border-tertiary",
+    badge: "border-tertiary/40 text-tertiary",
+    button: "bg-tertiary text-on-tertiary hover:bg-tertiary-fixed",
+  },
+  {
+    text: "text-primary",
+    hoverText: "group-hover:text-primary",
+    border: "hover:border-primary",
+    badge: "border-primary/40 text-primary",
+    button: "bg-primary text-on-primary hover:bg-primary-fixed",
+  },
+  {
+    text: "text-secondary",
+    hoverText: "group-hover:text-secondary",
+    border: "hover:border-secondary",
+    badge: "border-secondary/40 text-secondary",
+    button: "bg-secondary text-on-secondary hover:bg-secondary-fixed",
+  },
+];
+
+const MAX_CHIPS = 6;
 
 const projectsListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Proyectos de desarrollo web de Elías Martínez",
+  name: en
+    ? "Web development projects by Elías Martínez"
+    : "Proyectos de desarrollo web de Elías Martínez",
   itemListElement: projectsData.map((project, index) => ({
     "@type": "SoftwareSourceCode",
     position: index + 1,
     name: project.title,
-    description: project.description,
+    description: en ? project.descriptionEng : project.description,
     url: project.demoUrl || project.githubUrl,
     image: project.featuredImage,
+    codeRepository: project.githubUrl,
+    programmingLanguage: project.technologies.map((t) => t.name),
   })),
 };
 ---
 
-<section
-  class="py-14
-      bg-gray-50 dark:bg-gray-950
-      relative
-      lg:py-28
-      xl:py-22
-      2xl:py-36"
->
+<Section id="projects" index="04" tag="PROYECTOS" tagEn="PROJECTS">
   <script
     type="application/ld+json"
     is:inline
     set:html={JSON.stringify(projectsListSchema)}
   />
 
-  <div
-    class="max-w-4xl px-4
-      sm:mx-8
-      md:mx-10
-      lg:mx-auto lg:max-w-5xl lg:px-5
-      xl:max-w-6xl xl:px-0
-      2xl:max-w-7xl"
-  >
-    <HeaderProjects />
-    <ul
-      class="grid grid-cols-1 sm:grid-cols-2
-    mt-12
-    gap-2 gap-y-4 sm:gap-6
-    md:mt-16 md:gap-9
-    lg:grid-cols-3 lg:mt-14 lg:gap-4 lg:w-full lg:mx-auto lg:gap-y-8
-    xl:gap-10
-    2xl:mt-20
-    items-stretch
-    [grid-auto-rows:1fr]"
+  <span slot="status" class="text-secondary">
+    {String(projectsData.length).padStart(2, "0")}
+    <span data-en="PROJECTS DEPLOYED">PROYECTOS DESPLEGADOS</span>
+  </span>
+
+  <div class="flex flex-col gap-2">
+    <h2
+      id="projects-title"
+      class="font-display text-headline-md-mobile font-bold tracking-tight text-on-surface uppercase md:text-headline-md"
+      data-en="Selected work"
     >
+      Trabajos seleccionados
+    </h2>
+    <p
+      class="max-w-2xl text-body-md text-on-surface-variant"
+      data-en="Landing pages, e-commerce and full stack apps: all deployed and with their source code available."
+    >
+      Landing pages, e-commerce y aplicaciones full stack: todas desplegadas y
+      con su código disponible.
+    </p>
+  </div>
+
+  <ul class="flex flex-col gap-6">
+    {
+      featured.map((project, i) => {
+        const a = accents[i % accents.length];
+        const host = new URL(project.demoUrl).host;
+        const extra = project.technologies.length - MAX_CHIPS;
+        return (
+          <li
+            class:list={[
+              "group flex flex-col gap-6 rounded-xl border border-outline-variant/40 bg-surface-container/70 p-5 shadow-xl backdrop-blur-2xl transition-all duration-500 md:p-6",
+              i % 2 ? "lg:flex-row-reverse" : "lg:flex-row",
+              a.border,
+            ]}
+          >
+            <div class="flex flex-col justify-between gap-4 lg:w-1/2">
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between font-mono text-label-sm tracking-widest">
+                  <span class={a.text}>
+                    SYS.0{i + 1} // {project.category.toUpperCase()}
+                  </span>
+                  <span class="text-outline">{project.rol.toUpperCase()}</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h3
+                    class:list={[
+                      "font-display text-headline-md-mobile font-bold text-on-surface uppercase transition-colors md:text-headline-md",
+                      a.hoverText,
+                    ]}
+                  >
+                    {project.title}
+                  </h3>
+                  {project.bootcamp && (
+                    <span class="rounded-sm border border-secondary/40 px-1.5 py-0.5 font-mono text-label-sm tracking-widest text-secondary">
+                      BOOTCAMP // HENRY
+                    </span>
+                  )}
+                </div>
+                <p
+                  class="text-body-md text-on-surface-variant"
+                  data-en={project.descriptionEng}
+                >
+                  {project.description}
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                <ul class="flex flex-wrap gap-2" aria-label="Tecnologías">
+                  {project.technologies.slice(0, MAX_CHIPS).map((tech, j) => (
+                    <li
+                      class:list={[
+                        "rounded-sm bg-surface-container-high px-2.5 py-1 font-mono text-label-sm uppercase",
+                        j < 2 ? a.text : "text-on-surface-variant",
+                      ]}
+                    >
+                      {tech.name}
+                    </li>
+                  ))}
+                  {extra > 0 && (
+                    <li class="rounded-sm px-2.5 py-1 font-mono text-label-sm text-outline">
+                      +{extra}
+                    </li>
+                  )}
+                </ul>
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={[
+                      "inline-flex items-center gap-2 rounded-sm px-4 py-2 font-mono text-label-sm font-semibold tracking-wider transition-colors",
+                      a.button,
+                    ]}
+                  >
+                    <Icon name="visibility" size={16} />
+                    <span data-en="LIVE DEMO">VER DEMO</span>
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-sm border border-outline-variant/50 bg-surface-container px-4 py-2 font-mono text-label-sm text-on-surface transition-colors hover:border-primary hover:text-primary"
+                  >
+                    <Icon name="code" size={16} />
+                    <span data-en="SOURCE // GITHUB">CÓDIGO // GITHUB</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col overflow-hidden rounded-lg border border-outline-variant/30 bg-surface-container-lowest lg:w-1/2">
+              <div class="flex items-center justify-between border-b border-outline-variant/20 bg-surface-container px-4 py-2 font-mono text-label-sm text-outline">
+                <span>{host}</span>
+                <span class="flex items-center gap-1.5" aria-hidden="true">
+                  <span class="h-2 w-2 rounded-full bg-error" />
+                  <span class="h-2 w-2 rounded-full bg-secondary" />
+                  <span class="h-2 w-2 rounded-full bg-tertiary" />
+                </span>
+              </div>
+              <div class="relative h-64 w-full overflow-hidden md:h-80">
+                <Image
+                  src={project.featuredImage.replace(
+                    "/upload/",
+                    "/upload/w_960,f_auto,q_auto/",
+                  )}
+                  alt={`Captura del proyecto ${project.title}`}
+                  width={960}
+                  height={540}
+                  sizes="(min-width: 1024px) 600px, 100vw"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent" />
+                <span
+                  class:list={[
+                    "absolute bottom-3 left-3 rounded-sm border bg-surface-container-lowest/80 px-3 py-1 font-mono text-label-sm backdrop-blur-md",
+                    a.badge,
+                  ]}
+                >
+                  ONLINE // {project.rol.toUpperCase()}
+                </span>
+              </div>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  <div class="mt-6 flex flex-col gap-3">
+    <h3
+      class="font-mono text-label-md tracking-widest text-on-surface"
+      data-en="// ARCHIVE — MORE PROJECTS"
+    >
+      // ARCHIVO — MÁS PROYECTOS
+    </h3>
+    <ul class="flex flex-col border-t border-white/5">
       {
-        projectsData.map((project) => (
-          <li class="flex  mx-auto justify-center items-center content-center">
-            <CardProject {...project} />
+        archive.map((project, i) => (
+          <li class="grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-4 gap-y-1 border-b border-white/5 px-2 py-4 transition-colors hover:bg-gradient-to-r hover:from-primary-container/10 hover:to-transparent md:grid-cols-[3rem_1.2fr_7rem_1.6fr_auto]">
+            <span class="font-mono text-label-sm text-outline">
+              {String(featured.length + i + 1).padStart(2, "0")}
+            </span>
+            <span class="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span class="font-display text-headline-sm text-on-surface">
+                {project.title}
+              </span>
+              {project.bootcamp && (
+                <span class="rounded-sm border border-secondary/40 px-1.5 py-0.5 font-mono text-label-sm tracking-widest text-secondary">
+                  BOOTCAMP // HENRY
+                </span>
+              )}
+            </span>
+            <span class="col-start-2 font-mono text-label-sm tracking-widest text-tertiary md:col-start-auto">
+              {project.rol.toUpperCase()}
+            </span>
+            <span class="col-start-2 font-mono text-label-sm text-on-surface-variant uppercase md:col-start-auto">
+              {project.technologies
+                .slice(0, 4)
+                .map((t) => t.name)
+                .join(" · ")}
+            </span>
+            <span class="col-start-3 row-span-3 row-start-1 flex items-center gap-1 md:col-start-auto md:row-span-1 md:row-start-auto">
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-9 w-9 items-center justify-center rounded-sm text-on-surface-variant transition-colors hover:bg-surface-container hover:text-tertiary"
+                aria-label={`Demo de ${project.title}`}
+              >
+                <Icon name="open_in_new" size={18} />
+              </a>
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-9 w-9 items-center justify-center rounded-sm text-on-surface-variant transition-colors hover:bg-surface-container hover:text-primary"
+                aria-label={`Código de ${project.title} en GitHub`}
+              >
+                <Icon name="code" size={18} />
+              </a>
+            </span>
           </li>
         ))
       }
     </ul>
   </div>
-</section>
+</Section>

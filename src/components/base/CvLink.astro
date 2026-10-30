@@ -1,0 +1,15 @@
+---
+// Downloads the CV in the page language: the /en/ build swaps href through data-en-href (src/middleware.ts).
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<a
+  href="/cv/Elias_Martinez_CV_ES.pdf"
+  data-en-href="/cv/Elias_Martinez_CV_EN.pdf"
+  download
+  class={className}><slot /></a
+>

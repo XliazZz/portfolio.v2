@@ -1,149 +1,103 @@
----
+# Elías Martínez · Software Engineer · Full Stack
 
-# 🚀 **Portfolio Personal — Elías Martínez**
+![Portfolio de Elías Martínez](public/og-image.jpg)
 
-## **Desarrollador Web Full-Stack | Performance · Accesibilidad · SEO**
+Portfolio personal y CV online. Muestra mi experiencia, stack y proyectos, con descarga del CV en español o inglés.
 
-Repositorio oficial de mi **portfolio personal** y sitio web profesional.
-Construido con foco en **rendimiento extremo**, **accesibilidad (A11y)** y **SEO avanzado**, aprovechando al máximo las ventajas de **Astro + Arquitectura de Islas**.
-
----
-
-# ✨ **Características Principales**
-
-Este proyecto no es solo una muestra de mis trabajos:
-es una **implementación real de buenas prácticas modernas** en desarrollo web.
-
-### **⚡ Performance / Web Vitals**
-
-* LCP, CLS y INP optimizados con SSR y carga de scripts inteligente.
-* JavaScript reducido al mínimo gracias al modelo Zero-JS de Astro.
-
-### **🏝️ Arquitectura de Islas (Islands Architecture)**
-
-Cargas solo lo necesario:
-
-* `client:visible` → hidrata cuando aparece en pantalla
-* `client:idle` → hidrata cuando la CPU está libre
-* Resultado: **hasta 80% menos JavaScript enviado al cliente.**
-
-### **🎨 Diseño & UI**
-
-* Interfaz desarrollada con **Tailwind CSS**, escalable y altamente personalizable.
-* Animaciones optimizadas sin bloquear el render.
-
-### **🔍 SEO Avanzado**
-
-Incluye:
-
-* `JSON-LD` estructurado con:
-
-  * **Person**
-  * **ContactPoint**
-  * **WebSite**
-  * **ItemList**
-  * **SoftwareSourceCode** para cada proyecto
-* Preload de fuentes, SVG sprites y Cloudinary.
-
-### **♿ Accesibilidad Real (A11Y)**
-
-* Navegación con teclado
-* ARIA Labels
-* Enlaces semánticos
-* Jerarquía correcta de headings
+**Sitio:** [portfolio-v2-rust-kappa.vercel.app](https://portfolio-v2-rust-kappa.vercel.app/)
 
 ---
 
-# 🛠️ **Tecnologías Utilizadas**
+## Qué tiene
 
-| Categoría           | Tecnologías               | Uso                       |
-| ------------------- | ------------------------- | ------------------------- |
-| **Framework**       | Astro                     | SSG + SSR + Islands       |
-| **Estilos**         | Tailwind CSS              | UI moderna y responsive   |
-| **Frontend**        | HTML, CSS, JS, TypeScript | Base del proyecto         |
-| **Herramientas**    | Vite, PNPM                | Bundling y performance    |
-| **Infraestructura** | Vercel                    | Deploy continuo           |
-| **Imágenes**        | Cloudinary                | Optimización automatizada |
+- **Diseño "Neon Future"** creado en Google Stitch e implementado con tokens de Tailwind v4: tipografía Space Grotesk / Inter / JetBrains Mono, paneles de vidrio, bordes finos y acentos cian, violeta y magenta.
+- **Fondo WebGL**: shader procedural que reproduce la vista de página completa de Stitch. Queda oscuro en el hero y en contacto, y se ilumina en la zona del stack y la experiencia.
+- **Esfera 3D interactiva** (canvas 2D con proyección en perspectiva, sin librerías): una esfera geodésica cuyos nodos principales son mi stack, agrupado en tres planos (frontend, backend y sistemas/IA) con sus órbitas. Se arrastra para rotarla y se ilumina con el cursor.
+- **Español / inglés**: dos páginas estáticas, `/` y `/en/`, ambas indexables y enlazadas con `hreflang`. En la primera visita, un navegador que no está en español va a `/en/` (los buscadores no), y la elección manual se recuerda.
+- **Descarga del CV** en el idioma activo (`public/cv/`).
+- **Formulario de contacto** con EmailJS y validación en ambos idiomas.
+- **SEO**: canonical y `hreflang` por idioma, JSON-LD (`Person`, `WebSite`, `ItemList` de proyectos) en cada idioma, Open Graph, sitemap y robots. El 404 es `noindex`.
+- **Accesibilidad**: navegación por teclado, link para saltar al contenido, estados `aria-current` / `aria-pressed` y respeto de `prefers-reduced-motion` (el fondo y la esfera quedan quietos).
 
----
-
-# 📂 **Estructura del Proyecto**
-
-Organizado para escalabilidad, claridad y mantenibilidad.
-
-### **`src/pages/` — Rutas públicas**
-
-Contiene las páginas visibles del sitio (`index.astro`, `404.astro`).
-
-### **`src/layouts/` — Plantillas**
-
-Incluye:
-
-* Metadatos de SEO globales
-* JSON-LD para Person + WebSite
-* Preloads optimizados
-
-### **`src/sections/` — Bloques de página**
-
-Secciones completas como:
-
-* Header
-* Skills
-* Projects
-* Contact
-
-### **`src/components/` — Componentes reutilizables**
-
-Botones, tarjetas, chips, tooltips, etc.
-
-### **`src/data/` — Capa de datos**
-
-JSON con proyectos, habilidades y servicios.
-
-### **`public/` — Assets estáticos**
-
-Favicons, sprites, imágenes, manifest y JS sin procesar.
+Lighthouse (laboratorio): **Performance 100 en desktop y 99 en mobile**, con Accesibilidad, Buenas prácticas y SEO en 100. Las fuentes se sirven desde el propio sitio y el CSS va incrustado en el HTML, así que nada bloquea el primer pintado.
 
 ---
 
-# 🧠 **Arquitectura & Decisiones Técnicas**
+## Stack
 
-### **Schemas Anidados**
-
-* Global (`Layout.astro`) define información del autor.
-* Cada proyecto añade su propio `SoftwareSourceCode`.
-
-### **Carga Inteligente**
-
-* El 90% de la UI es **HTML + CSS sin JS**.
-* Componentes interactivos cargan solo cuando:
-
-  * el usuario los ve (`client:visible`)
-  * el navegador está idle (`client:idle`)
-
-### **Accesibilidad Pensada**
-
-* Tooltips accesibles
-* Navegación por teclado
-* Colores compatibles con WCAG
+| | |
+| --- | --- |
+| Framework | [Astro 5](https://astro.build) (sitio estático) |
+| Estilos | [Tailwind CSS 4](https://tailwindcss.com) (`@theme` en `src/styles/global.css`) |
+| Gráficos | WebGL (fondo) y Canvas 2D (esfera), sin dependencias |
+| Contacto | [EmailJS](https://www.emailjs.com) + SweetAlert2 |
+| Imágenes | Cloudinary (redimensionadas por URL) |
+| Deploy | Vercel |
 
 ---
 
-# 📄 **Licencia**
+## Correr el proyecto
 
-Este proyecto está bajo licencia **MIT**.
-Puedes usar el código como referencia o inspiración manteniendo la atribución original.
+Requisitos: Node 20+ y pnpm.
+
+```bash
+pnpm install
+pnpm dev       # http://localhost:4321
+pnpm build     # genera dist/
+pnpm preview   # sirve dist/
+```
+
+El formulario necesita las credenciales de EmailJS en un `.env` en la raíz. En Vercel, cargalas en **Settings → Environment Variables**, tanto para *Production* como para *Preview*:
+
+```bash
+PUBLIC_SERVICEID=service_xxxxxxx
+PUBLIC_TEMPLATEID=template_xxxxxxx
+PUBLIC_KEY=xxxxxxxxxxxxxxx
+```
+
+El template de EmailJS recibe `{{user_name}}`, `{{user_email}}`, `{{company}}` y `{{message}}`.
 
 ---
 
-# 📬 **Contacto**
+## Dónde editar el contenido
 
-¿Consultas o propuestas laborales?
+| Qué | Archivo |
+| --- | --- |
+| Proyectos (`featured` = tarjeta grande, `bootcamp` = etiqueta) | `src/data/projectsCard.json` |
+| Email, teléfono, ubicación y redes | `src/data/contactAndSocial.json` |
+| Tecnologías del marquee | `src/data/stackData.ts` |
+| Clusters del stack | `src/sections/SkillsSection.astro` |
+| Experiencia y formación | `src/sections/ExperienceSection.astro` |
+| Tecnologías de la esfera 3D | `src/components/base/NodeSphere.astro` |
+| CV en PDF (ES / EN) | `public/cv/` |
 
-* **LinkedIn:** [https://www.linkedin.com/in/xliazzz/](https://www.linkedin.com/in/xliazzz/)
-* **GitHub:** [https://github.com/XliazZz](https://github.com/XliazZz)
-* **Email:** [eliasdev1912@gmail.com](mailto:eliasdev1912@gmail.com)
-* **Instagram:** [@xliazzz.dev](https://www.instagram.com/xliazzz.dev)
-* **WhatsApp:** [Hablemos por WhatsApp](https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web)
+Los textos en inglés viven junto al español, en el atributo `data-en` de cada elemento (o `data-en-href`, `data-en-placeholder`, etc. para atributos). Al compilar, `src/middleware.ts` genera `/en/` reemplazando cada texto por su versión en inglés. Un elemento con `data-en` solo puede contener texto: si tiene etiquetas adentro, el build falla para que no quede en español sin aviso.
+
+## Estructura
+
+```
+src/
+├── pages/        inicio (/ y /en/) y 404
+├── layouts/      <head>, SEO, fondo y motor de idioma
+├── sections/     hero, perfil, stack, experiencia, proyectos, contacto, footer
+├── components/   base (nav, sección, íconos, shader, esfera, link al CV) y formulario
+├── data/         contenido en JSON / TS
+├── styles/       tokens del diseño
+└── middleware.ts arma la versión en inglés al compilar
+public/
+├── cv/           CV en español e inglés
+└── utils/        envío del formulario y avisos
+```
 
 ---
+
+## Licencia
+
+MIT. Podés usar el código como referencia o inspiración manteniendo la atribución.
+
+## Contacto
+
+- **LinkedIn:** [linkedin.com/in/eliasm166](https://www.linkedin.com/in/eliasm166/)
+- **GitHub:** [github.com/XliazZz](https://github.com/XliazZz)
+- **Email:** [eliasdev1912@gmail.com](mailto:eliasdev1912@gmail.com)
+- **WhatsApp:** [+54 11 4888-4304](https://wa.me/5491148884304)

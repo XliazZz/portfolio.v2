@@ -1,121 +1,152 @@
 ---
-import AboutFeatureList from "../components/about/AboutFeatureList.astro";
+import Section from "../components/base/Section.astro";
 
-const listItems = [
+const stats = [
   {
-    title: "Diseño Responsive:",
-    text: "Experiencias optimizadas para todos los dispositivos.",
+    label: "LÍNEAS DE BACKEND",
+    labelEn: "BACKEND LINES",
+    value: "~25K",
+    text: "Python en tiempo real · TCP / UDP / HTTPS",
+    textEn: "Real-time Python · TCP / UDP / HTTPS",
+    color: "text-tertiary",
+    hover: "hover:border-tertiary",
+    bar: "from-tertiary",
   },
   {
-    title: "Rendimiento:",
-    text: "Aplicaciones rápidas y eficientes que mejoran la experiencia.",
+    label: "SUITES DE PRUEBAS",
+    labelEn: "TEST SUITES",
+    value: "83",
+    text: "~32.000 líneas con cliente simulado",
+    textEn: "~32,000 lines with a simulated client",
+    color: "text-primary",
+    hover: "hover:border-primary",
+    bar: "from-primary",
   },
   {
-    title: "Código Limpio:",
-    text: "Desarrollo mantenible y escalable usando mejores prácticas.",
+    label: "TIEMPO DE CARGA",
+    labelEn: "LOAD TIME",
+    value: "-90%",
+    text: "Motor concurrente de PDFs",
+    textEn: "Concurrent PDF engine",
+    color: "text-secondary",
+    hover: "hover:border-secondary",
+    bar: "from-secondary",
   },
   {
-    title: "Comunicación Clara:",
-    text: "Trabajo colaborativo y transparencia en cada proyecto.",
+    label: "JUGADORES POR PARTIDA",
+    labelEn: "PLAYERS PER MATCH",
+    value: "60+",
+    text: "Más bots, en un servidor propio",
+    textEn: "Plus bots, on a custom server",
+    color: "text-on-surface",
+    hover: "hover:border-tertiary-fixed",
+    bar: "from-tertiary-fixed",
   },
 ];
 ---
 
-<section
-  class="overflow-hidden py-14 px-3 bg-gray-50
-  dark:bg-gradient-to-br dark:from-indigo-950 dark:via-slate-900 dark:to-indigo-950
-  sm:py-16
-  md:pt-24 md:px-7 md:pb-0
-  lg:py-32 lg:pb-10 lg:px-5"
->
-  <div
-    class="max-w-[90rem] px-0 mx-auto
-    sm:max-w-full sm:px-1
-    lg:max-w-5xl
-    xl:max-w-6xl xl:px-0
-    2xl:max-w-7xl"
+<Section id="about" index="01" tag="PERFIL" tagEn="PROFILE">
+  <span
+    slot="status"
+    class="flex items-center gap-2 rounded-sm bg-surface-container px-3 py-1 text-on-surface-variant"
   >
-    <div
-      class="grid grid-cols-1
-      md:grid-cols-2 md:gap-x-4 md:items-stretch
-      lg:flex lg:gap-0 lg:flex-row lg:mx-auto lg:items-center lg:justify-between"
+    <span class="h-2 w-2 rounded-full bg-tertiary"></span>
+    <span data-en="COMPUTER SCIENCE // UBA"
+      >CIENCIAS DE LA COMPUTACIÓN // UBA</span
     >
-      <div class="relative">
-        <div
-          class="text-sm tracking-widest absolute left-[40%] -top-6 rotate-0 hidden lg:inline
-            md:-left-16 md:top-16 md:rotate-[-90deg]
-            lg:top-0"
-        >
-          <div
-            class="flex
-              items-center justify-center gap-2 ocultar-en-tablet"
-          >
-            <div class="w-10 h-[2px] xl:w-14 bg-indigo-600 dark:bg-indigo-400">
-            </div>
+  </span>
 
-            <p class="font-body uppercase dark:text-gray-200">Sobre Mí</p>
-          </div>
-        </div>
+  <h2
+    id="about-title"
+    class="max-w-4xl font-display text-headline-lg-mobile font-bold tracking-tight text-on-surface uppercase md:text-headline-lg"
+    data-en="From interface to protocol: software that works end to end."
+  >
+    De la interfaz al protocolo: software que funciona de punta a punta.
+  </h2>
 
-        <h2
-          class="mx-auto text-2xl font-bold leading-tight font-heading text-center
-          text-gray-900 dark:text-white sm:text-3xl
-          md:text-3xl
-          xl:mb-4 lg:pl-10 lg:text-left xl:text-4xl xl:ml-6 xl:p-0"
-        >
-          Creando Experiencias <br /> Digitales Excepcionales
-        </h2>
-
-        <div
-          class="my-5
-          lg:my-10
-          xl:max-w-2xl xl:ml-6 xl:my-14 xl:col-start-2"
-        >
-          <p
-            class="text-base font-semibold leading-6 text-indigo-500 text-center
-            dark:text-indigo-400 uppercase
-            lg:text-left"
-          >
-            Desarrollo Centrado en el Usuario
-          </p>
-          <h3
-            class="mt-4
-            text-2xl font-extrabold leading-8 text-gray-900 font-heading
-            dark:text-white ocultar-en-movil
-            sm:text-3xl sm:leading-9
-            md:mb-6 md:text-xl md:text-gray-700 md:dark:text-gray-200 lg:my-4 xl:text-2xl"
-          >
-            Soluciones que Marcan la Diferencia
-          </h3>
-
-          <AboutFeatureList items={listItems} />
-        </div>
-      </div>
+  <div class="mt-2 grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
+    <div class="flex flex-col gap-4 lg:col-span-7">
+      <p
+        class="text-body-lg text-on-surface"
+        data-en="I'm a full stack developer with experience in web applications (React, Node.js, Astro, Supabase) and real-time backends. I study Computer Science at the University of Buenos Aires, which gives me a solid foundation in algorithms and software architecture."
+      >
+        Soy desarrollador full stack con experiencia en aplicaciones web (React,
+        Node.js, Astro, Supabase) y en backends de tiempo real. Estudio la
+        Licenciatura en Ciencias de la Computación en la UBA, lo que me da una
+        base sólida en algoritmos y arquitectura de software.
+      </p>
+      <p
+        class="text-body-md text-on-surface-variant"
+        data-en="Together with Claude Code (an AI agent) I built the complete backend of a mobile multiplayer game for Android and iOS: binary protocol, cryptography, server-side physics and more than 80 test suites. I use AI agents as a tool: I set the goals, direct the research and test every change."
+      >
+        Junto a Claude Code (agente de IA) desarrollé el backend completo de un
+        juego multijugador móvil para Android e iOS: protocolo binario,
+        criptografía, física del lado servidor y más de 80 suites de pruebas.
+        Uso los agentes de IA como herramienta: defino los objetivos, dirijo la
+        investigación y pruebo cada cambio.
+      </p>
 
       <div
-        class="mt-5 hidden
-        md:flex md:overflow-hidden md:min-h-[28rem] md:relative md:items-end md:justify-center
-        lg:mt-0 lg:w-[43%] lg:flex-shrink-0"
+        class="mt-2 flex flex-col gap-2 rounded-lg border border-outline-variant/30 bg-surface-container/60 p-4 backdrop-blur-xl"
       >
-        <img
-          class="hidden
-          md:block md:w-[90%] md:mb-0 md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2
-          lg:w-[75%]
-          xl:w-[70%]"
-          src="https://cdn.rareblocks.xyz/collection/celebration/images/team/1/blob-shape.svg"
-          alt=""
-          loading="lazy"
-        />
-
-        <img
-          class="w-full relative rounded-full
-    md:h-auto md:mb-0 md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2
-    xl:h-full xl:w-auto xl:mx-auto"
-          src="https://res.cloudinary.com/do5ubt5g0/image/upload/v1761519022/Untitled_Project_2_ywtagj.png"
-          alt="Elías Martínez, Desarrollador Full-Stack, con pose profesional."
-          loading="lazy"
-        />
+        <div
+          class="flex flex-wrap items-center justify-between gap-2 font-mono text-label-sm tracking-widest"
+        >
+          <span class="text-primary" data-en="// LANGUAGES">// IDIOMAS</span>
+          <span
+            class="rounded-sm bg-surface-container-high px-2 py-0.5 text-tertiary"
+            >[ES · PT · EN]</span
+          >
+        </div>
+        <p
+          class="text-body-sm text-on-surface-variant"
+          data-en="Spanish (native) · Portuguese B2 · English B1 (in progress at UBA)."
+        >
+          Español nativo · Portugués B2 · Inglés B1 (en curso en la UBA).
+        </p>
       </div>
     </div>
+
+    <ul class="grid grid-cols-2 gap-4 lg:col-span-5">
+      {
+        stats.map((s) => (
+          <li
+            class:list={[
+              "flex flex-col justify-between rounded-lg border border-outline-variant/30 bg-surface-container/50 p-4 backdrop-blur-xl transition-colors duration-300",
+              s.hover,
+            ]}
+          >
+            <span
+              class="font-mono text-label-sm tracking-wider text-outline"
+              data-en={s.labelEn}
+            >
+              {s.label}
+            </span>
+            <div class="my-3">
+              <span
+                class:list={[
+                  "block font-display text-headline-md font-bold",
+                  s.color,
+                ]}
+              >
+                {s.value}
+              </span>
+              <span
+                class="font-mono text-label-sm text-on-surface-variant"
+                data-en={s.textEn}
+              >
+                {s.text}
+              </span>
+            </div>
+            <div
+              class:list={[
+                "h-px w-full bg-gradient-to-r to-transparent",
+                s.bar,
+              ]}
+            />
+          </li>
+        ))
+      }
+    </ul>
   </div>
-</section>
+</Section>

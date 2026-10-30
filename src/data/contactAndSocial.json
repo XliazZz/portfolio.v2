@@ -21,8 +21,8 @@
   "socialMedia": [
     {
       "type": "LinkedIn",
-      "value": "linkedin.com/in/xliazzz/",
-      "href": "https://www.linkedin.com/in/xliazzz/",
+      "value": "linkedin.com/in/eliasm166",
+      "href": "https://www.linkedin.com/in/eliasm166/",
       "icon": "meteor-icons:linkedin"
     },
     {
@@ -30,12 +30,6 @@
       "value": "github.com/XliazZz",
       "href": "https://github.com/XliazZz",
       "icon": "fa:github"
-    },
-    {
-      "type": "Instagram",
-      "value": "instagram.com/eliasx.2",
-      "href": "https://www.instagram.com/eliasx.2",
-      "icon": "lucide:instagram"
     },
     {
       "type": "WhatsApp",

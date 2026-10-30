@@ -1,0 +1,164 @@
+---
+import Section from "../components/base/Section.astro";
+
+const accents = [
+  {
+    text: "text-tertiary",
+    border: "border-tertiary",
+    dot: "bg-tertiary animate-ping",
+    hover: "group-hover:text-tertiary",
+  },
+  {
+    text: "text-primary",
+    border: "border-primary",
+    dot: "bg-primary",
+    hover: "group-hover:text-primary",
+  },
+  {
+    text: "text-secondary",
+    border: "border-secondary",
+    dot: "bg-secondary",
+    hover: "group-hover:text-secondary",
+  },
+];
+
+const timeline = [
+  {
+    date: "2026 — ACTUALIDAD // PROYECTO PROPIO",
+    dateEn: "2026 — PRESENT // PERSONAL PROJECT",
+    place: "ANDROID · iOS",
+    title: "Servidor para un Battle Royale móvil — Ingeniería inversa",
+    titleEn: "Server for a mobile Battle Royale — Reverse engineering",
+    text: "Partiendo solo de la app de Android, reconstruí el servidor completo del juego: login, lobby, economía y partidas de hasta 60 jugadores más bots. ~25.000 líneas de Python sobre TCP, UDP y HTTPS con física, colisiones y bots; login RSA, HTTPS con certificado fijado y soporte para iOS sin modificar la app mediante DNS sobre HTTPS.",
+    textEn:
+      "Starting from just the Android app, I rebuilt the game's entire server: login, lobby, economy and matches of up to 60 players plus bots. ~25,000 lines of Python over TCP, UDP and HTTPS with physics, collisions and bots; RSA login, certificate-pinned HTTPS and support for the unmodified iOS app through DNS over HTTPS.",
+    tags: ["PYTHON", "TCP / UDP", "RSA · TLS", "JAVA", "CLAUDE CODE"],
+  },
+  {
+    date: "JUN 2026 // PROYECTO PROPIO",
+    dateEn: "JUN 2026 // PERSONAL PROJECT",
+    place: "B2B",
+    title: "Plataforma B2B de automatización con IA",
+    titleEn: "AI automation B2B platform",
+    text: "Desarrollo full stack con Astro y Supabase, con validación de datos mediante Google Gemini y prompt engineering. Diseñé un motor de procesamiento concurrente de PDFs que redujo un 90% el tiempo de carga de datos.",
+    textEn:
+      "Full stack development with Astro and Supabase, with data validation through Google Gemini and prompt engineering. I designed a concurrent PDF processing engine that cut data loading time by 90%.",
+    tags: ["ASTRO", "SUPABASE", "GOOGLE GEMINI"],
+  },
+  {
+    date: "FEB — MAR 2025 // PASANTÍA",
+    dateEn: "FEB — MAR 2025 // INTERNSHIP",
+    place: "IXALAB",
+    title: "Front-end Developer — Ixalab",
+    text: "Plataforma en la nube que calcula emisiones de carbono y rastrea el ciclo de vida de productos para facilitar su reciclaje. Desarrollé componentes reutilizables y páginas completas en React, y diagnostiqué y corregí problemas de rendimiento y bugs del front-end.",
+    textEn:
+      "Cloud platform that calculates carbon emissions and tracks product life cycles to make recycling easier. I built reusable components and full pages in React, and diagnosed and fixed front-end performance issues and bugs.",
+    tags: ["REACT", "PERFORMANCE"],
+  },
+  {
+    date: "2024 — EN CURSO // ACADÉMICO",
+    dateEn: "2024 — IN PROGRESS // ACADEMIC",
+    place: "UBA",
+    title: "Lic. en Ciencias de la Computación — UBA",
+    titleEn: "B.Sc. in Computer Science — University of Buenos Aires",
+    text: "Algoritmos, programación funcional con Haskell, programación en Python y testing en ambos lenguajes.",
+    textEn:
+      "Algorithms, functional programming with Haskell, programming in Python and testing in both languages.",
+    tags: ["HASKELL", "PYTHON", "TESTING"],
+  },
+  {
+    date: "2023 // BOOTCAMP · 700 H",
+    dateEn: "2023 // BOOTCAMP · 700 H",
+    place: "SOY HENRY",
+    title: "Full Stack Web Developer — Soy Henry",
+    text: "Formación intensiva en desarrollo web full stack, con proyectos en equipo usando metodologías ágiles.",
+    textEn:
+      "Intensive full stack web development training, with team projects using agile methodologies.",
+    tags: ["REACT", "REDUX", "NODE.JS", "POSTGRESQL", "MONGODB"],
+  },
+];
+---
+
+<Section id="experience" index="03" tag="TRAYECTORIA" tagEn="TRACK RECORD">
+  <span slot="status" data-en="2023 — PRESENT">2023 — HOY</span>
+
+  <div class="flex flex-col gap-2">
+    <h2
+      id="experience-title"
+      class="font-display text-headline-md-mobile font-bold tracking-tight text-on-surface uppercase md:text-headline-md"
+      data-en="Experience & education"
+    >
+      Experiencia & formación
+    </h2>
+    <p
+      class="max-w-2xl text-body-md text-on-surface-variant"
+      data-en="Personal projects, professional experience and academic training."
+    >
+      Proyectos propios, experiencia profesional y formación académica.
+    </p>
+  </div>
+
+  <div class="relative mt-4">
+    <div
+      class="absolute top-3 bottom-3 left-[9px] w-0.5 bg-gradient-to-b from-tertiary via-primary to-secondary md:left-[13px]"
+      aria-hidden="true"
+    >
+    </div>
+    <ol class="flex flex-col gap-12 pl-8 md:pl-12">
+      {
+        timeline.map((item, i) => {
+          const a = accents[i % accents.length];
+          return (
+            <li class="group relative flex flex-col gap-1">
+              <div
+                class:list={[
+                  "absolute top-1.5 -left-8 flex h-5 w-5 items-center justify-center rounded-full border-2 bg-surface-container md:-left-12 md:h-7 md:w-7",
+                  a.border,
+                ]}
+                aria-hidden="true"
+              >
+                <span class:list={["h-1.5 w-1.5 rounded-full", a.dot]} />
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class:list={[
+                    "font-mono text-label-sm font-bold tracking-widest",
+                    a.text,
+                  ]}
+                  data-en={item.dateEn}
+                >
+                  {item.date}
+                </span>
+                <span class="rounded-sm bg-surface-container px-2 py-0.5 font-mono text-label-sm text-outline">
+                  {item.place}
+                </span>
+              </div>
+              <h3
+                class:list={[
+                  "font-display text-headline-sm font-semibold text-on-surface transition-colors",
+                  a.hover,
+                ]}
+                data-en={item.titleEn}
+              >
+                {item.title}
+              </h3>
+              <p
+                class="max-w-4xl text-body-md text-on-surface-variant"
+                data-en={item.textEn}
+              >
+                {item.text}
+              </p>
+              <ul class="flex flex-wrap gap-2 pt-2">
+                {item.tags.map((tag) => (
+                  <li class="rounded-sm bg-surface-container px-2.5 py-1 font-mono text-label-sm text-on-surface-variant">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</Section>

@@ -1,6 +1,12 @@
 ---
 import "../styles/global.css";
+import ShaderBackground from "../components/base/ShaderBackground.astro";
+import inter from "../assets/fonts/inter.woff2?url";
+import spaceGrotesk from "../assets/fonts/space-grotesk.woff2?url";
+import jetbrainsMono from "../assets/fonts/jetbrains-mono.woff2?url";
 interface Props {
+  lang?: "es" | "en";
+  noindex?: boolean;
   title: string;
   description: string;
   image?: string;
@@ -10,12 +16,26 @@ interface Props {
   socialProfiles: {
     linkedin: string;
     github: string;
-    instagram: string;
   };
 }
 
-const { title, description, image, authorName, authorUrl, socialProfiles } =
-  Astro.props;
+const {
+  lang = "es",
+  noindex = false,
+  title,
+  description,
+  image,
+  authorName,
+  authorUrl,
+  socialProfiles,
+} = Astro.props;
+
+// The home is the only indexable page, in both languages.
+const alternates = {
+  es: new URL("/", Astro.site).href,
+  en: new URL("/en/", Astro.site).href,
+};
+const canonical = alternates[lang];
 
 const personId = `${authorUrl.replace(/\/$/, "")}#person`;
 
@@ -25,29 +45,38 @@ const personSchema = {
   "@id": personId,
   name: authorName,
   url: authorUrl,
-  image: image,
-  sameAs: [
-    socialProfiles.linkedin,
-    socialProfiles.github,
-    socialProfiles.instagram,
+  jobTitle: "Software Engineer · Full Stack",
+  email: "mailto:eliasdev1912@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Buenos Aires",
+    addressCountry: "AR",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad de Buenos Aires",
+  },
+  knowsLanguage: ["es", "pt", "en"],
+  knowsAbout: [
+    "TypeScript",
+    "React",
+    "Astro",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "PostgreSQL",
+    "MongoDB",
   ],
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "customer support",
-      availableLanguage: ["es"],
-      url: "https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web",
-    },
-  ],
+  sameAs: [socialProfiles.linkedin, socialProfiles.github],
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: title,
-  url: Astro.url.href,
+  url: canonical,
   description,
-  inLanguage: "es-AR",
+  inLanguage: lang === "en" ? "en" : "es-AR",
   author: {
     "@id": personId,
   },
@@ -55,10 +84,29 @@ const websiteSchema = {
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Runs before anything renders: a first visit to / from a non-Spanish browser (or after picking EN) goes to /en/.
+         Crawlers stay put so each URL is indexed in its own language. -->
+    <script is:inline>
+      if (location.pathname === "/") {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("lang");
+        } catch {}
+        const browser = (
+          navigator.languages?.[0] ??
+          navigator.language ??
+          "es"
+        ).toLowerCase();
+        const bot = /bot|crawl|spider/i.test(navigator.userAgent);
+        if ((saved ?? (bot || browser.startsWith("es") ? "es" : "en")) === "en")
+          location.replace("/en/" + location.hash);
+      }
+    </script>
 
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -71,57 +119,65 @@ const websiteSchema = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content={noindex ? "noindex" : "index,follow"} />
     <meta name="author" content="Elías Martínez" />
     <meta
       property="og:site_name"
-      content="Elías Martínez · Desarrollador web full-stack"
+      content="Elías Martínez · Software Engineer"
     />
-    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_AR"} />
+    <meta
+      property="og:locale:alternate"
+      content={lang === "en" ? "es_AR" : "en_US"}
+    />
 
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
-    {image && <meta property="og:image" content={image} />}
+    <meta property="og:url" content={canonical} />
+    {
+      image && (
+        <>
+          <meta property="og:image" content={image} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content={title} />
+        </>
+      )
+    }
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}
 
-    <link
-      rel="preload"
-      href="/fonts/Lexend/Lexend-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/Nunito/Nunito-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/techsSprite.svg"
-      as="image"
-      type="image/svg+xml"
-    />
-    <link
-      rel="preload"
-      href="/featuresSprite.svg"
-      as="image"
-      type="image/svg+xml"
-    />
+    <!-- All three fonts render in the first viewport; preloading skips waiting for the CSS to discover them -->
+    {
+      [inter, spaceGrotesk, jetbrainsMono].map((href) => (
+        <link
+          rel="preload"
+          href={href}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      ))
+    }
 
-    <link rel="canonical" href={Astro.url.href} />
+    {
+      !noindex && (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hreflang="es" href={alternates.es} />
+          <link rel="alternate" hreflang="en" href={alternates.en} />
+          <link rel="alternate" hreflang="x-default" href={alternates.es} />
+        </>
+      )
+    }
 
-    <meta name="theme-color" content="#121212" />
+    <meta name="theme-color" content="#131317" />
 
     <script
       type="application/ld+json"
@@ -129,89 +185,17 @@ const websiteSchema = {
       set:html={JSON.stringify([personSchema, websiteSchema])}
     />
   </head>
-  <body class="bg-black font-sans">
+  <body
+    class="min-h-screen overflow-x-hidden bg-background font-sans text-body-md text-on-surface antialiased selection:bg-tertiary-container selection:text-on-tertiary-container"
+  >
+    <a
+      href="#main-content"
+      class="sr-only z-[60] rounded-md bg-tertiary px-4 py-2 font-mono text-label-md text-on-tertiary focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+      data-en="Skip to content">Saltar al contenido</a
+    >
+
+    <ShaderBackground />
+
     <slot />
   </body>
 </html>
-
-<style>
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-Light.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-Regular.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-SemiBold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-Bold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-ExtraBold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-Light.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-Regular.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-SemiBold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-Bold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-ExtraBold.woff2") format("woff2");
-  }
-</style>

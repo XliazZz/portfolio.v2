@@ -1,96 +1,173 @@
 ---
-import GradientBackground from "../components/base/GradientBackground.astro";
-import Typewriter from "../components/base/Typewriter.astro";
+import Icon from "../components/base/Icon.astro";
+import CvLink from "../components/base/CvLink.astro";
+import NodeSphere from "../components/base/NodeSphere.astro";
+import projects from "../data/projectsCard.json";
+
+const projectCount = String(projects.length).padStart(2, "0");
 ---
 
 <section
-  class="flex overflow-hidden
-      w-full h-[35vh]
-      py-0
-      bg-indigo-50
-      items-center justify-center relative
-      sm:h-[34vh]
-      md:h-[30vh]
-      lg:h-[99vh]
-      2xl:h-[50vh]"
+  id="hero"
+  class="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-5 pt-24 pb-10 md:px-8 md:pt-28 lg:px-12"
 >
-  <div class="h-full w-full">
-    <GradientBackground />
+  <!-- HUD telemetry bar -->
+  <div
+    class="flex w-full flex-wrap items-center justify-between gap-2 border-b border-outline-variant/30 pb-4 font-mono text-label-sm text-on-surface-variant"
+  >
+    <div class="flex flex-wrap items-center gap-4">
+      <span
+        class="inline-flex items-center gap-1.5 rounded-sm bg-surface-container-high px-2.5 py-1 font-semibold tracking-wider text-tertiary"
+      >
+        <span class="h-1.5 w-1.5 animate-ping rounded-full bg-tertiary"></span>
+        SYS.NODE // BA-AR
+      </span>
+      <span class="tracking-widest text-outline"
+        >STACK: <strong class="font-semibold text-tertiary-fixed"
+          >TS · REACT · NODE</strong
+        ></span
+      >
+      <span class="hidden tracking-widest text-outline sm:inline"
+        >CORE: <strong class="font-semibold text-primary">UBA // CS</strong
+        ></span
+      >
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="font-medium tracking-widest text-secondary"
+        >[LAT 34.60° S // LON 58.44° W]</span
+      >
+      <span
+        class="hidden items-center rounded-sm bg-surface-container-low px-2.5 py-1 font-semibold tracking-wider text-tertiary-fixed md:inline-flex"
+        data-en="OPEN TO NEW ROLES">DISPONIBLE PARA NUEVOS ROLES</span
+      >
+    </div>
   </div>
 
   <div
-    class="flex z-10
-      max-w-4xl w-full
-      mx-auto px-2
-      text-center
-      absolute inset-0 items-center justify-center
-      sm:px-10
-      lg:px-0 lg:max-w-3xl
-      xl:max-w-6xl"
+    class="grid grid-cols-1 items-center gap-10 pt-12 pb-10 lg:grid-cols-12 lg:gap-6"
   >
-    <div
-      class="w-full
-        px-4 py-6
-        bg-black/50
-        rounded-2xl
-        sm:pt-7
-        md:h-[83%] md:p-0
-        lg:h-[45%] lg:p-0 lg:m-0 lg:py-10
-        flex flex-col justify-center
-        xl:h-[70%] lg:space-y-7 xl:w-[90%]
-        2xl:h-[65%]"
-    >
-      <p
-        class="text-base font-medium leading-8 text-indigo-100 font-heading
-          sm:text-xl
-          md:text-xl
-          lg:text-xl
-          xl:text-2xl"
-      >
-        Hola, soy <span class="font-semibold">Elías Martínez</span>
-      </p>
-
-      <div class="flex justify-center items-center w-full">
-        <h1
-          class="font-heading font-bold text-white w-[250px] xl:w-[350px]
-           text-xl sm:text-4xl md:text-4xl xl:text-5xl
-           leading-tight tracking-tight
-           text-right"
+    <div class="flex flex-col gap-4 lg:col-span-8">
+      <div class="inline-flex items-center gap-2">
+        <span class="h-px w-6 bg-tertiary"></span>
+        <span
+          class="font-mono text-label-md uppercase tracking-widest text-tertiary"
+          >// SOFTWARE ENGINEER · FULL STACK</span
         >
-          Programador
-          <span class="sr-only">
-            {" "}
-            web full-stack, frontend y backend developer
-          </span>
-        </h1>
-
-        <div class="w-3"></div>
-        <Typewriter aria-hidden="true" />
       </div>
 
-      <p
-        class="max-w-4xl
-          sm:mt-2 mx-auto
-          leading-relaxed text-slate-300 font-body
-          sm:w-[80%] sm:text-lg
-          md:w-[90%] md:mt-6
-          lg:w-[85%] lg:mt-3 lg:text-base
-          xl:text-xl"
+      <h1
+        class="font-display text-headline-xl-mobile leading-none font-bold tracking-tighter uppercase sm:text-headline-lg xl:text-headline-xl"
       >
-        Desarrollo sitios y aplicaciones web rápidas, funcionales y con un
-        diseño limpio.
-        <br />
-        <span class="hidden md:hidden lg:inline">
-          {" "}
-          Como <span class="font-medium text-white"
-            >desarrollador web full-stack</span
-          >, trabajo con tecnologías modernas como{" "}
-          <span class="font-medium text-white">
-            JavaScript, Python, Astro, React y Node.js
-          </span>{" "}
-          para transformar ideas en productos digitales.
-        </span>
+        <span class="block text-on-surface">Elías Martínez</span>
+        <span
+          class="mt-1 block bg-gradient-to-r from-tertiary via-primary to-secondary bg-clip-text text-transparent"
+          >Full Stack // Dev</span
+        >
+      </h1>
+
+      <p
+        class="mt-1 max-w-2xl text-body-lg font-light text-on-surface-variant"
+        data-en="I build web applications and real-time backends: from React and Astro interfaces to servers with binary protocols, cryptography and server-side physics. Computer Science student at the University of Buenos Aires."
+      >
+        Desarrollo aplicaciones web y backends de tiempo real: desde interfaces
+        en React y Astro hasta servidores con protocolos binarios, criptografía
+        y física del lado servidor. Estudio Ciencias de la Computación en la
+        UBA.
       </p>
+
+      <div class="flex flex-wrap items-center gap-4 pt-4">
+        <a
+          href="#projects"
+          class="group inline-flex items-center gap-3 rounded-sm bg-tertiary px-6 py-2.5 font-mono text-label-md font-semibold tracking-wider text-on-tertiary shadow-[0_0_25px_rgba(39,218,240,0.3)] transition-all duration-300 hover:bg-tertiary-fixed"
+        >
+          <span
+            class="h-2 w-2 rounded-full bg-on-tertiary transition-transform group-hover:scale-125"
+          ></span>
+          <span data-en={`VIEW PROJECTS [${projectCount}]`}
+            >VER PROYECTOS [{projectCount}]</span
+          >
+          <Icon
+            name="arrow_forward"
+            class="transition-transform group-hover:translate-x-1"
+          />
+        </a>
+        <CvLink
+          class="inline-flex items-center gap-2 rounded-sm border border-outline-variant/40 bg-surface-container/70 px-6 py-2.5 font-mono text-label-md font-medium tracking-wider text-on-surface backdrop-blur-xl transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_25px_rgba(208,188,255,0.2)]"
+        >
+          <Icon name="download" size={16} class="text-primary" />
+          <span data-en="DOWNLOAD CV">DESCARGAR CV</span>
+        </CvLink>
+      </div>
+    </div>
+
+    <!-- Decorative and pointer-only, so it is hidden from assistive tech. -->
+    <div
+      class="relative flex flex-col items-center justify-center gap-2 lg:col-span-4"
+      aria-hidden="true"
+    >
+      <div
+        class="pointer-events-none absolute top-1/2 left-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-tertiary/10 blur-3xl"
+      >
+      </div>
+      <NodeSphere class="relative h-80 w-80 md:h-96 md:w-96" />
+      <div
+        class="flex flex-col items-center gap-1.5 font-mono text-label-sm tracking-widest"
+      >
+        <div class="flex flex-wrap justify-center gap-x-4 gap-y-1">
+          <span class="flex items-center gap-1.5 text-tertiary"
+            ><span class="h-1.5 w-1.5 rounded-full bg-tertiary"
+            ></span>FRONTEND</span
+          >
+          <span class="flex items-center gap-1.5 text-primary"
+            ><span class="h-1.5 w-1.5 rounded-full bg-primary"></span><span
+              data-en="BACKEND & DATA">BACKEND & DATOS</span
+            ></span
+          >
+          <span class="flex items-center gap-1.5 text-secondary"
+            ><span class="h-1.5 w-1.5 rounded-full bg-secondary"></span><span
+              data-en="SYSTEMS & AI">SISTEMAS & IA</span
+            ></span
+          >
+        </div>
+        <span class="text-outline" data-en="// DRAG TO ROTATE"
+          >// ARRASTRÁ PARA ROTAR</span
+        >
+      </div>
     </div>
   </div>
+
+  <div
+    class="flex w-full items-center justify-between border-t border-outline-variant/20 pt-8 text-on-surface-variant"
+  >
+    <a
+      href="#about"
+      id="scroll-hint"
+      class="group flex items-center gap-3 transition-all duration-500"
+    >
+      <div
+        class="h-6 w-1.5 animate-pulse rounded-sm bg-gradient-to-b from-tertiary to-transparent"
+      >
+      </div>
+      <span
+        class="font-mono text-label-sm tracking-widest text-outline transition-colors group-hover:text-tertiary"
+        data-en="SCROLL TO EXPLORE">DESPLAZÁ PARA EXPLORAR</span
+      >
+    </a>
+    <span class="font-mono text-label-sm tracking-widest text-outline"
+      >INDEX // 001 - 005</span
+    >
+  </div>
 </section>
+
+<script>
+  // A hint is only useful before the visitor scrolls: fade it out once they do, bring it back at the top.
+  // invisible (visibility) also takes it out of the tab order while hidden.
+  const hint = document.getElementById("scroll-hint")!;
+  const update = () => {
+    const away = scrollY > 40;
+    hint.classList.toggle("opacity-0", away);
+    hint.classList.toggle("invisible", away);
+  };
+  addEventListener("scroll", update, { passive: true });
+  update();
+</script>
