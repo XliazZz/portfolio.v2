@@ -4,6 +4,12 @@ import Section from "../components/base/Section.astro";
 import Icon from "../components/base/Icon.astro";
 import projectsData from "../data/projectsCard.json";
 
+interface Props {
+  lang: "es" | "en";
+}
+
+const en = Astro.props.lang === "en";
+
 const featured = projectsData.filter((p) => p.featured);
 const archive = projectsData.filter((p) => !p.featured);
 
@@ -36,12 +42,14 @@ const MAX_CHIPS = 6;
 const projectsListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Proyectos de desarrollo web de Elías Martínez",
+  name: en
+    ? "Web development projects by Elías Martínez"
+    : "Proyectos de desarrollo web de Elías Martínez",
   itemListElement: projectsData.map((project, index) => ({
     "@type": "SoftwareSourceCode",
     position: index + 1,
     name: project.title,
-    description: project.description,
+    description: en ? project.descriptionEng : project.description,
     url: project.demoUrl || project.githubUrl,
     image: project.featuredImage,
     codeRepository: project.githubUrl,
@@ -101,14 +109,21 @@ const projectsListSchema = {
                   </span>
                   <span class="text-outline">{project.rol.toUpperCase()}</span>
                 </div>
-                <h3
-                  class:list={[
-                    "font-display text-headline-md-mobile font-bold text-on-surface uppercase transition-colors md:text-headline-md",
-                    a.hoverText,
-                  ]}
-                >
-                  {project.title}
-                </h3>
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h3
+                    class:list={[
+                      "font-display text-headline-md-mobile font-bold text-on-surface uppercase transition-colors md:text-headline-md",
+                      a.hoverText,
+                    ]}
+                  >
+                    {project.title}
+                  </h3>
+                  {project.bootcamp && (
+                    <span class="rounded-sm border border-secondary/40 px-1.5 py-0.5 font-mono text-label-sm tracking-widest text-secondary">
+                      BOOTCAMP // HENRY
+                    </span>
+                  )}
+                </div>
                 <p
                   class="text-body-md text-on-surface-variant"
                   data-en={project.descriptionEng}

@@ -5,6 +5,8 @@ import inter from "../assets/fonts/inter.woff2?url";
 import spaceGrotesk from "../assets/fonts/space-grotesk.woff2?url";
 import jetbrainsMono from "../assets/fonts/jetbrains-mono.woff2?url";
 interface Props {
+  lang?: "es" | "en";
+  noindex?: boolean;
   title: string;
   description: string;
   image?: string;
@@ -17,8 +19,23 @@ interface Props {
   };
 }
 
-const { title, description, image, authorName, authorUrl, socialProfiles } =
-  Astro.props;
+const {
+  lang = "es",
+  noindex = false,
+  title,
+  description,
+  image,
+  authorName,
+  authorUrl,
+  socialProfiles,
+} = Astro.props;
+
+// The home is the only indexable page, in both languages.
+const alternates = {
+  es: new URL("/", Astro.site).href,
+  en: new URL("/en/", Astro.site).href,
+};
+const canonical = alternates[lang];
 
 const personId = `${authorUrl.replace(/\/$/, "")}#person`;
 
@@ -40,6 +57,16 @@ const personSchema = {
     name: "Universidad de Buenos Aires",
   },
   knowsLanguage: ["es", "pt", "en"],
+  knowsAbout: [
+    "TypeScript",
+    "React",
+    "Astro",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "PostgreSQL",
+    "MongoDB",
+  ],
   sameAs: [socialProfiles.linkedin, socialProfiles.github],
 };
 
@@ -47,9 +74,9 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: title,
-  url: Astro.url.href,
+  url: canonical,
   description,
-  inLanguage: "es-AR",
+  inLanguage: lang === "en" ? "en" : "es-AR",
   author: {
     "@id": personId,
   },
@@ -57,10 +84,29 @@ const websiteSchema = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Runs before anything renders: a first visit to / from a non-Spanish browser (or after picking EN) goes to /en/.
+         Crawlers stay put so each URL is indexed in its own language. -->
+    <script is:inline>
+      if (location.pathname === "/") {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("lang");
+        } catch {}
+        const browser = (
+          navigator.languages?.[0] ??
+          navigator.language ??
+          "es"
+        ).toLowerCase();
+        const bot = /bot|crawl|spider/i.test(navigator.userAgent);
+        if ((saved ?? (bot || browser.startsWith("es") ? "es" : "en")) === "en")
+          location.replace("/en/" + location.hash);
+      }
+    </script>
 
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -73,21 +119,34 @@ const websiteSchema = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content={noindex ? "noindex" : "index,follow"} />
     <meta name="author" content="Elías Martínez" />
     <meta
       property="og:site_name"
       content="Elías Martínez · Software Engineer"
     />
-    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_AR"} />
+    <meta
+      property="og:locale:alternate"
+      content={lang === "en" ? "es_AR" : "en_US"}
+    />
 
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
-    {image && <meta property="og:image" content={image} />}
+    <meta property="og:url" content={canonical} />
+    {
+      image && (
+        <>
+          <meta property="og:image" content={image} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content={title} />
+        </>
+      )
+    }
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -107,7 +166,16 @@ const websiteSchema = {
       ))
     }
 
-    <link rel="canonical" href={Astro.url.href} />
+    {
+      !noindex && (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hreflang="es" href={alternates.es} />
+          <link rel="alternate" hreflang="en" href={alternates.en} />
+          <link rel="alternate" hreflang="x-default" href={alternates.es} />
+        </>
+      )
+    }
 
     <meta name="theme-color" content="#131317" />
 
@@ -129,53 +197,5 @@ const websiteSchema = {
     <ShaderBackground />
 
     <slot />
-
-    <!-- Inline (not bundled) so it runs while the page is parsed, before first paint: no flash of Spanish for EN visitors. -->
-    <script is:inline>
-      // ES is server-rendered; [data-en] holds the English text and the Spanish one is cached on first swap.
-      // shortcut: English exists only client-side, so search engines and link previews see Spanish; add /en routes if that matters.
-      const apply = (lang) => {
-        document.documentElement.lang = lang;
-        document.querySelectorAll("[data-en]").forEach((el) => {
-          el.dataset.es ??= el.textContent ?? "";
-          el.textContent = lang === "en" ? el.dataset.en : el.dataset.es;
-        });
-        // Same idea for attributes, e.g. data-en-href on the CV link so it downloads the current language.
-        for (const attr of ["href", "placeholder"]) {
-          document.querySelectorAll(`[data-en-${attr}]`).forEach((el) => {
-            if (!el.hasAttribute(`data-es-${attr}`))
-              el.setAttribute(`data-es-${attr}`, el.getAttribute(attr) ?? "");
-            el.setAttribute(attr, el.getAttribute(`data-${lang}-${attr}`));
-          });
-        }
-        document
-          .querySelectorAll("[data-lang]")
-          .forEach((b) =>
-            b.setAttribute("aria-pressed", String(b.dataset.lang === lang)),
-          );
-      };
-
-      document.querySelectorAll("[data-lang]").forEach((b) =>
-        b.addEventListener("click", () => {
-          apply(b.dataset.lang);
-          try {
-            localStorage.setItem("lang", b.dataset.lang);
-          } catch {}
-        }),
-      );
-
-      // An explicit choice wins; otherwise Spanish only for browsers that prefer it, English for everyone else.
-      let saved = null;
-      try {
-        saved = localStorage.getItem("lang");
-      } catch {}
-      const browser = (
-        navigator.languages?.[0] ??
-        navigator.language ??
-        "es"
-      ).toLowerCase();
-      if ((saved ?? (browser.startsWith("es") ? "es" : "en")) === "en")
-        apply("en");
-    </script>
   </body>
 </html>

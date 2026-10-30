@@ -2,6 +2,12 @@
 import Icon from "./Icon.astro";
 import CvLink from "./CvLink.astro";
 
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
 const sections = [
   { id: "about", name: "SOBRE MÍ", nameEn: "ABOUT" },
   { id: "stack", name: "STACK", nameEn: "STACK" },
@@ -11,7 +17,7 @@ const sections = [
 ];
 
 const langButton =
-  "rounded-sm px-1.5 py-0.5 font-mono text-label-sm text-on-surface-variant transition-colors hover:text-on-surface aria-pressed:bg-surface-container aria-pressed:font-semibold aria-pressed:text-tertiary";
+  "rounded-sm px-1.5 py-0.5 font-mono text-label-sm text-on-surface-variant transition-colors hover:text-on-surface aria-[current=page]:bg-surface-container aria-[current=page]:font-semibold aria-[current=page]:text-tertiary";
 ---
 
 <header
@@ -63,21 +69,23 @@ const langButton =
         role="group"
         aria-label="Idioma / Language"
       >
-        <button
-          type="button"
+        <a
+          href="/"
+          hreflang="es"
           data-lang="es"
-          aria-pressed="true"
-          class={langButton}>ES</button
+          aria-current={lang === "es" ? "page" : undefined}
+          class={langButton}>ES</a
         >
         <span
           class="px-0.5 font-mono text-label-sm text-outline"
           aria-hidden="true">/</span
         >
-        <button
-          type="button"
+        <a
+          href="/en/"
+          hreflang="en"
           data-lang="en"
-          aria-pressed="false"
-          class={langButton}>EN</button
+          aria-current={lang === "en" ? "page" : undefined}
+          class={langButton}>EN</a
         >
       </div>
 
@@ -141,6 +149,15 @@ const langButton =
   menu
     .querySelectorAll("a")
     .forEach((a) => a.addEventListener("click", () => setMenu(false)));
+
+  // An explicit language choice beats browser detection on the next visit (see Layout).
+  document.querySelectorAll<HTMLAnchorElement>("[data-lang]").forEach((a) =>
+    a.addEventListener("click", () => {
+      try {
+        localStorage.setItem("lang", a.dataset.lang!);
+      } catch {}
+    }),
+  );
 
   // Highlight the nav link of the section crossing the middle of the viewport.
   const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");

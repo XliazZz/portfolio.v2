@@ -18,6 +18,7 @@ const authorData = {
 ---
 
 <Layout
+  noindex
   title={pageTitle}
   description={pageDescription}
   image={ogImage}
@@ -53,10 +54,36 @@ const authorData = {
     </p>
     <a
       href="/"
+      data-en-href="/en/"
       class="mt-4 inline-flex items-center gap-2 rounded-sm bg-tertiary px-6 py-2.5 font-mono text-label-md font-semibold tracking-wider text-on-tertiary shadow-[0_0_25px_rgba(39,218,240,0.3)] transition-colors hover:bg-tertiary-fixed"
     >
       <Icon name="arrow_back" />
       <span data-en="BACK HOME">VOLVER AL INICIO</span>
     </a>
   </main>
+
+  <script is:inline>
+    // Vercel serves this one file for every missing path, /en/ included, so it picks its language here.
+    let saved = null;
+    try {
+      saved = localStorage.getItem("lang");
+    } catch {}
+    const browser = (
+      navigator.languages?.[0] ??
+      navigator.language ??
+      "es"
+    ).toLowerCase();
+    if (
+      location.pathname.startsWith("/en") ||
+      (saved ?? (browser.startsWith("es") ? "es" : "en")) === "en"
+    ) {
+      document.documentElement.lang = "en";
+      document
+        .querySelectorAll("[data-en]")
+        .forEach((el) => (el.textContent = el.dataset.en));
+      document
+        .querySelectorAll("[data-en-href]")
+        .forEach((el) => (el.href = el.dataset.enHref));
+    }
+  </script>
 </Layout>

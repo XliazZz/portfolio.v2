@@ -13,10 +13,10 @@ Portfolio personal y CV online. Muestra mi experiencia, stack y proyectos, con d
 - **Diseño "Neon Future"** creado en Google Stitch e implementado con tokens de Tailwind v4: tipografía Space Grotesk / Inter / JetBrains Mono, paneles de vidrio, bordes finos y acentos cian, violeta y magenta.
 - **Fondo WebGL**: shader procedural que reproduce la vista de página completa de Stitch. Queda oscuro en el hero y en contacto, y se ilumina en la zona del stack y la experiencia.
 - **Esfera 3D interactiva** (canvas 2D con proyección en perspectiva, sin librerías): una esfera geodésica cuyos nodos principales son mi stack, agrupado en tres planos (frontend, backend y sistemas/IA) con sus órbitas. Se arrastra para rotarla y se ilumina con el cursor.
-- **Español / inglés**: detecta el idioma del navegador en la primera visita y recuerda la elección manual. El texto, los placeholders, los mensajes del formulario y el link del CV cambian juntos.
+- **Español / inglés**: dos páginas estáticas, `/` y `/en/`, ambas indexables y enlazadas con `hreflang`. En la primera visita, un navegador que no está en español va a `/en/` (los buscadores no), y la elección manual se recuerda.
 - **Descarga del CV** en el idioma activo (`public/cv/`).
 - **Formulario de contacto** con EmailJS y validación en ambos idiomas.
-- **SEO**: JSON-LD (`Person`, `WebSite`, `ItemList` de proyectos), Open Graph, sitemap y robots.
+- **SEO**: canonical y `hreflang` por idioma, JSON-LD (`Person`, `WebSite`, `ItemList` de proyectos) en cada idioma, Open Graph, sitemap y robots. El 404 es `noindex`.
 - **Accesibilidad**: navegación por teclado, link para saltar al contenido, estados `aria-current` / `aria-pressed` y respeto de `prefers-reduced-motion` (el fondo y la esfera quedan quietos).
 
 Lighthouse (laboratorio): **Performance 100 en desktop y 99 en mobile**, con Accesibilidad, Buenas prácticas y SEO en 100. Las fuentes se sirven desde el propio sitio y el CSS va incrustado en el HTML, así que nada bloquea el primer pintado.
@@ -71,18 +71,19 @@ El template de EmailJS recibe `{{user_name}}`, `{{user_email}}`, `{{company}}` y
 | Tecnologías de la esfera 3D | `src/components/base/NodeSphere.astro` |
 | CV en PDF (ES / EN) | `public/cv/` |
 
-Los textos en inglés viven junto al español, en el atributo `data-en` de cada elemento.
+Los textos en inglés viven junto al español, en el atributo `data-en` de cada elemento (o `data-en-href`, `data-en-placeholder`, etc. para atributos). Al compilar, `src/middleware.ts` genera `/en/` reemplazando cada texto por su versión en inglés. Un elemento con `data-en` solo puede contener texto: si tiene etiquetas adentro, el build falla para que no quede en español sin aviso.
 
 ## Estructura
 
 ```
 src/
-├── pages/        index y 404
+├── pages/        inicio (/ y /en/) y 404
 ├── layouts/      <head>, SEO, fondo y motor de idioma
 ├── sections/     hero, perfil, stack, experiencia, proyectos, contacto, footer
 ├── components/   base (nav, sección, íconos, shader, esfera, link al CV) y formulario
 ├── data/         contenido en JSON / TS
-└── styles/       tokens del diseño
+├── styles/       tokens del diseño
+└── middleware.ts arma la versión en inglés al compilar
 public/
 ├── cv/           CV en español e inglés
 └── utils/        envío del formulario y avisos

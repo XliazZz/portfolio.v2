@@ -60,6 +60,7 @@
   {
     "title": "Elitronic",
     "featured": true,
+    "bootcamp": true,
     "demoUrl": "https://elitronic.vercel.app/",
     "githubUrl": "https://github.com/JMRodriguezHurtado/PF-HENRY-GRUPO-13",
     "technologies": [

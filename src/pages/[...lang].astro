@@ -9,9 +9,18 @@ import Projects from "../sections/ProjectsSection.astro";
 import Contact from "../sections/ContactSection.astro";
 import Footer from "../sections/FooterSection.astro";
 
+// "/" is Spanish; "/en/" is the same markup translated at build time by src/middleware.ts.
+export const getStaticPaths = () => [
+  { params: { lang: undefined } },
+  { params: { lang: "en" } },
+];
+const lang = Astro.params.lang === "en" ? "en" : "es";
+
 const pageTitle = "Elías Martínez | Software Engineer · Full Stack";
 const pageDescription =
-  "Portfolio de Elías Martínez, Software Engineer full stack en Buenos Aires: React, Node.js, Astro y Python, backends de tiempo real y estudiante de Ciencias de la Computación en la UBA. Experiencia, proyectos y CV.";
+  lang === "en"
+    ? "Portfolio of Elías Martínez, full stack Software Engineer in Buenos Aires: React, Node.js, Astro and Python, real-time backends, and Computer Science student at the University of Buenos Aires (UBA). Experience, projects and résumé."
+    : "Portfolio de Elías Martínez, Software Engineer full stack en Buenos Aires: React, Node.js, Astro y Python, backends de tiempo real y estudiante de Ciencias de la Computación en la UBA. Experiencia, proyectos y CV.";
 const ogImage = new URL("/og-image.jpg", Astro.site).href;
 
 const authorData = {
@@ -25,6 +34,7 @@ const authorData = {
 ---
 
 <Layout
+  lang={lang}
   title={pageTitle}
   description={pageDescription}
   image={ogImage}
@@ -32,14 +42,14 @@ const authorData = {
   authorUrl={authorData.url}
   socialProfiles={authorData.socialProfiles}
 >
-  <NavBar />
+  <NavBar lang={lang} />
 
   <main id="main-content">
     <Header />
     <About />
     <Skills />
     <Experience />
-    <Projects />
+    <Projects lang={lang} />
     <Contact />
   </main>
 
