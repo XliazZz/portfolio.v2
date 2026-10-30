@@ -19,7 +19,7 @@ Portfolio personal y CV online. Muestra mi experiencia, stack y proyectos, con d
 - **SEO**: JSON-LD (`Person`, `WebSite`, `ItemList` de proyectos), Open Graph, sitemap y robots.
 - **Accesibilidad**: navegación por teclado, link para saltar al contenido, estados `aria-current` / `aria-pressed` y respeto de `prefers-reduced-motion` (el fondo y la esfera quedan quietos).
 
-Lighthouse (laboratorio): **Performance 98 en desktop y 88 en mobile**, con Accesibilidad, Buenas prácticas y SEO en 100.
+Lighthouse (laboratorio): **Performance 100 en desktop y 99 en mobile**, con Accesibilidad, Buenas prácticas y SEO en 100. Las fuentes se sirven desde el propio sitio y el CSS va incrustado en el HTML, así que nada bloquea el primer pintado.
 
 ---
 

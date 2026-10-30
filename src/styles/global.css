@@ -88,6 +88,50 @@
   }
 }
 
+/* Self-hosted Google Fonts (latin subset, variable weight): no render-blocking third-party CSS. */
+@font-face {
+  font-family: "Inter";
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("../assets/fonts/inter.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("../assets/fonts/space-grotesk.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono.woff2") format("woff2");
+}
+/* Only holds the glyphs we use. To add an icon, re-download the woff2 with the new name in icon_names (alphabetical):
+   https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,arrow_forward,check,code,content_copy,database,download,layers,menu,open_in_new,token,visibility&display=block */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-display: block;
+  src: url("../assets/fonts/material-symbols.woff2") format("woff2");
+}
+
+@layer components {
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
 @layer base {
   html {
     color-scheme: dark;
