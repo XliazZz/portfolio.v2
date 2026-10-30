@@ -16,10 +16,7 @@ export const sendForm = () => {
     const formData = {
       user_name: form.user_name?.value.trim() || "",
       user_email: form.user_email?.value.trim() || "",
-      user_phone: form.user_phone?.value.trim() || "",
-      project_type: form.project_type?.value || "",
-      budget: form.budget?.value || "",
-      delivery_time: form.delivery_time?.value || "",
+      company: form.company?.value.trim() || "",
       message: form.message?.value.trim() || ""
     };
 

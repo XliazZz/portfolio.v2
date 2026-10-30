@@ -1,6 +1,7 @@
 [
   {
   "title": "Estudio Capilar Aurora",
+  "featured": true,
   "demoUrl": "https://landings-three-kohl.vercel.app/aurora",
   "githubUrl": "https://github.com/XliazZz/landings/tree/main/src/components/estudio-capilar-aurora",
   "technologies": [
@@ -18,6 +19,7 @@
 },
   {
     "title": "Wow Bao",
+    "featured": true,
     "demoUrl": "https://wowbao.com.ar",
     "githubUrl": "https://github.com/XliazZz/Baos",
     "technologies": [
@@ -57,6 +59,7 @@
   },
   {
     "title": "Elitronic",
+    "featured": true,
     "demoUrl": "https://elitronic.vercel.app/",
     "githubUrl": "https://github.com/JMRodriguezHurtado/PF-HENRY-GRUPO-13",
     "technologies": [

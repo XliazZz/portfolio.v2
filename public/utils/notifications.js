@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 
 const baseConfig = {
-  background: '#030712',
-  color: '#fff',
-  confirmButtonColor: '#6A64F1',
+  background: '#1f1f24',
+  color: '#e4e1e8',
+  confirmButtonColor: '#6d3bd7',
   customClass: {
     popup: 'swal-popup-custom'
   }
@@ -24,8 +24,8 @@ export const successMessage = (userName, userMail, formCurrent) => {
     title: '¡Mensaje enviado!',
     html: `
       <div style="text-align: left; line-height: 1.5;">
-        <p>Gracias por contactarnos, <strong>${userName}</strong>.</p>
-        <p>Nos pondremos en contacto con <strong>${userMail}</strong> pronto.</p>
+        <p>Gracias por tu mensaje, <strong>${userName}</strong>.</p>
+        <p>Te voy a responder a <strong>${userMail}</strong> a la brevedad.</p>
       </div>
     `,
     confirmButtonText: 'Aceptar',

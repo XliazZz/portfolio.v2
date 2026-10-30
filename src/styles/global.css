@@ -1,9 +1,108 @@
 @import "tailwindcss";
 
-:root {
-  --font-heading: "Lexend", system-ui, sans-serif;
-  --font-body: "Nunito", system-ui, sans-serif;
+/* Neon Future design tokens (see stitch_cv/neon_future/DESIGN.md) */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: #131317;
+  --color-surface-container-lowest: #0e0e12;
+  --color-surface-container-low: #1b1b20;
+  --color-surface-container: #1f1f24;
+  --color-surface-container-high: #2a292e;
+  --color-surface-container-highest: #353439;
+  --color-on-surface: #e4e1e8;
+  --color-on-surface-variant: #cbc3d7;
+  --color-outline: #958ea0;
+  --color-outline-variant: #494454;
+  --color-primary: #d0bcff;
+  --color-on-primary: #3c0091;
+  --color-primary-container: #a078ff;
+  --color-primary-fixed: #e9ddff;
+  --color-secondary: #ffb0ce;
+  --color-on-secondary: #63003b;
+  --color-secondary-container: #cd007f;
+  --color-secondary-fixed: #ffd9e5;
+  --color-tertiary: #27daf0;
+  --color-on-tertiary: #00363d;
+  --color-tertiary-container: #009fb1;
+  --color-on-tertiary-container: #002f35;
+  --color-tertiary-fixed: #99f0ff;
+  --color-error: #ffb4ab;
+
+  --text-headline-xl: 80px;
+  --text-headline-xl--line-height: 84px;
+  --text-headline-xl--letter-spacing: -0.04em;
+  --text-headline-xl--font-weight: 700;
+  --text-headline-xl-mobile: 42px;
+  --text-headline-xl-mobile--line-height: 46px;
+  --text-headline-xl-mobile--letter-spacing: -0.03em;
+  --text-headline-xl-mobile--font-weight: 700;
+  --text-headline-lg: 56px;
+  --text-headline-lg--line-height: 60px;
+  --text-headline-lg--letter-spacing: -0.03em;
+  --text-headline-lg--font-weight: 600;
+  --text-headline-lg-mobile: 34px;
+  --text-headline-lg-mobile--line-height: 38px;
+  --text-headline-lg-mobile--letter-spacing: -0.02em;
+  --text-headline-lg-mobile--font-weight: 600;
+  --text-headline-md: 36px;
+  --text-headline-md--line-height: 42px;
+  --text-headline-md--letter-spacing: -0.02em;
+  --text-headline-md--font-weight: 600;
+  --text-headline-md-mobile: 26px;
+  --text-headline-md-mobile--line-height: 32px;
+  --text-headline-md-mobile--letter-spacing: -0.01em;
+  --text-headline-md-mobile--font-weight: 600;
+  --text-headline-sm: 24px;
+  --text-headline-sm--line-height: 30px;
+  --text-headline-sm--letter-spacing: -0.01em;
+  --text-headline-sm--font-weight: 500;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 30px;
+  --text-body-lg--letter-spacing: -0.01em;
+  --text-body-md: 15px;
+  --text-body-md--line-height: 26px;
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--letter-spacing: 0.01em;
+  --text-label-lg: 14px;
+  --text-label-lg--line-height: 18px;
+  --text-label-lg--letter-spacing: 0.04em;
+  --text-label-lg--font-weight: 500;
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.06em;
+  --text-label-md--font-weight: 500;
+  --text-label-sm: 10px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.1em;
+
+  --animate-marquee: marquee 50s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
-@utility font-heading { font-family: var(--font-heading); }
-@utility font-body    { font-family: var(--font-body); }
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

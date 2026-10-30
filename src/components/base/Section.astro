@@ -1,0 +1,33 @@
+---
+interface Props {
+  id: string;
+  index: string;
+  tag: string;
+  tagEn: string;
+}
+
+const { id, index, tag, tagEn } = Astro.props;
+---
+
+<section
+  id={id}
+  aria-labelledby={`${id}-title`}
+  class="relative z-10 mx-auto w-full max-w-7xl border-t border-outline-variant/20 px-5 py-20 md:px-8 md:py-28 lg:px-12"
+>
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <p
+        class="flex items-center gap-3 font-mono text-label-md uppercase tracking-widest"
+      >
+        <span class="font-bold text-tertiary">// {index}</span>
+        <span class="text-on-surface" data-en={tagEn}>{tag}</span>
+      </p>
+      <div
+        class="flex items-center gap-2 font-mono text-label-sm uppercase tracking-widest text-outline"
+      >
+        <slot name="status" />
+      </div>
+    </div>
+    <slot />
+  </div>
+</section>

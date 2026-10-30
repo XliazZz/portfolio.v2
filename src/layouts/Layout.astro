@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ShaderBackground from "../components/base/ShaderBackground.astro";
 interface Props {
   title: string;
   description: string;
@@ -25,19 +26,22 @@ const personSchema = {
   "@id": personId,
   name: authorName,
   url: authorUrl,
-  image: image,
+  jobTitle: "Software Engineer · Full Stack",
+  email: "mailto:eliasdev1912@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Buenos Aires",
+    addressCountry: "AR",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad de Buenos Aires",
+  },
+  knowsLanguage: ["es", "pt", "en"],
   sameAs: [
     socialProfiles.linkedin,
     socialProfiles.github,
     socialProfiles.instagram,
-  ],
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "customer support",
-      availableLanguage: ["es"],
-      url: "https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web",
-    },
   ],
 };
 
@@ -55,7 +59,7 @@ const websiteSchema = {
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -75,7 +79,7 @@ const websiteSchema = {
     <meta name="author" content="Elías Martínez" />
     <meta
       property="og:site_name"
-      content="Elías Martínez · Desarrollador web full-stack"
+      content="Elías Martínez · Software Engineer"
     />
     <meta property="og:locale" content="es_AR" />
 
@@ -92,36 +96,21 @@ const websiteSchema = {
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      href="/fonts/Lexend/Lexend-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
     />
+    <!-- icon_names subsets the icon font to the glyphs we use (must stay alphabetical) -->
     <link
-      rel="preload"
-      href="/fonts/Nunito/Nunito-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/techsSprite.svg"
-      as="image"
-      type="image/svg+xml"
-    />
-    <link
-      rel="preload"
-      href="/featuresSprite.svg"
-      as="image"
-      type="image/svg+xml"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,arrow_forward,check,code,content_copy,database,download,layers,menu,open_in_new,token,visibility&display=block"
     />
 
     <link rel="canonical" href={Astro.url.href} />
 
-    <meta name="theme-color" content="#121212" />
+    <meta name="theme-color" content="#131317" />
 
     <script
       type="application/ld+json"
@@ -129,89 +118,60 @@ const websiteSchema = {
       set:html={JSON.stringify([personSchema, websiteSchema])}
     />
   </head>
-  <body class="bg-black font-sans">
+  <body
+    class="min-h-screen overflow-x-hidden bg-background font-sans text-body-md text-on-surface antialiased selection:bg-tertiary-container selection:text-on-tertiary-container"
+  >
+    <a
+      href="#main-content"
+      class="sr-only z-[60] rounded-md bg-tertiary px-4 py-2 font-mono text-label-md text-on-tertiary focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+      data-en="Skip to content">Saltar al contenido</a
+    >
+
+    <ShaderBackground />
+
     <slot />
+
+    <script>
+      // ES is server-rendered; [data-en] holds the English text and the Spanish one is cached on first swap.
+      // shortcut: swap happens after load, so EN visitors see a brief flash of ES; upgrade to /en routes if SEO in English matters.
+      const apply = (lang: string) => {
+        document.documentElement.lang = lang;
+        document.querySelectorAll<HTMLElement>("[data-en]").forEach((el) => {
+          el.dataset.es ??= el.textContent ?? "";
+          el.textContent = lang === "en" ? el.dataset.en! : el.dataset.es;
+        });
+        // Same idea for attributes, e.g. data-en-href on the CV link so it downloads the current language.
+        for (const attr of ["href", "placeholder"]) {
+          document
+            .querySelectorAll<HTMLElement>(`[data-en-${attr}]`)
+            .forEach((el) => {
+              if (!el.hasAttribute(`data-es-${attr}`))
+                el.setAttribute(`data-es-${attr}`, el.getAttribute(attr) ?? "");
+              el.setAttribute(attr, el.getAttribute(`data-${lang}-${attr}`)!);
+            });
+        }
+        document
+          .querySelectorAll("[data-lang]")
+          .forEach((b) =>
+            b.setAttribute(
+              "aria-pressed",
+              String(b.getAttribute("data-lang") === lang),
+            ),
+          );
+        try {
+          localStorage.setItem("lang", lang);
+        } catch {}
+      };
+
+      document
+        .querySelectorAll<HTMLElement>("[data-lang]")
+        .forEach((b) =>
+          b.addEventListener("click", () => apply(b.dataset.lang!)),
+        );
+
+      try {
+        if (localStorage.getItem("lang") === "en") apply("en");
+      } catch {}
+    </script>
   </body>
 </html>
-
-<style>
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-Light.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-Regular.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-SemiBold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-Bold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-    src: url("/fonts/Lexend/Lexend-ExtraBold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-Light.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-Regular.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-SemiBold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-Bold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-    src: url("/fonts/Nunito/Nunito-ExtraBold.woff2") format("woff2");
-  }
-</style>

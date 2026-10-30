@@ -1,0 +1,162 @@
+<canvas
+  id="shader-bg"
+  class="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-40"
+  aria-hidden="true"></canvas>
+
+<script>
+  // Stitch previews the design in an iframe as tall as the document, so its fixed canvas spans the whole page:
+  // the centred vignette leaves hero/profile and contact dark and lights up a band from the stack section on.
+  // We reproduce that page-sized field on a viewport-sized canvas by feeding the shader the field height and scroll.
+  const canvas = document.getElementById("shader-bg") as HTMLCanvasElement;
+  const gl = canvas.getContext("webgl");
+
+  if (gl) {
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let pageH = 0;
+    // CSS-pixel resolution, as in the Stitch reference: lower makes the veins and scanlines blurry.
+    const resize = () => {
+      canvas.width = canvas.clientWidth || 1280;
+      canvas.height = canvas.clientHeight || 720;
+      // The vignette reaches zero 0.882·width from its centre; centring it there puts its fade-in edge
+      // at the top of #stack, as in the reference (pages without #stack fall back to the page centre).
+      const stack = document.getElementById("stack");
+      pageH = stack
+        ? 2 * (stack.offsetTop + 0.882 * canvas.width)
+        : document.documentElement.scrollHeight;
+    };
+    resize();
+
+    const vs = `attribute vec2 a_position;
+void main() { gl_Position = vec4(a_position, 0.0, 1.0); }`;
+
+    const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution; // page size, not canvas size
+uniform vec2 u_mouse;      // page pixels, origin bottom-left
+uniform float u_offset;    // page y of the canvas' bottom row
+
+float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  float a = hash(i);
+  float b = hash(i + vec2(1.0, 0.0));
+  float c = hash(i + vec2(0.0, 1.0));
+  float d = hash(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+  for (int i = 0; i < 4; ++i) {
+    v += a * noise(p);
+    p = rot * p * 2.0 + vec2(100.0);
+    a *= 0.5;
+  }
+  return v;
+}
+
+void main() {
+  vec2 fc = gl_FragCoord.xy + vec2(0.0, u_offset);
+  vec2 p = (fc * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y);
+
+  vec2 mouseNorm = (u_mouse.xy / u_resolution.xy) * 2.0 - 1.0;
+  float distMouse = length(p - mouseNorm);
+  float mouseWave = sin(distMouse * 8.0 - u_time * 2.0) * exp(-distMouse * 1.5) * 0.15;
+
+  float t = u_time * 0.15;
+  vec2 q = vec2(fbm(p + vec2(0.0, t * 0.4)), fbm(p + vec2(t * 0.3, 1.0)));
+  vec2 r = vec2(fbm(p + 2.0 * q + vec2(1.7, 9.2) + 0.1 * t), fbm(p + 2.0 * q + vec2(8.3, 2.8) + 0.12 * t));
+  float f = fbm(p + 3.0 * r + mouseWave);
+
+  vec3 bgBase = vec3(0.027, 0.027, 0.043);
+  vec3 deepCharcoal = vec3(0.063, 0.063, 0.094);
+  vec3 cyberCyan = vec3(0.258, 0.909, 1.0);
+  vec3 electricViolet = vec3(0.545, 0.361, 0.965);
+  vec3 neonMagenta = vec3(1.0, 0.243, 0.647);
+
+  vec3 color = mix(bgBase, deepCharcoal, clamp(f * 2.2, 0.0, 1.0));
+  color = mix(color, electricViolet * 0.35, clamp(length(q) * 0.8, 0.0, 1.0));
+  color = mix(color, cyberCyan * 0.25, clamp(length(r.x) * 0.7, 0.0, 1.0));
+
+  float contour = smoothstep(0.48, 0.52, f) - smoothstep(0.52, 0.56, f);
+  color += contour * neonMagenta * 0.35;
+  color -= sin(fc.y * 1.5) * 0.025;
+  color *= 1.0 - smoothstep(0.5, 1.5, length(p * 0.85));
+
+  gl_FragColor = vec4(color, 1.0);
+}`;
+
+    const compile = (type: number, src: string) => {
+      const shader = gl.createShader(type)!;
+      gl.shaderSource(shader, src);
+      gl.compileShader(shader);
+      return shader;
+    };
+
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+      gl.STATIC_DRAW,
+    );
+    const pos = gl.getAttribLocation(prog, "a_position");
+    gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+    const uTime = gl.getUniformLocation(prog, "u_time");
+    const uRes = gl.getUniformLocation(prog, "u_resolution");
+    const uMouse = gl.getUniformLocation(prog, "u_mouse");
+    const uOffset = gl.getUniformLocation(prog, "u_offset");
+
+    // Until the pointer moves, the ripple sits at the page centre, as in the reference.
+    let pointer: { x: number; y: number } | null = null;
+    window.addEventListener(
+      "pointermove",
+      (e) => (pointer = { x: e.clientX, y: e.clientY }),
+      { passive: true },
+    );
+
+    const draw = (t: number) => {
+      const bottom = pageH - scrollY - canvas.height;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.uniform1f(uTime, t * 0.001);
+      gl.uniform2f(uRes, canvas.width, pageH);
+      gl.uniform1f(uOffset, bottom);
+      gl.uniform2f(
+        uMouse,
+        pointer ? pointer.x : canvas.width / 2,
+        pointer ? pageH - scrollY - pointer.y : pageH / 2,
+      );
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    };
+
+    // Resizing clears the canvas and content changes alter the page height, so both trigger a refresh.
+    const observer = new ResizeObserver(() => {
+      resize();
+      if (still) draw(0);
+    });
+    observer.observe(canvas);
+    observer.observe(document.body);
+
+    if (still) {
+      addEventListener("scroll", () => draw(0), { passive: true });
+    } else {
+      const loop = (t: number) => {
+        draw(t);
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
+  }
+</script>

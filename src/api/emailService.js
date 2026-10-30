@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
 
 export const sendEmailService = async (formElement, formData) => {
-  const { user_name, user_email, project_type, budget = '', delivery_time, message } = formData;
+  const { user_name, user_email, company, message } = formData;
 
   return emailjs.sendForm(
   import.meta.env.PUBLIC_SERVICEID,
@@ -13,9 +13,7 @@ export const sendEmailService = async (formElement, formData) => {
       from_name: user_name,
       user_name,
       user_email,
-      project_type,
-      budget,
-      delivery_time: delivery_time,
+      company,
       message,
     }
   );
