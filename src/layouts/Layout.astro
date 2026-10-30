@@ -11,7 +11,6 @@ interface Props {
   socialProfiles: {
     linkedin: string;
     github: string;
-    instagram: string;
   };
 }
 
@@ -38,11 +37,7 @@ const personSchema = {
     name: "Universidad de Buenos Aires",
   },
   knowsLanguage: ["es", "pt", "en"],
-  sameAs: [
-    socialProfiles.linkedin,
-    socialProfiles.github,
-    socialProfiles.instagram,
-  ],
+  sameAs: [socialProfiles.linkedin, socialProfiles.github],
 };
 
 const websiteSchema = {
@@ -131,47 +126,52 @@ const websiteSchema = {
 
     <slot />
 
-    <script>
+    <!-- Inline (not bundled) so it runs while the page is parsed, before first paint: no flash of Spanish for EN visitors. -->
+    <script is:inline>
       // ES is server-rendered; [data-en] holds the English text and the Spanish one is cached on first swap.
-      // shortcut: swap happens after load, so EN visitors see a brief flash of ES; upgrade to /en routes if SEO in English matters.
-      const apply = (lang: string) => {
+      // shortcut: English exists only client-side, so search engines and link previews see Spanish; add /en routes if that matters.
+      const apply = (lang) => {
         document.documentElement.lang = lang;
-        document.querySelectorAll<HTMLElement>("[data-en]").forEach((el) => {
+        document.querySelectorAll("[data-en]").forEach((el) => {
           el.dataset.es ??= el.textContent ?? "";
-          el.textContent = lang === "en" ? el.dataset.en! : el.dataset.es;
+          el.textContent = lang === "en" ? el.dataset.en : el.dataset.es;
         });
         // Same idea for attributes, e.g. data-en-href on the CV link so it downloads the current language.
         for (const attr of ["href", "placeholder"]) {
-          document
-            .querySelectorAll<HTMLElement>(`[data-en-${attr}]`)
-            .forEach((el) => {
-              if (!el.hasAttribute(`data-es-${attr}`))
-                el.setAttribute(`data-es-${attr}`, el.getAttribute(attr) ?? "");
-              el.setAttribute(attr, el.getAttribute(`data-${lang}-${attr}`)!);
-            });
+          document.querySelectorAll(`[data-en-${attr}]`).forEach((el) => {
+            if (!el.hasAttribute(`data-es-${attr}`))
+              el.setAttribute(`data-es-${attr}`, el.getAttribute(attr) ?? "");
+            el.setAttribute(attr, el.getAttribute(`data-${lang}-${attr}`));
+          });
         }
         document
           .querySelectorAll("[data-lang]")
           .forEach((b) =>
-            b.setAttribute(
-              "aria-pressed",
-              String(b.getAttribute("data-lang") === lang),
-            ),
+            b.setAttribute("aria-pressed", String(b.dataset.lang === lang)),
           );
-        try {
-          localStorage.setItem("lang", lang);
-        } catch {}
       };
 
-      document
-        .querySelectorAll<HTMLElement>("[data-lang]")
-        .forEach((b) =>
-          b.addEventListener("click", () => apply(b.dataset.lang!)),
-        );
+      document.querySelectorAll("[data-lang]").forEach((b) =>
+        b.addEventListener("click", () => {
+          apply(b.dataset.lang);
+          try {
+            localStorage.setItem("lang", b.dataset.lang);
+          } catch {}
+        }),
+      );
 
+      // An explicit choice wins; otherwise Spanish only for browsers that prefer it, English for everyone else.
+      let saved = null;
       try {
-        if (localStorage.getItem("lang") === "en") apply("en");
+        saved = localStorage.getItem("lang");
       } catch {}
+      const browser = (
+        navigator.languages?.[0] ??
+        navigator.language ??
+        "es"
+      ).toLowerCase();
+      if ((saved ?? (browser.startsWith("es") ? "es" : "en")) === "en")
+        apply("en");
     </script>
   </body>
 </html>

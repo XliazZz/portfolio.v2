@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { successMessage, loadingMessage, errorMessage, warningMessage } from "./notifications.js";
+import { successMessage, loadingMessage, errorMessage, warningMessage, t } from "./notifications.js";
 import { sendEmailService } from "../../src/api/emailService.js";
 
 export const sendForm = () => {
@@ -21,17 +21,17 @@ export const sendForm = () => {
     };
 
     if (formData.user_name.length < 3) {
-      warningMessage("El nombre debe tener al menos 3 caracteres.");
+      warningMessage(t("El nombre debe tener al menos 3 caracteres.", "Your name must be at least 3 characters long."));
       return;
     }
 
     if (formData.user_email.length <= 7 || !formData.user_email.includes("@")) {
-      warningMessage("Por favor ingresa un email válido con más de 7 caracteres.");
+      warningMessage(t("Por favor ingresa un email válido con más de 7 caracteres.", "Please enter a valid email longer than 7 characters."));
       return;
     }
 
     if (formData.message.length < 25) {
-      warningMessage("El mensaje debe contener al menos 25 caracteres.");
+      warningMessage(t("El mensaje debe contener al menos 25 caracteres.", "Your message must be at least 25 characters long."));
       return;
     }
 
@@ -42,7 +42,7 @@ export const sendForm = () => {
       await successMessage(formData.user_name, formData.user_email, form);
     } catch (error) {
       console.error("Error al enviar el email:", error);
-      errorMessage(error, () => sendForm());
+      errorMessage(error, () => form.requestSubmit());
     }
   });
 };

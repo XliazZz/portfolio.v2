@@ -85,6 +85,7 @@
   },
   {
     "title": "The Bark Side",
+    "bootcamp": true,
     "demoUrl": "https://thebarkside.vercel.app/",
     "githubUrl": "https://github.com/XliazZz/Dogs",
     "technologies": [
@@ -110,6 +111,7 @@
   },
   {
     "title": "Globe Gazers",
+    "bootcamp": true,
     "demoUrl": "https://pi-countries-front-phi.vercel.app/",
     "githubUrl": "https://github.com/XliazZz/PI-Country",
     "technologies": [
@@ -134,6 +136,7 @@
   },
   {
     "title": "Rick and Morty",
+    "bootcamp": true,
     "demoUrl": "https://rickandmorty-xliazzz.vercel.app",
     "githubUrl": "https://github.com/XliazZz/Rick_And_Morty",
     "technologies": [

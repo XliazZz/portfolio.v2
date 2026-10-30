@@ -139,18 +139,35 @@ const projectCount = String(projects.length).padStart(2, "0");
   <div
     class="flex w-full items-center justify-between border-t border-outline-variant/20 pt-8 text-on-surface-variant"
   >
-    <div class="flex items-center gap-3">
+    <a
+      href="#about"
+      id="scroll-hint"
+      class="group flex items-center gap-3 transition-all duration-500"
+    >
       <div
         class="h-6 w-1.5 animate-pulse rounded-sm bg-gradient-to-b from-tertiary to-transparent"
       >
       </div>
       <span
-        class="font-mono text-label-sm tracking-widest text-outline"
+        class="font-mono text-label-sm tracking-widest text-outline transition-colors group-hover:text-tertiary"
         data-en="SCROLL TO EXPLORE">DESPLAZÁ PARA EXPLORAR</span
       >
-    </div>
+    </a>
     <span class="font-mono text-label-sm tracking-widest text-outline"
       >INDEX // 001 - 005</span
     >
   </div>
 </section>
+
+<script>
+  // A hint is only useful before the visitor scrolls: fade it out once they do, bring it back at the top.
+  // invisible (visibility) also takes it out of the tab order while hidden.
+  const hint = document.getElementById("scroll-hint")!;
+  const update = () => {
+    const away = scrollY > 40;
+    hint.classList.toggle("opacity-0", away);
+    hint.classList.toggle("invisible", away);
+  };
+  addEventListener("scroll", update, { passive: true });
+  update();
+</script>
